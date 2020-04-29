@@ -1,0 +1,12 @@
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\bin\Debug\ProjetoBD.exe.config
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\bin\Debug\ProjetoBD.exe
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\bin\Debug\ProjetoBD.pdb
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\bin\Debug\ProjetoBD.xml
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.vbprojAssemblyReference.cache
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.Form1.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.Resources.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.vbproj.GenerateResource.cache
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.vbproj.CoreCompileInputs.cache
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.exe
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.xml
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.pdb
