@@ -1,5 +1,5 @@
-﻿Public Class Form1
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+﻿Public Class Stores
+    Private Sub Stores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 
@@ -8,15 +8,19 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        TextBox1.Text = "Raquete Ténis Head Ig Challenge Pro"
-        TextBox3.Text = "189.99"
-        TextBox2.Text = "459658"
-        TextBox4.Text = "Acessórios"
-        TextBox5.Text = "40"
+        'TextBox1.Text = "Raquete Ténis Head Ig Challenge Pro"
+        'TextBox3.Text = "189.99"
+        'TextBox2.Text = "459658"
+        'TextBox4.Text = "Acessórios"
+        'TextBox5.Text = "40"
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
+        Dim Clients As New Clients
+        Dim bounds = Me.Bounds()
+        AddHandler Clients.Load, Sub() Clients.Bounds = bounds
+        Clients.Show()
+        Me.Hide()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -52,6 +56,14 @@
     End Sub
 
     Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+
+    End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class
