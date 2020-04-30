@@ -11,3 +11,7 @@ D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\P
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.pdb
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.Clients.resources
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.Stores.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.AddProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.EditProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.RemoveProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.BuyProduct.resources
