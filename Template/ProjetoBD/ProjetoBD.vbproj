@@ -106,6 +106,12 @@
     <Compile Include="Clients.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Deliveries.Designer.vb">
+      <DependentUpon>Deliveries.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Deliveries.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditProduct.Designer.vb">
       <DependentUpon>EditProduct.vb</DependentUpon>
     </Compile>
@@ -140,6 +146,12 @@
     <Compile Include="Stores.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Workers.Designer.vb">
+      <DependentUpon>Workers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Workers.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddProduct.resx">
@@ -150,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Clients.resx">
       <DependentUpon>Clients.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deliveries.resx">
+      <DependentUpon>Deliveries.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditProduct.resx">
       <DependentUpon>EditProduct.vb</DependentUpon>
@@ -165,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stores.resx">
       <DependentUpon>Stores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Workers.resx">
+      <DependentUpon>Workers.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

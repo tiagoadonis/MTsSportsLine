@@ -56,27 +56,30 @@ Partial Class Clients
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(351, 14)
+        Me.Button1.Location = New System.Drawing.Point(468, 17)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 34)
+        Me.Button1.Size = New System.Drawing.Size(100, 42)
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "Stores"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(513, 14)
+        Me.Button4.Location = New System.Drawing.Point(684, 17)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 34)
+        Me.Button4.Size = New System.Drawing.Size(100, 42)
         Me.Button4.TabIndex = 9
         Me.Button4.Text = "Deliveries"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(432, 14)
+        Me.Button3.Location = New System.Drawing.Point(576, 17)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 34)
+        Me.Button3.Size = New System.Drawing.Size(100, 42)
         Me.Button3.TabIndex = 8
         Me.Button3.Text = "Workers"
         Me.Button3.UseVisualStyleBackColor = True
@@ -84,9 +87,10 @@ Partial Class Clients
         'Button2
         '
         Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(270, 14)
+        Me.Button2.Location = New System.Drawing.Point(360, 17)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 34)
+        Me.Button2.Size = New System.Drawing.Size(100, 42)
         Me.Button2.TabIndex = 7
         Me.Button2.Text = "Clients"
         Me.Button2.UseVisualStyleBackColor = True
@@ -95,9 +99,10 @@ Partial Class Clients
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(12, 9)
+        Me.Label2.Location = New System.Drawing.Point(16, 11)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(247, 37)
+        Me.Label2.Size = New System.Drawing.Size(307, 46)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "MT's - Sports Line"
         '
@@ -107,35 +112,40 @@ Partial Class Clients
         Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox1.ForeColor = System.Drawing.Color.Black
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(19, 68)
+        Me.ListBox1.ItemHeight = 16
+        Me.ListBox1.Location = New System.Drawing.Point(25, 84)
+        Me.ListBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(346, 223)
+        Me.ListBox1.Size = New System.Drawing.Size(461, 274)
         Me.ListBox1.TabIndex = 76
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(14, 342)
+        Me.Label1.Location = New System.Drawing.Point(19, 421)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(175, 25)
+        Me.Label1.Size = New System.Drawing.Size(226, 32)
         Me.Label1.TabIndex = 77
         Me.Label1.Text = "Insert New Cliente"
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(19, 300)
+        Me.Button5.Location = New System.Drawing.Point(25, 369)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(162, 23)
+        Me.Button5.Size = New System.Drawing.Size(216, 28)
         Me.Button5.TabIndex = 85
         Me.Button5.Text = "Remove"
         Me.Button5.UseVisualStyleBackColor = True
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(203, 300)
+        Me.Button6.Location = New System.Drawing.Point(271, 369)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(162, 23)
+        Me.Button6.Size = New System.Drawing.Size(216, 28)
         Me.Button6.TabIndex = 86
         Me.Button6.Text = "Edit"
         Me.Button6.UseVisualStyleBackColor = True
@@ -151,93 +161,105 @@ Partial Class Clients
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(19, 374)
+        Me.GroupBox1.Location = New System.Drawing.Point(25, 460)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(346, 160)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(461, 197)
         Me.GroupBox1.TabIndex = 87
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Client"
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(208, 120)
+        Me.Button7.Location = New System.Drawing.Point(277, 148)
+        Me.Button7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(126, 23)
+        Me.Button7.Size = New System.Drawing.Size(168, 28)
         Me.Button7.TabIndex = 88
         Me.Button7.Text = "Insert"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(11, 123)
+        Me.TextBox4.Location = New System.Drawing.Point(15, 151)
+        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox4.Size = New System.Drawing.Size(132, 22)
         Me.TextBox4.TabIndex = 89
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 107)
+        Me.Label6.Location = New System.Drawing.Point(11, 132)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(78, 13)
+        Me.Label6.Size = New System.Drawing.Size(103, 17)
         Me.Label6.TabIndex = 88
         Me.Label6.Text = "Phone Number"
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(11, 79)
+        Me.TextBox3.Location = New System.Drawing.Point(15, 97)
+        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(323, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(429, 22)
         Me.TextBox3.TabIndex = 89
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(8, 63)
+        Me.Label5.Location = New System.Drawing.Point(11, 78)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(45, 13)
+        Me.Label5.Size = New System.Drawing.Size(60, 17)
         Me.Label5.TabIndex = 88
         Me.Label5.Text = "Address"
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(107, 36)
+        Me.TextBox2.Location = New System.Drawing.Point(143, 44)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(227, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(301, 22)
         Me.TextBox2.TabIndex = 91
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(104, 19)
+        Me.Label4.Location = New System.Drawing.Point(139, 23)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(35, 13)
+        Me.Label4.Size = New System.Drawing.Size(45, 17)
         Me.Label4.TabIndex = 90
         Me.Label4.Text = "Name"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(8, 20)
+        Me.Label3.Location = New System.Drawing.Point(11, 25)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(24, 13)
+        Me.Label3.Size = New System.Drawing.Size(29, 17)
         Me.Label3.TabIndex = 88
         Me.Label3.Text = "NIF"
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(11, 36)
+        Me.TextBox1.Location = New System.Drawing.Point(15, 44)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(86, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(113, 22)
         Me.TextBox1.TabIndex = 89
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(427, 310)
+        Me.Label7.Location = New System.Drawing.Point(569, 382)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(202, 30)
+        Me.Label7.Size = New System.Drawing.Size(263, 37)
         Me.Label7.TabIndex = 88
         Me.Label7.Text = "Returned Products "
         '
@@ -245,9 +267,10 @@ Partial Class Clients
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(427, 64)
+        Me.Label8.Location = New System.Drawing.Point(569, 79)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(207, 30)
+        Me.Label8.Size = New System.Drawing.Size(270, 37)
         Me.Label8.TabIndex = 89
         Me.Label8.Text = "Purchased Products"
         '
@@ -257,34 +280,39 @@ Partial Class Clients
         Me.ListBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox2.ForeColor = System.Drawing.Color.Black
         Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(432, 100)
+        Me.ListBox2.ItemHeight = 16
+        Me.ListBox2.Location = New System.Drawing.Point(576, 123)
+        Me.ListBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(505, 158)
+        Me.ListBox2.Size = New System.Drawing.Size(673, 194)
         Me.ListBox2.TabIndex = 90
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(432, 268)
+        Me.Button8.Location = New System.Drawing.Point(576, 330)
+        Me.Button8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(162, 23)
+        Me.Button8.Size = New System.Drawing.Size(216, 28)
         Me.Button8.TabIndex = 91
         Me.Button8.Text = "Add Purchased Product"
         Me.Button8.UseVisualStyleBackColor = True
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(604, 268)
+        Me.Button9.Location = New System.Drawing.Point(805, 330)
+        Me.Button9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(162, 23)
+        Me.Button9.Size = New System.Drawing.Size(216, 28)
         Me.Button9.TabIndex = 92
         Me.Button9.Text = "Remove Purchased Product"
         Me.Button9.UseVisualStyleBackColor = True
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(775, 268)
+        Me.Button10.Location = New System.Drawing.Point(1033, 330)
+        Me.Button10.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(162, 23)
+        Me.Button10.Size = New System.Drawing.Size(216, 28)
         Me.Button10.TabIndex = 93
         Me.Button10.Text = "Edit Purchased Product"
         Me.Button10.UseVisualStyleBackColor = True
@@ -295,43 +323,48 @@ Partial Class Clients
         Me.ListBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox3.ForeColor = System.Drawing.Color.Black
         Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(432, 343)
+        Me.ListBox3.ItemHeight = 16
+        Me.ListBox3.Location = New System.Drawing.Point(576, 422)
+        Me.ListBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(505, 158)
+        Me.ListBox3.Size = New System.Drawing.Size(673, 194)
         Me.ListBox3.TabIndex = 94
         '
         'Button11
         '
-        Me.Button11.Location = New System.Drawing.Point(775, 511)
+        Me.Button11.Location = New System.Drawing.Point(1033, 629)
+        Me.Button11.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(162, 23)
+        Me.Button11.Size = New System.Drawing.Size(216, 28)
         Me.Button11.TabIndex = 97
         Me.Button11.Text = "Edit Returned Product"
         Me.Button11.UseVisualStyleBackColor = True
         '
         'Button12
         '
-        Me.Button12.Location = New System.Drawing.Point(604, 511)
+        Me.Button12.Location = New System.Drawing.Point(805, 629)
+        Me.Button12.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(162, 23)
+        Me.Button12.Size = New System.Drawing.Size(216, 28)
         Me.Button12.TabIndex = 96
         Me.Button12.Text = "Remove Returned Product"
         Me.Button12.UseVisualStyleBackColor = True
         '
         'Button13
         '
-        Me.Button13.Location = New System.Drawing.Point(432, 511)
+        Me.Button13.Location = New System.Drawing.Point(576, 629)
+        Me.Button13.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(162, 23)
+        Me.Button13.Size = New System.Drawing.Size(216, 28)
         Me.Button13.TabIndex = 95
         Me.Button13.Text = "Add Returned Product"
         Me.Button13.UseVisualStyleBackColor = True
         '
         'Clients
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(955, 563)
+        Me.ClientSize = New System.Drawing.Size(1273, 693)
         Me.Controls.Add(Me.Button11)
         Me.Controls.Add(Me.Button12)
         Me.Controls.Add(Me.Button13)
@@ -352,6 +385,7 @@ Partial Class Clients
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "Clients"
         Me.Text = "Clients"
         Me.GroupBox1.ResumeLayout(False)
