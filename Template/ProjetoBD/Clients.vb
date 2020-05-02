@@ -1,4 +1,5 @@
 ﻿Public Class Clients
+    'Stores Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim Stores As New Stores
         Dim bounds = Me.Bounds()
@@ -7,27 +8,65 @@
         Me.Hide()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
+    'Workers Button
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim Workers As New Workers
+        Dim bounds = Me.Bounds()
+        AddHandler Workers.Load, Sub() Workers.Bounds = bounds
+        Workers.Show()
+        Me.Hide()
     End Sub
 
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
-
+    'Deliveries Button
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim Deliveries As New Deliveries
+        Dim bounds = Me.Bounds()
+        AddHandler Deliveries.Load, Sub() Deliveries.Bounds = bounds
+        Deliveries.Show()
+        Me.Hide()
     End Sub
 
-    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
-
+    'Client's Insert Button
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        If TextBox1.Text.Length <> 9 Then
+            MsgBox("Client's NIF Must Have 9 Numbers!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If TextBox4.Text.Length <> 9 Then
+            MsgBox("Client's Phone Number Must Have 9 Numbers!", MsgBoxStyle.Information, "ERROR")
+        End If
     End Sub
 
-    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
-
+    'Client's NIF TextBox
+    Private Sub TextBox1_KeyPress(sender As Object, e As EventArgs) Handles TextBox1.KeyPress
+        NumberOnly(e)
+    End Sub
+    Private Sub NumberOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Or Asc(e.KeyChar) = 8 Then
+        Else
+            e.Handled = True
+            MsgBox("Only Numeric Characteres are Allowed!", MsgBoxStyle.Information, "ERROR")
+        End If
     End Sub
 
-    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
-
+    'Client's Name TextBox
+    Private Sub TextBox2_KeyPress(sender As Object, e As EventArgs) Handles TextBox2.KeyPress
+        LettersOnly(e)
+    End Sub
+    Private Sub LettersOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Then
+            e.Handled = True
+            MsgBox("Only Alphabetic Characteres are Allowed!", MsgBoxStyle.Information, "ERROR")
+        End If
     End Sub
 
-    Private Sub Clients_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    'Client's Phone Number TextBox
+    Private Sub TextBox4_KeyPress(sender As Object, e As EventArgs) Handles TextBox4.KeyPress
+        NumberOnly(e)
+    End Sub
 
+    'Edit Button
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim EditClient As New EditClient
+        EditClient.ShowDialog()
     End Sub
 End Class

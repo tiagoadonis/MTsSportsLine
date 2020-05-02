@@ -1,13 +1,5 @@
-﻿Public Class BuyProduct
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        TextBox1.Text = ""
-        TextBox2.Text = ""
-        TextBox3.Text = ""
-        TextBox4.Text = ""
-        TextBox5.Text = ""
-    End Sub
-
-    'Client's NIF TextBox
+﻿Public Class ReturnProduct
+    'Cient's NIF TextBox
     Private Sub TextBox1_KeyPress(sender As Object, e As EventArgs) Handles TextBox1.KeyPress
         NumberOnly(e)
     End Sub
@@ -24,9 +16,25 @@
         NumberOnly(e)
     End Sub
 
+    'Product's Code TextBox
+    Private Sub TextBox6_KeyPress(sender As Object, e As EventArgs) Handles TextBox6.KeyPress
+        NumberOnly(e)
+    End Sub
+
     'Nº Units TextBox
     Private Sub TextBox5_KeyPress(sender As Object, e As EventArgs) Handles TextBox5.KeyPress
         NumberOnly(e)
+    End Sub
+
+    ' Cancel Button
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+        TextBox3.Text = ""
+        TextBox4.Text = ""
+        TextBox5.Text = ""
+        TextBox6.Text = ""
+        TextBox7.Text = ""
     End Sub
 
     'Confirm Button
@@ -36,6 +44,9 @@
         End If
         If TextBox4.Text.Length <> 6 Then
             MsgBox("Worker's Code Must Have 6 Numbers!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If TextBox6.Text.Length <> 6 Then
+            MsgBox("Product's Code Must Have 6 Numbers!", MsgBoxStyle.Information, "ERROR")
         End If
     End Sub
 End Class

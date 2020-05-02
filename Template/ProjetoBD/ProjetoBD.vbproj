@@ -94,6 +94,12 @@
     <Compile Include="AddProduct.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AveirosWarehouse.Designer.vb">
+      <DependentUpon>AveirosWarehouse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AveirosWarehouse.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BuyProduct.Designer.vb">
       <DependentUpon>BuyProduct.vb</DependentUpon>
     </Compile>
@@ -112,10 +118,22 @@
     <Compile Include="Deliveries.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EditClient.Designer.vb">
+      <DependentUpon>EditClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditProduct.Designer.vb">
       <DependentUpon>EditProduct.vb</DependentUpon>
     </Compile>
     <Compile Include="EditProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LisboasWarehouse.Designer.vb">
+      <DependentUpon>LisboasWarehouse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LisboasWarehouse.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -134,10 +152,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="PortosWarehouse.Designer.vb">
+      <DependentUpon>PortosWarehouse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PortosWarehouse.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RemoveProduct.Designer.vb">
       <DependentUpon>RemoveProduct.vb</DependentUpon>
     </Compile>
     <Compile Include="RemoveProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReturnProduct.Designer.vb">
+      <DependentUpon>ReturnProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReturnProduct.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Stores.Designer.vb">
@@ -157,6 +187,9 @@
     <EmbeddedResource Include="AddProduct.resx">
       <DependentUpon>AddProduct.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AveirosWarehouse.resx">
+      <DependentUpon>AveirosWarehouse.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuyProduct.resx">
       <DependentUpon>BuyProduct.vb</DependentUpon>
     </EmbeddedResource>
@@ -166,8 +199,14 @@
     <EmbeddedResource Include="Deliveries.resx">
       <DependentUpon>Deliveries.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditClient.resx">
+      <DependentUpon>EditClient.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditProduct.resx">
       <DependentUpon>EditProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LisboasWarehouse.resx">
+      <DependentUpon>LisboasWarehouse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -175,8 +214,14 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="PortosWarehouse.resx">
+      <DependentUpon>PortosWarehouse.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RemoveProduct.resx">
       <DependentUpon>RemoveProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReturnProduct.resx">
+      <DependentUpon>ReturnProduct.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stores.resx">
       <DependentUpon>Stores.vb</DependentUpon>

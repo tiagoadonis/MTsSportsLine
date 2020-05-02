@@ -15,3 +15,10 @@ D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\P
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.EditProduct.resources
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.RemoveProduct.resources
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.BuyProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.Deliveries.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.Workers.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.ReturnProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.AveirosWarehouse.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.PortosWarehouse.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.LisboasWarehouse.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.EditClient.resources

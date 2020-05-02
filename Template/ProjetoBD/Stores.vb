@@ -1,20 +1,4 @@
 ﻿Public Class Stores
-    Private Sub Stores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'TextBox1.Text = "Raquete Ténis Head Ig Challenge Pro"
-        'TextBox3.Text = "189.99"
-        'TextBox2.Text = "459658"
-        'TextBox4.Text = "Acessórios"
-        'TextBox5.Text = "40"
-    End Sub
-
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim Clients As New Clients
         Dim bounds = Me.Bounds()
@@ -24,47 +8,19 @@
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-
+        Dim Workers As New Workers
+        Dim bounds = Me.Bounds()
+        AddHandler Workers.Load, Sub() Workers.Bounds = bounds
+        Workers.Show()
+        Me.Hide()
     End Sub
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-
-    End Sub
-
-    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
-
-    End Sub
-
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-
-    End Sub
-
-    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
-
-    End Sub
-
-    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
-
-    End Sub
-
-    Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles TextBox4.TextChanged
-
-    End Sub
-
-    Private Sub TextBox5_TextChanged(sender As Object, e As EventArgs) Handles TextBox5.TextChanged
-
-    End Sub
-
-    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
-
-    End Sub
-
-    Private Sub Button14_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Button15_Click(sender As Object, e As EventArgs)
-
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim Deliviries As New Deliveries
+        Dim bounds = Me.Bounds()
+        AddHandler Deliveries.Load, Sub() Deliveries.Bounds = bounds
+        Deliveries.Show()
+        Me.Hide()
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
@@ -125,5 +81,43 @@
     Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click
         Dim buyLisboa As New BuyProduct
         buyLisboa.ShowDialog()
+    End Sub
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        Dim returnAveiro As New ReturnProduct
+        returnAveiro.ShowDialog()
+    End Sub
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+        Dim returnPorto As New ReturnProduct
+        returnPorto.ShowDialog()
+    End Sub
+
+    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
+        Dim returnLisboa As New ReturnProduct
+        returnLisboa.ShowDialog()
+    End Sub
+
+    Private Sub Button14_Click_1(sender As Object, e As EventArgs) Handles Button14.Click
+        Dim aveiroWarehouse As New AveirosWarehouse
+        Dim bounds = Me.Bounds()
+        AddHandler aveiroWarehouse.Load, Sub() aveiroWarehouse.Bounds = bounds
+        aveiroWarehouse.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
+        Dim portoWarehouse As New PortosWarehouse
+        Dim bounds = Me.Bounds()
+        AddHandler portoWarehouse.Load, Sub() portoWarehouse.Bounds = bounds
+        portoWarehouse.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
+        Dim lisboaWarehouse As New LisboasWarehouse
+        Me.Hide()
+        lisboaWarehouse.ShowDialog()
+
     End Sub
 End Class
