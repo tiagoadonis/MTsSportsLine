@@ -69,4 +69,9 @@
         Dim EditClient As New EditClient
         EditClient.ShowDialog()
     End Sub
+
+    'Close Button
+    Sub Client_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.Closed
+        Application.Exit()
+    End Sub
 End Class
