@@ -15,7 +15,7 @@
         If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Or Asc(e.KeyChar) = 46 Or Asc(e.KeyChar) = 8 Then
         Else
             e.Handled = True
-            MsgBox("Only Numeric Characteres are Allowed!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Only numeric characteres are allowed!", MsgBoxStyle.Information, "ERROR")
         End If
     End Sub
 
@@ -27,7 +27,7 @@
         If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Or Asc(e.KeyChar) = 8 Then
         Else
             e.Handled = True
-            MsgBox("Only Numeric Characteres are Allowed!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Only numeric characteres are allowed!", MsgBoxStyle.Information, "ERROR")
         End If
     End Sub
 
@@ -38,7 +38,7 @@
     Private Sub LettersOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
         If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Then
             e.Handled = True
-            MsgBox("Only Alphabetic Characteres are Allowed!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Only alphabetic characteres are allowed!", MsgBoxStyle.Information, "ERROR")
         End If
     End Sub
 
@@ -50,11 +50,15 @@
     'Confirm Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text.Length <> 6 Then
-            MsgBox("Code Number Must Have 6 Numbers!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Code number must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         End If
         If TextBox4.Text.Equals("Acessórios") Or TextBox4.Text.Equals("Vestuário") Or TextBox4.Text.Equals("Calçado") Then
         Else
             MsgBox("Only 'Acessórios', 'Calçado' and 'Vestuário' exists in products type!", MsgBoxStyle.Information, "ERROR")
         End If
+        If TextBox2.Text = "" Or TextBox3.Text = "" Or TextBox5.Text = "" Then
+            MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
+        End If
     End Sub
+
 End Class

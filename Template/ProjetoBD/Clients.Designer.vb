@@ -43,14 +43,8 @@ Partial Class Clients
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
         Me.ListBox3 = New System.Windows.Forms.ListBox()
-        Me.Button11 = New System.Windows.Forms.Button()
-        Me.Button12 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -235,7 +229,7 @@ Partial Class Clients
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(427, 310)
+        Me.Label7.Location = New System.Drawing.Point(427, 304)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(202, 30)
         Me.Label7.TabIndex = 88
@@ -251,95 +245,35 @@ Partial Class Clients
         Me.Label8.TabIndex = 89
         Me.Label8.Text = "Purchased Products"
         '
-        'ListBox2
-        '
-        Me.ListBox2.BackColor = System.Drawing.Color.Silver
-        Me.ListBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox2.ForeColor = System.Drawing.Color.Black
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(432, 100)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(505, 158)
-        Me.ListBox2.TabIndex = 90
-        '
-        'Button8
-        '
-        Me.Button8.Location = New System.Drawing.Point(432, 268)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(162, 23)
-        Me.Button8.TabIndex = 91
-        Me.Button8.Text = "Add Purchased Product"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'Button9
-        '
-        Me.Button9.Location = New System.Drawing.Point(604, 268)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(162, 23)
-        Me.Button9.TabIndex = 92
-        Me.Button9.Text = "Remove Purchased Product"
-        Me.Button9.UseVisualStyleBackColor = True
-        '
-        'Button10
-        '
-        Me.Button10.Location = New System.Drawing.Point(775, 268)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(162, 23)
-        Me.Button10.TabIndex = 93
-        Me.Button10.Text = "Edit Purchased Product"
-        Me.Button10.UseVisualStyleBackColor = True
-        '
         'ListBox3
         '
         Me.ListBox3.BackColor = System.Drawing.Color.Silver
         Me.ListBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox3.ForeColor = System.Drawing.Color.Black
         Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(432, 343)
+        Me.ListBox3.Location = New System.Drawing.Point(432, 337)
         Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(505, 158)
-        Me.ListBox3.TabIndex = 94
+        Me.ListBox3.Size = New System.Drawing.Size(505, 197)
+        Me.ListBox3.TabIndex = 91
         '
-        'Button11
+        'ListBox2
         '
-        Me.Button11.Location = New System.Drawing.Point(775, 511)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(162, 23)
-        Me.Button11.TabIndex = 97
-        Me.Button11.Text = "Edit Returned Product"
-        Me.Button11.UseVisualStyleBackColor = True
-        '
-        'Button12
-        '
-        Me.Button12.Location = New System.Drawing.Point(604, 511)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(162, 23)
-        Me.Button12.TabIndex = 96
-        Me.Button12.Text = "Remove Returned Product"
-        Me.Button12.UseVisualStyleBackColor = True
-        '
-        'Button13
-        '
-        Me.Button13.Location = New System.Drawing.Point(432, 511)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(162, 23)
-        Me.Button13.TabIndex = 95
-        Me.Button13.Text = "Add Returned Product"
-        Me.Button13.UseVisualStyleBackColor = True
+        Me.ListBox2.BackColor = System.Drawing.Color.Silver
+        Me.ListBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ListBox2.ForeColor = System.Drawing.Color.Black
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.Location = New System.Drawing.Point(432, 94)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(505, 197)
+        Me.ListBox2.TabIndex = 92
         '
         'Clients
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(955, 563)
-        Me.Controls.Add(Me.Button11)
-        Me.Controls.Add(Me.Button12)
-        Me.Controls.Add(Me.Button13)
-        Me.Controls.Add(Me.ListBox3)
-        Me.Controls.Add(Me.Button10)
-        Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.ListBox2)
+        Me.Controls.Add(Me.ListBox3)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.GroupBox1)
@@ -381,12 +315,6 @@ Partial Class Clients
     Friend WithEvents Button7 As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents ListBox2 As ListBox
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button9 As Button
-    Friend WithEvents Button10 As Button
     Friend WithEvents ListBox3 As ListBox
-    Friend WithEvents Button11 As Button
-    Friend WithEvents Button12 As Button
-    Friend WithEvents Button13 As Button
+    Friend WithEvents ListBox2 As ListBox
 End Class

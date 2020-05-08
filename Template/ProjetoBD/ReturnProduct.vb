@@ -7,7 +7,7 @@
         If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Or Asc(e.KeyChar) = 8 Then
         Else
             e.Handled = True
-            MsgBox("Only Numeric Characteres are Allowed!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Only numeric characteres are allowed!", MsgBoxStyle.Information, "ERROR")
         End If
     End Sub
 
@@ -40,13 +40,16 @@
     'Confirm Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If TextBox1.Text.Length <> 9 Then
-            MsgBox("Client's NIF Must Have 9 Numbers!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Client's NIF must have 9 numbers!", MsgBoxStyle.Information, "ERROR")
         End If
         If TextBox4.Text.Length <> 6 Then
-            MsgBox("Worker's Code Must Have 6 Numbers!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Worker's code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         End If
         If TextBox6.Text.Length <> 6 Then
-            MsgBox("Product's Code Must Have 6 Numbers!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Product's code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If TextBox5.Text = "" Then
+            MsgBox("Nº units is needed!", MsgBoxStyle.Information, "ERROR")
         End If
     End Sub
 End Class
