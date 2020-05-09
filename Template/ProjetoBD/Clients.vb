@@ -1,31 +1,4 @@
 ﻿Public Class Clients
-    'Stores Button
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim Stores As New Stores
-        Dim bounds = Me.Bounds()
-        AddHandler Stores.Load, Sub() Stores.Bounds = bounds
-        Stores.Show()
-        Me.Hide()
-    End Sub
-
-    'Workers Button
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim Workers As New Workers
-        Dim bounds = Me.Bounds()
-        AddHandler Workers.Load, Sub() Workers.Bounds = bounds
-        Workers.Show()
-        Me.Hide()
-    End Sub
-
-    'Deliveries Button
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim Deliveries As New Deliveries
-        Dim bounds = Me.Bounds()
-        AddHandler Deliveries.Load, Sub() Deliveries.Bounds = bounds
-        Deliveries.Show()
-        Me.Hide()
-    End Sub
-
     'Client's Insert Button
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         If TextBox1.Text.Length <> 9 Then
@@ -67,11 +40,7 @@
     'Edit Button
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         Dim EditClient As New EditClient
+        EditClient.StartPosition = FormStartPosition.CenterScreen
         EditClient.ShowDialog()
-    End Sub
-
-    'Close Button
-    Sub Client_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.Closed
-        Application.Exit()
     End Sub
 End Class

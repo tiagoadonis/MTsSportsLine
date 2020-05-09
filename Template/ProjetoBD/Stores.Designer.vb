@@ -35,11 +35,6 @@ Partial Class Stores
         Me.TextBox14 = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.TextBox15 = New System.Windows.Forms.TextBox()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ListBox3 = New System.Windows.Forms.ListBox()
@@ -80,7 +75,7 @@ Partial Class Stores
         '
         'Button20
         '
-        Me.Button20.Location = New System.Drawing.Point(690, 241)
+        Me.Button20.Location = New System.Drawing.Point(690, 192)
         Me.Button20.Name = "Button20"
         Me.Button20.Size = New System.Drawing.Size(89, 23)
         Me.Button20.TabIndex = 101
@@ -89,7 +84,7 @@ Partial Class Stores
         '
         'Button22
         '
-        Me.Button22.Location = New System.Drawing.Point(813, 241)
+        Me.Button22.Location = New System.Drawing.Point(813, 192)
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(89, 23)
         Me.Button22.TabIndex = 99
@@ -108,7 +103,7 @@ Partial Class Stores
         Me.GroupBox3.Controls.Add(Me.TextBox14)
         Me.GroupBox3.Controls.Add(Me.Label19)
         Me.GroupBox3.Controls.Add(Me.TextBox15)
-        Me.GroupBox3.Location = New System.Drawing.Point(656, 107)
+        Me.GroupBox3.Location = New System.Drawing.Point(656, 58)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(279, 128)
         Me.GroupBox3.TabIndex = 83
@@ -200,58 +195,11 @@ Partial Class Stores
         Me.TextBox15.Size = New System.Drawing.Size(62, 20)
         Me.TextBox15.TabIndex = 14
         '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(513, 14)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 34)
-        Me.Button4.TabIndex = 74
-        Me.Button4.Text = "Deliveries"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(432, 14)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 34)
-        Me.Button3.TabIndex = 73
-        Me.Button3.Text = "Workers"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(351, 14)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 34)
-        Me.Button2.TabIndex = 72
-        Me.Button2.Text = "Clients"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Enabled = False
-        Me.Button1.Location = New System.Drawing.Point(270, 14)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 34)
-        Me.Button1.TabIndex = 71
-        Me.Button1.Text = "Stores"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(247, 37)
-        Me.Label1.TabIndex = 70
-        Me.Label1.Text = "MT's - Sports Line"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(125, 62)
+        Me.Label4.Location = New System.Drawing.Point(125, 13)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(64, 25)
         Me.Label4.TabIndex = 78
@@ -261,7 +209,7 @@ Partial Class Stores
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(438, 62)
+        Me.Label3.Location = New System.Drawing.Point(438, 13)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(87, 25)
         Me.Label3.TabIndex = 77
@@ -273,7 +221,7 @@ Partial Class Stores
         Me.ListBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox3.ForeColor = System.Drawing.Color.Black
         Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(19, 338)
+        Me.ListBox3.Location = New System.Drawing.Point(19, 289)
         Me.ListBox3.Name = "ListBox3"
         Me.ListBox3.Size = New System.Drawing.Size(279, 171)
         Me.ListBox3.TabIndex = 102
@@ -282,7 +230,7 @@ Partial Class Stores
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(96, 310)
+        Me.Label2.Location = New System.Drawing.Point(96, 261)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(115, 25)
         Me.Label2.TabIndex = 103
@@ -294,7 +242,7 @@ Partial Class Stores
         Me.ListBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox4.ForeColor = System.Drawing.Color.Black
         Me.ListBox4.FormattingEnabled = True
-        Me.ListBox4.Location = New System.Drawing.Point(337, 338)
+        Me.ListBox4.Location = New System.Drawing.Point(337, 289)
         Me.ListBox4.Name = "ListBox4"
         Me.ListBox4.Size = New System.Drawing.Size(279, 171)
         Me.ListBox4.TabIndex = 105
@@ -303,7 +251,7 @@ Partial Class Stores
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(380, 310)
+        Me.Label5.Location = New System.Drawing.Point(380, 261)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(198, 25)
         Me.Label5.TabIndex = 104
@@ -315,7 +263,7 @@ Partial Class Stores
         Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox1.ForeColor = System.Drawing.Color.Black
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(19, 90)
+        Me.ListBox1.Location = New System.Drawing.Point(19, 41)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(279, 171)
         Me.ListBox1.TabIndex = 106
@@ -326,14 +274,14 @@ Partial Class Stores
         Me.ListBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox2.ForeColor = System.Drawing.Color.Black
         Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(337, 90)
+        Me.ListBox2.Location = New System.Drawing.Point(337, 41)
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.Size = New System.Drawing.Size(279, 171)
         Me.ListBox2.TabIndex = 107
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(531, 518)
+        Me.Button5.Location = New System.Drawing.Point(531, 469)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(85, 23)
         Me.Button5.TabIndex = 110
@@ -342,7 +290,7 @@ Partial Class Stores
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(435, 518)
+        Me.Button8.Location = New System.Drawing.Point(435, 469)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(85, 23)
         Me.Button8.TabIndex = 109
@@ -351,7 +299,7 @@ Partial Class Stores
         '
         'Button11
         '
-        Me.Button11.Location = New System.Drawing.Point(180, 270)
+        Me.Button11.Location = New System.Drawing.Point(180, 221)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(85, 23)
         Me.Button11.TabIndex = 112
@@ -360,7 +308,7 @@ Partial Class Stores
         '
         'Button12
         '
-        Me.Button12.Location = New System.Drawing.Point(54, 270)
+        Me.Button12.Location = New System.Drawing.Point(54, 221)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(85, 23)
         Me.Button12.TabIndex = 111
@@ -369,7 +317,7 @@ Partial Class Stores
         '
         'Button13
         '
-        Me.Button13.Location = New System.Drawing.Point(180, 518)
+        Me.Button13.Location = New System.Drawing.Point(180, 469)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(85, 23)
         Me.Button13.TabIndex = 114
@@ -378,7 +326,7 @@ Partial Class Stores
         '
         'Button14
         '
-        Me.Button14.Location = New System.Drawing.Point(54, 518)
+        Me.Button14.Location = New System.Drawing.Point(54, 469)
         Me.Button14.Name = "Button14"
         Me.Button14.Size = New System.Drawing.Size(85, 23)
         Me.Button14.TabIndex = 113
@@ -391,7 +339,7 @@ Partial Class Stores
         Me.GroupBox2.Controls.Add(Me.MaskedTextBox1)
         Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Controls.Add(Me.Label7)
-        Me.GroupBox2.Location = New System.Drawing.Point(656, 471)
+        Me.GroupBox2.Location = New System.Drawing.Point(656, 422)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(279, 69)
         Me.GroupBox2.TabIndex = 116
@@ -444,7 +392,7 @@ Partial Class Stores
         Me.GroupBox1.Controls.Add(Me.TextBox3)
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Location = New System.Drawing.Point(656, 332)
+        Me.GroupBox1.Location = New System.Drawing.Point(656, 283)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(279, 121)
         Me.GroupBox1.TabIndex = 115
@@ -538,7 +486,7 @@ Partial Class Stores
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(499, 270)
+        Me.Button6.Location = New System.Drawing.Point(499, 221)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(85, 23)
         Me.Button6.TabIndex = 118
@@ -547,7 +495,7 @@ Partial Class Stores
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(373, 270)
+        Me.Button7.Location = New System.Drawing.Point(373, 221)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(85, 23)
         Me.Button7.TabIndex = 117
@@ -556,7 +504,7 @@ Partial Class Stores
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(337, 518)
+        Me.Button9.Location = New System.Drawing.Point(337, 469)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(85, 23)
         Me.Button9.TabIndex = 119
@@ -567,7 +515,7 @@ Partial Class Stores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(955, 563)
+        Me.ClientSize = New System.Drawing.Size(955, 508)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button7)
@@ -590,11 +538,7 @@ Partial Class Stores
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Stores"
         Me.Text = "Stores"
         Me.GroupBox3.ResumeLayout(False)
@@ -621,11 +565,6 @@ Partial Class Stores
     Friend WithEvents TextBox14 As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents TextBox15 As TextBox
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label1 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents ListBox3 As ListBox

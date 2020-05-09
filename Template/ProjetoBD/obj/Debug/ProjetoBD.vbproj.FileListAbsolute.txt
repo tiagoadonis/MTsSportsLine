@@ -21,3 +21,4 @@ D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\P
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.EditClient.resources
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.AddStore.resources
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.AddWarehouse.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Code\ProjetoBD\ProjetoBD\obj\Debug\ProjetoBD.MainForm.resources

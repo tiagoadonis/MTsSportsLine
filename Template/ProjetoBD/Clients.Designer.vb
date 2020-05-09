@@ -22,11 +22,6 @@ Partial Class Clients
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -48,60 +43,13 @@ Partial Class Clients
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(351, 14)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 34)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Stores"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(513, 14)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 34)
-        Me.Button4.TabIndex = 9
-        Me.Button4.Text = "Deliveries"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(432, 14)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 34)
-        Me.Button3.TabIndex = 8
-        Me.Button3.Text = "Workers"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(270, 14)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 34)
-        Me.Button2.TabIndex = 7
-        Me.Button2.Text = "Clients"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(12, 9)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(247, 37)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "MT's - Sports Line"
-        '
         'ListBox1
         '
         Me.ListBox1.BackColor = System.Drawing.Color.Silver
         Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox1.ForeColor = System.Drawing.Color.Black
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(19, 68)
+        Me.ListBox1.Location = New System.Drawing.Point(19, 25)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(346, 223)
         Me.ListBox1.TabIndex = 76
@@ -110,7 +58,7 @@ Partial Class Clients
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(14, 342)
+        Me.Label1.Location = New System.Drawing.Point(14, 299)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(175, 25)
         Me.Label1.TabIndex = 77
@@ -118,7 +66,7 @@ Partial Class Clients
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(19, 300)
+        Me.Button5.Location = New System.Drawing.Point(19, 257)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(162, 23)
         Me.Button5.TabIndex = 85
@@ -127,7 +75,7 @@ Partial Class Clients
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(203, 300)
+        Me.Button6.Location = New System.Drawing.Point(203, 257)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(162, 23)
         Me.Button6.TabIndex = 86
@@ -145,7 +93,7 @@ Partial Class Clients
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(19, 374)
+        Me.GroupBox1.Location = New System.Drawing.Point(19, 331)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(346, 160)
         Me.GroupBox1.TabIndex = 87
@@ -229,7 +177,7 @@ Partial Class Clients
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(427, 304)
+        Me.Label7.Location = New System.Drawing.Point(427, 261)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(202, 30)
         Me.Label7.TabIndex = 88
@@ -239,7 +187,7 @@ Partial Class Clients
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(427, 64)
+        Me.Label8.Location = New System.Drawing.Point(427, 21)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(207, 30)
         Me.Label8.TabIndex = 89
@@ -251,7 +199,7 @@ Partial Class Clients
         Me.ListBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox3.ForeColor = System.Drawing.Color.Black
         Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(432, 337)
+        Me.ListBox3.Location = New System.Drawing.Point(432, 294)
         Me.ListBox3.Name = "ListBox3"
         Me.ListBox3.Size = New System.Drawing.Size(505, 197)
         Me.ListBox3.TabIndex = 91
@@ -262,7 +210,7 @@ Partial Class Clients
         Me.ListBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ListBox2.ForeColor = System.Drawing.Color.Black
         Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(432, 94)
+        Me.ListBox2.Location = New System.Drawing.Point(432, 51)
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.Size = New System.Drawing.Size(505, 197)
         Me.ListBox2.TabIndex = 92
@@ -271,7 +219,7 @@ Partial Class Clients
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(955, 563)
+        Me.ClientSize = New System.Drawing.Size(955, 508)
         Me.Controls.Add(Me.ListBox2)
         Me.Controls.Add(Me.ListBox3)
         Me.Controls.Add(Me.Label8)
@@ -281,11 +229,7 @@ Partial Class Clients
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ListBox1)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Button1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Clients"
         Me.Text = "Clients"
         Me.GroupBox1.ResumeLayout(False)
@@ -294,11 +238,6 @@ Partial Class Clients
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Label2 As Label
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Button5 As Button
