@@ -42,4 +42,8 @@
         End Set
     End Property
 
+    Public Overrides Function ToString() As String
+        Return _name & "    " & _numStore
+    End Function
+
 End Class

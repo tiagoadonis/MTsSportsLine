@@ -1,4 +1,10 @@
-﻿Public Class Stores
+﻿Imports System.Data.SqlClient
+
+Public Class Stores
+
+    Dim CN As SqlConnection
+    Dim CMD As SqlCommand
+
     'Add Store Button
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
         Dim addStore As New AddStore
@@ -53,5 +59,21 @@
         Dim removeProduct As New RemoveProduct
         removeProduct.StartPosition = FormStartPosition.CenterScreen
         removeProduct.ShowDialog()
+    End Sub
+
+    Public Sub loadStores(CN As SqlConnection, CMD As SqlCommand)
+        CMD.CommandText = "SELECT * FROM Projeto.LOJA"
+        CN.Open()
+        Dim RDR As SqlDataReader
+        RDR = CMD.ExecuteReader
+        ListBox1.Items.Clear()
+        While RDR.Read
+            Dim S As New Store
+            S.Name = RDR.Item("Nome")
+            S.Location = RDR.Item("Localizacao")
+            S.NumStore = RDR.Item("NumLoja")
+            ListBox1.Items.Add(S)
+        End While
+        CN.Close()
     End Sub
 End Class

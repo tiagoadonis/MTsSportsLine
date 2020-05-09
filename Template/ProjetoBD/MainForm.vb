@@ -25,6 +25,9 @@ Public Class MainForm
 
         CMD = New SqlCommand
         CMD.Connection = CN
+        CN.Close()
+
+        Stores.loadStores(CN, CMD)
 
         Panel1.Controls.Clear()
         Stores.TopLevel = False

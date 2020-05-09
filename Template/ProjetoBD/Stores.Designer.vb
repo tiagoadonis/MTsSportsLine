@@ -261,11 +261,13 @@ Partial Class Stores
         '
         Me.ListBox1.BackColor = System.Drawing.Color.Silver
         Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.ListBox1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBox1.ForeColor = System.Drawing.Color.Black
         Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 17
         Me.ListBox1.Location = New System.Drawing.Point(19, 41)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(279, 171)
+        Me.ListBox1.Size = New System.Drawing.Size(279, 172)
         Me.ListBox1.TabIndex = 106
         '
         'ListBox2
