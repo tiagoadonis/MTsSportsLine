@@ -22,7 +22,6 @@ Partial Class Clients
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
@@ -38,21 +37,14 @@ Partial Class Clients
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.ClientsDataGridView = New System.Windows.Forms.DataGridView()
+        Me.PurchasedProductsDataGridView = New System.Windows.Forms.DataGridView()
+        Me.ReturnedProductsDataGridView = New System.Windows.Forms.DataGridView()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.ClientsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PurchasedProductsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReturnedProductsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'ListBox1
-        '
-        Me.ListBox1.BackColor = System.Drawing.Color.Silver
-        Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox1.ForeColor = System.Drawing.Color.Black
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(19, 25)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(346, 223)
-        Me.ListBox1.TabIndex = 76
         '
         'Label1
         '
@@ -193,52 +185,56 @@ Partial Class Clients
         Me.Label8.TabIndex = 89
         Me.Label8.Text = "Purchased Products"
         '
-        'ListBox3
+        'ClientsDataGridView
         '
-        Me.ListBox3.BackColor = System.Drawing.Color.Silver
-        Me.ListBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox3.ForeColor = System.Drawing.Color.Black
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(432, 294)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(505, 197)
-        Me.ListBox3.TabIndex = 91
+        Me.ClientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ClientsDataGridView.Location = New System.Drawing.Point(19, 25)
+        Me.ClientsDataGridView.Name = "ClientsDataGridView"
+        Me.ClientsDataGridView.Size = New System.Drawing.Size(346, 223)
+        Me.ClientsDataGridView.TabIndex = 92
         '
-        'ListBox2
+        'PurchasedProductsDataGridView
         '
-        Me.ListBox2.BackColor = System.Drawing.Color.Silver
-        Me.ListBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox2.ForeColor = System.Drawing.Color.Black
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(432, 51)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(505, 197)
-        Me.ListBox2.TabIndex = 92
+        Me.PurchasedProductsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PurchasedProductsDataGridView.Location = New System.Drawing.Point(432, 51)
+        Me.PurchasedProductsDataGridView.Name = "PurchasedProductsDataGridView"
+        Me.PurchasedProductsDataGridView.Size = New System.Drawing.Size(505, 197)
+        Me.PurchasedProductsDataGridView.TabIndex = 93
+        '
+        'ReturnedProductsDataGridView
+        '
+        Me.ReturnedProductsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ReturnedProductsDataGridView.Location = New System.Drawing.Point(432, 294)
+        Me.ReturnedProductsDataGridView.Name = "ReturnedProductsDataGridView"
+        Me.ReturnedProductsDataGridView.Size = New System.Drawing.Size(505, 197)
+        Me.ReturnedProductsDataGridView.TabIndex = 94
         '
         'Clients
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(955, 508)
-        Me.Controls.Add(Me.ListBox2)
-        Me.Controls.Add(Me.ListBox3)
+        Me.Controls.Add(Me.ClientsDataGridView)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.ListBox1)
+        Me.Controls.Add(Me.PurchasedProductsDataGridView)
+        Me.Controls.Add(Me.ReturnedProductsDataGridView)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Clients"
         Me.Text = "Clients"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.ClientsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PurchasedProductsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReturnedProductsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
@@ -254,6 +250,7 @@ Partial Class Clients
     Friend WithEvents Button7 As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents ListBox3 As ListBox
-    Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents ClientsDataGridView As DataGridView
+    Friend WithEvents PurchasedProductsDataGridView As DataGridView
+    Friend WithEvents ReturnedProductsDataGridView As DataGridView
 End Class

@@ -27,7 +27,7 @@ Public Class MainForm
         CMD.Connection = CN
         CN.Close()
 
-        Stores.loadStores(CN, CMD)
+        Stores.loadStores()
 
         Panel1.Controls.Clear()
         Stores.TopLevel = False

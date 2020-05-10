@@ -25,24 +25,20 @@ Partial Class Stores
         Me.Button20 = New System.Windows.Forms.Button()
         Me.Button22 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
-        Me.TextBox12 = New System.Windows.Forms.TextBox()
+        Me.TextBoxUnits = New System.Windows.Forms.TextBox()
+        Me.TextBoxName = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
+        Me.TextBoxType = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
+        Me.TextBoxPrice = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.TextBox15 = New System.Windows.Forms.TextBox()
+        Me.TextBoxCode = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.ListBox4 = New System.Windows.Forms.ListBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
@@ -50,27 +46,35 @@ Partial Class Stores
         Me.Button13 = New System.Windows.Forms.Button()
         Me.Button14 = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.MaskedTextBox2 = New System.Windows.Forms.MaskedTextBox()
-        Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
+        Me.TextBoxTotalStorage = New System.Windows.Forms.MaskedTextBox()
+        Me.TextBoxStorageOccupied = New System.Windows.Forms.MaskedTextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBoxUnits2 = New System.Windows.Forms.TextBox()
+        Me.TextBoxName2 = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBoxType2 = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBoxPrice2 = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBoxCode2 = New System.Windows.Forms.TextBox()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
+        Me.StoresDataGridView = New System.Windows.Forms.DataGridView()
+        Me.ProductsDataGridView = New System.Windows.Forms.DataGridView()
+        Me.WarehousesDataGridView = New System.Windows.Forms.DataGridView()
+        Me.WharehousesProductsDataGridView = New System.Windows.Forms.DataGridView()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.StoresDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ProductsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.WarehousesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.WharehousesProductsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button20
@@ -93,16 +97,16 @@ Partial Class Stores
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.TextBox11)
-        Me.GroupBox3.Controls.Add(Me.TextBox12)
+        Me.GroupBox3.Controls.Add(Me.TextBoxUnits)
+        Me.GroupBox3.Controls.Add(Me.TextBoxName)
         Me.GroupBox3.Controls.Add(Me.Label15)
         Me.GroupBox3.Controls.Add(Me.Label16)
         Me.GroupBox3.Controls.Add(Me.Label17)
-        Me.GroupBox3.Controls.Add(Me.TextBox13)
+        Me.GroupBox3.Controls.Add(Me.TextBoxType)
         Me.GroupBox3.Controls.Add(Me.Label18)
-        Me.GroupBox3.Controls.Add(Me.TextBox14)
+        Me.GroupBox3.Controls.Add(Me.TextBoxPrice)
         Me.GroupBox3.Controls.Add(Me.Label19)
-        Me.GroupBox3.Controls.Add(Me.TextBox15)
+        Me.GroupBox3.Controls.Add(Me.TextBoxCode)
         Me.GroupBox3.Location = New System.Drawing.Point(656, 58)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(279, 128)
@@ -110,21 +114,21 @@ Partial Class Stores
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Product's Details"
         '
-        'TextBox11
+        'TextBoxUnits
         '
-        Me.TextBox11.Enabled = False
-        Me.TextBox11.Location = New System.Drawing.Point(208, 94)
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(62, 20)
-        Me.TextBox11.TabIndex = 19
+        Me.TextBoxUnits.Enabled = False
+        Me.TextBoxUnits.Location = New System.Drawing.Point(208, 94)
+        Me.TextBoxUnits.Name = "TextBoxUnits"
+        Me.TextBoxUnits.Size = New System.Drawing.Size(62, 20)
+        Me.TextBoxUnits.TabIndex = 19
         '
-        'TextBox12
+        'TextBoxName
         '
-        Me.TextBox12.Enabled = False
-        Me.TextBox12.Location = New System.Drawing.Point(11, 47)
-        Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(191, 20)
-        Me.TextBox12.TabIndex = 11
+        Me.TextBoxName.Enabled = False
+        Me.TextBoxName.Location = New System.Drawing.Point(11, 47)
+        Me.TextBoxName.Name = "TextBoxName"
+        Me.TextBoxName.Size = New System.Drawing.Size(191, 20)
+        Me.TextBoxName.TabIndex = 11
         '
         'Label15
         '
@@ -153,13 +157,13 @@ Partial Class Stores
         Me.Label17.TabIndex = 18
         Me.Label17.Text = "Type"
         '
-        'TextBox13
+        'TextBoxType
         '
-        Me.TextBox13.Enabled = False
-        Me.TextBox13.Location = New System.Drawing.Point(90, 94)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox13.TabIndex = 17
+        Me.TextBoxType.Enabled = False
+        Me.TextBoxType.Location = New System.Drawing.Point(90, 94)
+        Me.TextBoxType.Name = "TextBoxType"
+        Me.TextBoxType.Size = New System.Drawing.Size(100, 20)
+        Me.TextBoxType.TabIndex = 17
         '
         'Label18
         '
@@ -170,13 +174,13 @@ Partial Class Stores
         Me.Label18.TabIndex = 13
         Me.Label18.Text = "Code"
         '
-        'TextBox14
+        'TextBoxPrice
         '
-        Me.TextBox14.Enabled = False
-        Me.TextBox14.Location = New System.Drawing.Point(218, 47)
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.Size = New System.Drawing.Size(52, 20)
-        Me.TextBox14.TabIndex = 16
+        Me.TextBoxPrice.Enabled = False
+        Me.TextBoxPrice.Location = New System.Drawing.Point(218, 47)
+        Me.TextBoxPrice.Name = "TextBoxPrice"
+        Me.TextBoxPrice.Size = New System.Drawing.Size(52, 20)
+        Me.TextBoxPrice.TabIndex = 16
         '
         'Label19
         '
@@ -187,13 +191,13 @@ Partial Class Stores
         Me.Label19.TabIndex = 15
         Me.Label19.Text = "Price"
         '
-        'TextBox15
+        'TextBoxCode
         '
-        Me.TextBox15.Enabled = False
-        Me.TextBox15.Location = New System.Drawing.Point(11, 94)
-        Me.TextBox15.Name = "TextBox15"
-        Me.TextBox15.Size = New System.Drawing.Size(62, 20)
-        Me.TextBox15.TabIndex = 14
+        Me.TextBoxCode.Enabled = False
+        Me.TextBoxCode.Location = New System.Drawing.Point(11, 94)
+        Me.TextBoxCode.Name = "TextBoxCode"
+        Me.TextBoxCode.Size = New System.Drawing.Size(62, 20)
+        Me.TextBoxCode.TabIndex = 14
         '
         'Label4
         '
@@ -215,17 +219,6 @@ Partial Class Stores
         Me.Label3.TabIndex = 77
         Me.Label3.Text = "Products"
         '
-        'ListBox3
-        '
-        Me.ListBox3.BackColor = System.Drawing.Color.Silver
-        Me.ListBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox3.ForeColor = System.Drawing.Color.Black
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(19, 289)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(279, 171)
-        Me.ListBox3.TabIndex = 102
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -236,17 +229,6 @@ Partial Class Stores
         Me.Label2.TabIndex = 103
         Me.Label2.Text = "Warehouses"
         '
-        'ListBox4
-        '
-        Me.ListBox4.BackColor = System.Drawing.Color.Silver
-        Me.ListBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox4.ForeColor = System.Drawing.Color.Black
-        Me.ListBox4.FormattingEnabled = True
-        Me.ListBox4.Location = New System.Drawing.Point(337, 289)
-        Me.ListBox4.Name = "ListBox4"
-        Me.ListBox4.Size = New System.Drawing.Size(279, 171)
-        Me.ListBox4.TabIndex = 105
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -256,30 +238,6 @@ Partial Class Stores
         Me.Label5.Size = New System.Drawing.Size(198, 25)
         Me.Label5.TabIndex = 104
         Me.Label5.Text = "Warehouse's Products"
-        '
-        'ListBox1
-        '
-        Me.ListBox1.BackColor = System.Drawing.Color.Silver
-        Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ListBox1.ForeColor = System.Drawing.Color.Black
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(19, 41)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(279, 172)
-        Me.ListBox1.TabIndex = 106
-        '
-        'ListBox2
-        '
-        Me.ListBox2.BackColor = System.Drawing.Color.Silver
-        Me.ListBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox2.ForeColor = System.Drawing.Color.Black
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(337, 41)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(279, 171)
-        Me.ListBox2.TabIndex = 107
         '
         'Button5
         '
@@ -337,8 +295,8 @@ Partial Class Stores
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.MaskedTextBox2)
-        Me.GroupBox2.Controls.Add(Me.MaskedTextBox1)
+        Me.GroupBox2.Controls.Add(Me.TextBoxTotalStorage)
+        Me.GroupBox2.Controls.Add(Me.TextBoxStorageOccupied)
         Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Location = New System.Drawing.Point(656, 422)
@@ -348,21 +306,21 @@ Partial Class Stores
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Warehouse's Details"
         '
-        'MaskedTextBox2
+        'TextBoxTotalStorage
         '
-        Me.MaskedTextBox2.Enabled = False
-        Me.MaskedTextBox2.Location = New System.Drawing.Point(151, 36)
-        Me.MaskedTextBox2.Name = "MaskedTextBox2"
-        Me.MaskedTextBox2.Size = New System.Drawing.Size(119, 20)
-        Me.MaskedTextBox2.TabIndex = 83
+        Me.TextBoxTotalStorage.Enabled = False
+        Me.TextBoxTotalStorage.Location = New System.Drawing.Point(151, 36)
+        Me.TextBoxTotalStorage.Name = "TextBoxTotalStorage"
+        Me.TextBoxTotalStorage.Size = New System.Drawing.Size(119, 20)
+        Me.TextBoxTotalStorage.TabIndex = 83
         '
-        'MaskedTextBox1
+        'TextBoxStorageOccupied
         '
-        Me.MaskedTextBox1.Enabled = False
-        Me.MaskedTextBox1.Location = New System.Drawing.Point(11, 36)
-        Me.MaskedTextBox1.Name = "MaskedTextBox1"
-        Me.MaskedTextBox1.Size = New System.Drawing.Size(119, 20)
-        Me.MaskedTextBox1.TabIndex = 82
+        Me.TextBoxStorageOccupied.Enabled = False
+        Me.TextBoxStorageOccupied.Location = New System.Drawing.Point(11, 36)
+        Me.TextBoxStorageOccupied.Name = "TextBoxStorageOccupied"
+        Me.TextBoxStorageOccupied.Size = New System.Drawing.Size(119, 20)
+        Me.TextBoxStorageOccupied.TabIndex = 82
         '
         'Label6
         '
@@ -384,16 +342,16 @@ Partial Class Stores
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.TextBox5)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.TextBoxUnits2)
+        Me.GroupBox1.Controls.Add(Me.TextBoxName2)
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label10)
-        Me.GroupBox1.Controls.Add(Me.TextBox4)
+        Me.GroupBox1.Controls.Add(Me.TextBoxType2)
         Me.GroupBox1.Controls.Add(Me.Label11)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
+        Me.GroupBox1.Controls.Add(Me.TextBoxPrice2)
         Me.GroupBox1.Controls.Add(Me.Label12)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.TextBoxCode2)
         Me.GroupBox1.Location = New System.Drawing.Point(656, 283)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(279, 121)
@@ -401,21 +359,21 @@ Partial Class Stores
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Product's Details"
         '
-        'TextBox5
+        'TextBoxUnits2
         '
-        Me.TextBox5.Enabled = False
-        Me.TextBox5.Location = New System.Drawing.Point(208, 88)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(62, 20)
-        Me.TextBox5.TabIndex = 19
+        Me.TextBoxUnits2.Enabled = False
+        Me.TextBoxUnits2.Location = New System.Drawing.Point(208, 88)
+        Me.TextBoxUnits2.Name = "TextBoxUnits2"
+        Me.TextBoxUnits2.Size = New System.Drawing.Size(62, 20)
+        Me.TextBoxUnits2.TabIndex = 19
         '
-        'TextBox1
+        'TextBoxName2
         '
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(11, 41)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(191, 20)
-        Me.TextBox1.TabIndex = 11
+        Me.TextBoxName2.Enabled = False
+        Me.TextBoxName2.Location = New System.Drawing.Point(11, 41)
+        Me.TextBoxName2.Name = "TextBoxName2"
+        Me.TextBoxName2.Size = New System.Drawing.Size(191, 20)
+        Me.TextBoxName2.TabIndex = 11
         '
         'Label9
         '
@@ -444,13 +402,13 @@ Partial Class Stores
         Me.Label10.TabIndex = 18
         Me.Label10.Text = "Type"
         '
-        'TextBox4
+        'TextBoxType2
         '
-        Me.TextBox4.Enabled = False
-        Me.TextBox4.Location = New System.Drawing.Point(90, 88)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox4.TabIndex = 17
+        Me.TextBoxType2.Enabled = False
+        Me.TextBoxType2.Location = New System.Drawing.Point(90, 88)
+        Me.TextBoxType2.Name = "TextBoxType2"
+        Me.TextBoxType2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBoxType2.TabIndex = 17
         '
         'Label11
         '
@@ -461,13 +419,13 @@ Partial Class Stores
         Me.Label11.TabIndex = 13
         Me.Label11.Text = "Code"
         '
-        'TextBox3
+        'TextBoxPrice2
         '
-        Me.TextBox3.Enabled = False
-        Me.TextBox3.Location = New System.Drawing.Point(218, 41)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(52, 20)
-        Me.TextBox3.TabIndex = 16
+        Me.TextBoxPrice2.Enabled = False
+        Me.TextBoxPrice2.Location = New System.Drawing.Point(218, 41)
+        Me.TextBoxPrice2.Name = "TextBoxPrice2"
+        Me.TextBoxPrice2.Size = New System.Drawing.Size(52, 20)
+        Me.TextBoxPrice2.TabIndex = 16
         '
         'Label12
         '
@@ -478,13 +436,13 @@ Partial Class Stores
         Me.Label12.TabIndex = 15
         Me.Label12.Text = "Price"
         '
-        'TextBox2
+        'TextBoxCode2
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(11, 88)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(62, 20)
-        Me.TextBox2.TabIndex = 14
+        Me.TextBoxCode2.Enabled = False
+        Me.TextBoxCode2.Location = New System.Drawing.Point(11, 88)
+        Me.TextBoxCode2.Name = "TextBoxCode2"
+        Me.TextBoxCode2.Size = New System.Drawing.Size(62, 20)
+        Me.TextBoxCode2.TabIndex = 14
         '
         'Button6
         '
@@ -513,11 +471,73 @@ Partial Class Stores
         Me.Button9.Text = "Add"
         Me.Button9.UseVisualStyleBackColor = True
         '
+        'StoresDataGridView
+        '
+        Me.StoresDataGridView.AllowUserToAddRows = False
+        Me.StoresDataGridView.AllowUserToResizeColumns = False
+        Me.StoresDataGridView.AllowUserToResizeRows = False
+        Me.StoresDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.StoresDataGridView.Location = New System.Drawing.Point(19, 41)
+        Me.StoresDataGridView.MultiSelect = False
+        Me.StoresDataGridView.Name = "StoresDataGridView"
+        Me.StoresDataGridView.ReadOnly = True
+        Me.StoresDataGridView.RowHeadersVisible = False
+        Me.StoresDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.StoresDataGridView.Size = New System.Drawing.Size(279, 171)
+        Me.StoresDataGridView.TabIndex = 120
+        '
+        'ProductsDataGridView
+        '
+        Me.ProductsDataGridView.AllowUserToAddRows = False
+        Me.ProductsDataGridView.AllowUserToResizeColumns = False
+        Me.ProductsDataGridView.AllowUserToResizeRows = False
+        Me.ProductsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ProductsDataGridView.Location = New System.Drawing.Point(337, 41)
+        Me.ProductsDataGridView.Name = "ProductsDataGridView"
+        Me.ProductsDataGridView.ReadOnly = True
+        Me.ProductsDataGridView.RowHeadersVisible = False
+        Me.ProductsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.ProductsDataGridView.Size = New System.Drawing.Size(279, 171)
+        Me.ProductsDataGridView.TabIndex = 121
+        '
+        'WarehousesDataGridView
+        '
+        Me.WarehousesDataGridView.AllowUserToAddRows = False
+        Me.WarehousesDataGridView.AllowUserToResizeColumns = False
+        Me.WarehousesDataGridView.AllowUserToResizeRows = False
+        Me.WarehousesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.WarehousesDataGridView.Location = New System.Drawing.Point(19, 289)
+        Me.WarehousesDataGridView.MultiSelect = False
+        Me.WarehousesDataGridView.Name = "WarehousesDataGridView"
+        Me.WarehousesDataGridView.ReadOnly = True
+        Me.WarehousesDataGridView.RowHeadersVisible = False
+        Me.WarehousesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.WarehousesDataGridView.Size = New System.Drawing.Size(279, 171)
+        Me.WarehousesDataGridView.TabIndex = 122
+        '
+        'WharehousesProductsDataGridView
+        '
+        Me.WharehousesProductsDataGridView.AllowUserToAddRows = False
+        Me.WharehousesProductsDataGridView.AllowUserToResizeColumns = False
+        Me.WharehousesProductsDataGridView.AllowUserToResizeRows = False
+        Me.WharehousesProductsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.WharehousesProductsDataGridView.Location = New System.Drawing.Point(337, 289)
+        Me.WharehousesProductsDataGridView.Name = "WharehousesProductsDataGridView"
+        Me.WharehousesProductsDataGridView.ReadOnly = True
+        Me.WharehousesProductsDataGridView.RowHeadersVisible = False
+        Me.WharehousesProductsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.WharehousesProductsDataGridView.Size = New System.Drawing.Size(279, 171)
+        Me.WharehousesProductsDataGridView.TabIndex = 123
+        '
         'Stores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(955, 508)
+        Me.Controls.Add(Me.WharehousesProductsDataGridView)
+        Me.Controls.Add(Me.WarehousesDataGridView)
+        Me.Controls.Add(Me.ProductsDataGridView)
+        Me.Controls.Add(Me.StoresDataGridView)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button7)
@@ -529,12 +549,8 @@ Partial Class Stores
         Me.Controls.Add(Me.Button12)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.ListBox2)
-        Me.Controls.Add(Me.ListBox1)
-        Me.Controls.Add(Me.ListBox4)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.ListBox3)
         Me.Controls.Add(Me.Button20)
         Me.Controls.Add(Me.Button22)
         Me.Controls.Add(Me.GroupBox3)
@@ -549,6 +565,10 @@ Partial Class Stores
         Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.StoresDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProductsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.WarehousesDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.WharehousesProductsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -557,24 +577,20 @@ Partial Class Stores
     Friend WithEvents Button20 As Button
     Friend WithEvents Button22 As Button
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents TextBox11 As TextBox
-    Friend WithEvents TextBox12 As TextBox
+    Friend WithEvents TextBoxUnits As TextBox
+    Friend WithEvents TextBoxName As TextBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents Label17 As Label
-    Friend WithEvents TextBox13 As TextBox
+    Friend WithEvents TextBoxType As TextBox
     Friend WithEvents Label18 As Label
-    Friend WithEvents TextBox14 As TextBox
+    Friend WithEvents TextBoxPrice As TextBox
     Friend WithEvents Label19 As Label
-    Friend WithEvents TextBox15 As TextBox
+    Friend WithEvents TextBoxCode As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents ListBox3 As ListBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents ListBox4 As ListBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents ListBox2 As ListBox
     Friend WithEvents Button5 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button11 As Button
@@ -582,22 +598,26 @@ Partial Class Stores
     Friend WithEvents Button13 As Button
     Friend WithEvents Button14 As Button
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents MaskedTextBox2 As MaskedTextBox
-    Friend WithEvents MaskedTextBox1 As MaskedTextBox
+    Friend WithEvents TextBoxTotalStorage As MaskedTextBox
+    Friend WithEvents TextBoxStorageOccupied As MaskedTextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBoxUnits2 As TextBox
+    Friend WithEvents TextBoxName2 As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents TextBoxType2 As TextBox
     Friend WithEvents Label11 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents TextBoxPrice2 As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TextBoxCode2 As TextBox
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Button9 As Button
+    Friend WithEvents StoresDataGridView As DataGridView
+    Friend WithEvents ProductsDataGridView As DataGridView
+    Friend WithEvents WarehousesDataGridView As DataGridView
+    Friend WithEvents WharehousesProductsDataGridView As DataGridView
 End Class

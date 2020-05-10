@@ -95,7 +95,7 @@ Partial Class MainForm
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label1)
         Me.Name = "MainForm"
-        Me.Text = "MT's - Sports line"
+        Me.Text = "MT's - Sports Line"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
