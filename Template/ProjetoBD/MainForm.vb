@@ -42,6 +42,7 @@ Public Class MainForm
             Panel1.Controls.Add(Clients)
             .BringToFront()
             .Show()
+            .loadClients()
         End With
     End Sub
 

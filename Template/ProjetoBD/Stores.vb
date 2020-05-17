@@ -72,7 +72,6 @@ Public Class Stores
             .Columns(0).Width = 80
             .Columns(1).Width = 196
         End With
-
     End Sub
 
     'Stores DataGridView

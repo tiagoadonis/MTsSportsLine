@@ -187,9 +187,17 @@ Partial Class Clients
         '
         'ClientsDataGridView
         '
+        Me.ClientsDataGridView.AllowUserToAddRows = False
+        Me.ClientsDataGridView.AllowUserToDeleteRows = False
+        Me.ClientsDataGridView.AllowUserToResizeColumns = False
+        Me.ClientsDataGridView.AllowUserToResizeRows = False
         Me.ClientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ClientsDataGridView.Location = New System.Drawing.Point(19, 25)
+        Me.ClientsDataGridView.MultiSelect = False
         Me.ClientsDataGridView.Name = "ClientsDataGridView"
+        Me.ClientsDataGridView.ReadOnly = True
+        Me.ClientsDataGridView.RowHeadersVisible = False
+        Me.ClientsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.ClientsDataGridView.Size = New System.Drawing.Size(346, 223)
         Me.ClientsDataGridView.TabIndex = 92
         '

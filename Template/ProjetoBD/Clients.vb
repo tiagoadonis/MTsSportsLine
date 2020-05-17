@@ -1,4 +1,10 @@
-﻿Public Class Clients
+﻿Imports System.Data.SqlClient
+
+Public Class Clients
+    Dim CMD As SqlCommand
+    Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
+                                                "Initial Catalog = LojaDesporto; Integrated Security = true;")
+
     'Client's Insert Button
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         If TextBox1.Text.Length <> 9 Then
@@ -42,5 +48,21 @@
         Dim EditClient As New EditClient
         EditClient.StartPosition = FormStartPosition.CenterScreen
         EditClient.ShowDialog()
+    End Sub
+
+    Public Sub loadClients()
+        Dim adapter As New SqlDataAdapter("SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone 
+                                          FROM Projeto.Cliente", CN)
+        Dim table As New DataTable()
+        adapter.Fill(table)
+
+        'Dá erro
+        With ClientsDataGridView
+            .Columns(0).Width = 80
+            .Columns(1).Width = 100
+            .Columns(2).Width = 100
+            .Columns(3).Width = 100
+            .DataSource = table
+        End With
     End Sub
 End Class
