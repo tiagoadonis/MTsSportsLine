@@ -38,11 +38,11 @@ Public Class MainForm
     'Cients Button
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         With Clients
+            .loadClients()
             .TopLevel = False
             Panel1.Controls.Add(Clients)
             .BringToFront()
             .Show()
-            .loadClients()
         End With
     End Sub
 

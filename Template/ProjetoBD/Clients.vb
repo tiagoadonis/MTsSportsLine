@@ -51,18 +51,81 @@ Public Class Clients
     End Sub
 
     Public Sub loadClients()
-        Dim adapter As New SqlDataAdapter("SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone 
-                                          FROM Projeto.Cliente", CN)
+        Dim adapter As New SqlDataAdapter("SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone  
+                                           FROM Projeto.Cliente", CN)
         Dim table As New DataTable()
         adapter.Fill(table)
 
-        'Dá erro
         With ClientsDataGridView
-            .Columns(0).Width = 80
-            .Columns(1).Width = 100
-            .Columns(2).Width = 100
-            .Columns(3).Width = 100
             .DataSource = table
+            .Columns(0).Width = 65
+            .Columns(1).Width = 100
+            .Columns(2).Width = 119
+            .Columns(3).Width = 65
         End With
+        ClientsDataGridView.ClearSelection()
+    End Sub
+
+    'Purchased Products DataGridView
+    Private Sub ClientsDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ClientsDataGridView.CellContentClick
+        Dim index As Integer = e.RowIndex
+        Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
+        Dim NIF As String = selectedRow.Cells(0).Value.ToString()
+
+        Dim queryPurchasedProducts As String = "SELECT Compra.NumCompra AS Number, Artigo.Nome AS Product_Name, 
+                Artigo_Comprado.QuantArtigos AS NºUnits, Compra.Data AS Date, Compra.Montante AS Purchase_Price  
+                FROM (((Projeto.Artigo_Comprado JOIN Projeto.Compra ON Artigo_Comprado.NumCompra=Compra.NumCompra) 
+                JOIN Projeto.Cliente ON Compra.NIF=Cliente.NIF) JOIN Projeto.Artigo ON 
+                Artigo_Comprado.Codigo=Artigo.Codigo)
+                WHERE Cliente.NIF = '" + NIF + "'"
+
+        Dim ds As New DataSet()
+
+        CMD = New SqlCommand(queryPurchasedProducts, CN)
+        CN.Open()
+
+        Dim adapter As New SqlDataAdapter(CMD)
+        adapter.Fill(ds)
+
+        With PurchasedProductsGridView
+            .DataSource = ds.Tables(0)
+            .Columns(0).Width = 69
+            .Columns(1).Width = 193
+            .Columns(2).Width = 64
+            .Columns(3).Width = 83
+            .Columns(4).Width = 93
+        End With
+        PurchasedProductsGridView.ClearSelection()
+        CN.Close()
+
+        'Returned Products
+        Dim queryReturnedProducts As String = "SELECT Devolucao.IDDevolucao AS Number, Artigo.Nome AS Product_Name, 
+                Artigo_Devolvido.QuantArtigos AS NºUnits, Devolucao.Data AS Date, Devolucao.Montante AS Returned_Value
+                FROM (((Projeto.Artigo_Devolvido JOIN Projeto.Devolucao ON 
+                Artigo_Devolvido.IDDevolucao=Devolucao.IDDevolucao) JOIN Projeto.Artigo ON 
+                Artigo.Codigo=Artigo_Devolvido.Codigo) JOIN Projeto.Cliente ON Cliente.NIF=Devolucao.NIF)
+                WHERE Cliente.NIF = '" + NIF + "'"
+
+        Dim ds2 As New DataSet()
+
+        CMD = New SqlCommand(queryReturnedProducts, CN)
+        CN.Open()
+
+        Dim adapter2 As New SqlDataAdapter(CMD)
+        adapter2.Fill(ds2)
+
+        With ReturnedProdcutsGridView
+            .DataSource = ds2.Tables(0)
+            .Columns(0).Width = 69
+            .Columns(1).Width = 193
+            .Columns(2).Width = 64
+            .Columns(3).Width = 83
+            .Columns(4).Width = 93
+        End With
+        ReturnedProdcutsGridView.ClearSelection()
+
+        If CN.State = ConnectionState.Open Then
+            CN.Close()
+        End If
     End Sub
 End Class

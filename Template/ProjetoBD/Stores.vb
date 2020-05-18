@@ -1,7 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class Stores
-
     Dim CMD As SqlCommand
     Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
                                                 "Initial Catalog = LojaDesporto; Integrated Security = true;")
@@ -122,7 +121,7 @@ Public Class Stores
 
         CN.Close()
 
-        'WAREHOUSES
+        'Warehouses
         Dim queryWarehouses As String = "SELECT IDArmazem As Number, capacidade As Capacity
                                         FROM(Projeto.Loja JOIN Projeto.Armazem On Loja.NumLoja=Armazem.NumLoja)
                                         WHERE Loja.NumLoja ='" + numStore + "'"
