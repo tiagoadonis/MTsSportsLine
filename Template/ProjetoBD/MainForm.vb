@@ -43,6 +43,7 @@ Public Class MainForm
             Panel1.Controls.Add(Clients)
             .BringToFront()
             .Show()
+            clearClientsSection()
         End With
     End Sub
 
@@ -53,6 +54,36 @@ Public Class MainForm
             Panel1.Controls.Add(Stores)
             .BringToFront()
             .Show()
+            clearStoresSection()
+        End With
+    End Sub
+
+    Private Sub clearStoresSection()
+        With Stores
+            .StoresDataGridView.ClearSelection()
+            .ProductsDataGridView.DataSource = Nothing
+            .WarehousesDataGridView.DataSource = Nothing
+            .WharehousesProductsDataGridView.DataSource = Nothing
+            .TextBoxName.Text = ""
+            .TextBoxPrice.Text = ""
+            .TextBoxUnits.Text = ""
+            .TextBoxCode.Text = ""
+            .TextBoxType.Text = ""
+            .TextBoxName2.Text = ""
+            .TextBoxPrice2.Text = ""
+            .TextBoxUnits2.Text = ""
+            .TextBoxCode2.Text = ""
+            .TextBoxType2.Text = ""
+            .TextBoxTotalStorage.Text = ""
+            .TextBoxStorageOccupied.Text = ""
+        End With
+    End Sub
+
+    Private Sub clearClientsSection()
+        With Clients
+            .ClientsDataGridView.ClearSelection()
+            .PurchasedProductsGridView.DataSource = Nothing
+            .ReturnedProdcutsGridView.DataSource = Nothing
         End With
     End Sub
 End Class

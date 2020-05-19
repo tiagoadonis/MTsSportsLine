@@ -62,8 +62,8 @@ Public Class Clients
             .Columns(1).Width = 100
             .Columns(2).Width = 119
             .Columns(3).Width = 65
+            .ClearSelection()
         End With
-        ClientsDataGridView.ClearSelection()
     End Sub
 
     'Purchased Products DataGridView
@@ -72,16 +72,18 @@ Public Class Clients
         Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
         Dim NIF As String = selectedRow.Cells(0).Value.ToString()
 
-        Dim queryPurchasedProducts As String = "SELECT Compra.NumCompra AS Number, Artigo.Nome AS Product_Name, 
+        Dim ds As New DataSet()
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Compra.NumCompra AS Number, Artigo.Nome AS Product_Name, 
                 Artigo_Comprado.QuantArtigos AS NºUnits, Compra.Data AS Date, Compra.Montante AS Purchase_Price  
                 FROM (((Projeto.Artigo_Comprado JOIN Projeto.Compra ON Artigo_Comprado.NumCompra=Compra.NumCompra) 
                 JOIN Projeto.Cliente ON Compra.NIF=Cliente.NIF) JOIN Projeto.Artigo ON 
                 Artigo_Comprado.Codigo=Artigo.Codigo)
-                WHERE Cliente.NIF = '" + NIF + "'"
-
-        Dim ds As New DataSet()
-
-        CMD = New SqlCommand(queryPurchasedProducts, CN)
+                WHERE Cliente.NIF = @NIF"
+        CMD.Parameters.Add("@NIF", SqlDbType.VarChar, 9)
+        CMD.Parameters("@NIF").Value = NIF
         CN.Open()
 
         Dim adapter As New SqlDataAdapter(CMD)
@@ -94,21 +96,23 @@ Public Class Clients
             .Columns(2).Width = 64
             .Columns(3).Width = 83
             .Columns(4).Width = 93
+            .ClearSelection()
         End With
-        PurchasedProductsGridView.ClearSelection()
         CN.Close()
 
         'Returned Products
-        Dim queryReturnedProducts As String = "SELECT Devolucao.IDDevolucao AS Number, Artigo.Nome AS Product_Name, 
+        Dim ds2 As New DataSet()
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Devolucao.IDDevolucao AS Number, Artigo.Nome AS Product_Name, 
                 Artigo_Devolvido.QuantArtigos AS NºUnits, Devolucao.Data AS Date, Devolucao.Montante AS Returned_Value
                 FROM (((Projeto.Artigo_Devolvido JOIN Projeto.Devolucao ON 
                 Artigo_Devolvido.IDDevolucao=Devolucao.IDDevolucao) JOIN Projeto.Artigo ON 
                 Artigo.Codigo=Artigo_Devolvido.Codigo) JOIN Projeto.Cliente ON Cliente.NIF=Devolucao.NIF)
-                WHERE Cliente.NIF = '" + NIF + "'"
-
-        Dim ds2 As New DataSet()
-
-        CMD = New SqlCommand(queryReturnedProducts, CN)
+                WHERE Cliente.NIF = @NIF"
+        CMD.Parameters.Add("@NIF", SqlDbType.VarChar, 9)
+        CMD.Parameters("@NIF").Value = NIF
         CN.Open()
 
         Dim adapter2 As New SqlDataAdapter(CMD)
@@ -121,8 +125,8 @@ Public Class Clients
             .Columns(2).Width = 64
             .Columns(3).Width = 83
             .Columns(4).Width = 93
+            .ClearSelection()
         End With
-        ReturnedProdcutsGridView.ClearSelection()
 
         If CN.State = ConnectionState.Open Then
             CN.Close()

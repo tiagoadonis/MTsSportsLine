@@ -78,7 +78,7 @@ Public Class Stores
         Dim lastIndex As Integer = -1
         Dim index As Integer = e.RowIndex
         Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
-        Dim numStore As String = selectedRow.Cells(0).Value.ToString()
+        Dim numStore As String = selectedRow.Cells(0).Value.ToString
 
         If (lastIndex <> index) Then
             clearWarehousesProducts()
@@ -97,14 +97,16 @@ Public Class Stores
             lastIndex = index
         End If
 
-        Dim queryProducts As String = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                             FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
-                             JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
-                             WHERE Loja.NumLoja = '" + numStore + "'"
-
         Dim ds As New DataSet()
 
-        CMD = New SqlCommand(queryProducts, CN)
+        CMD = New SqlCommand
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
+                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
+                           WHERE Loja.NumLoja = @store"
+        CMD.Parameters.Add("@store", SqlDbType.VarChar, 1)
+        CMD.Parameters("@store").Value = numStore
         CN.Open()
 
         Dim adapter As New SqlDataAdapter(CMD)
@@ -115,20 +117,20 @@ Public Class Stores
             .Columns(0).Width = 180
             .Columns(1).Width = 42
             .Columns(2).Width = 37
+            .ClearSelection()
         End With
-
-        ProductsDataGridView.ClearSelection()
-
         CN.Close()
 
         'Warehouses
-        Dim queryWarehouses As String = "SELECT IDArmazem As Number, capacidade As Capacity
-                                        FROM(Projeto.Loja JOIN Projeto.Armazem On Loja.NumLoja=Armazem.NumLoja)
-                                        WHERE Loja.NumLoja ='" + numStore + "'"
-
         Dim ds2 As New DataSet()
 
-        CMD = New SqlCommand(queryWarehouses, CN)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT IDArmazem As Number, capacidade As Capacity
+                           FROM(Projeto.Loja JOIN Projeto.Armazem On Loja.NumLoja=Armazem.NumLoja)
+                           WHERE Loja.NumLoja = @store"
+        CMD.Parameters.Add("@store", SqlDbType.VarChar, 1)
+        CMD.Parameters("@store").Value = numStore
         CN.Open()
 
         Dim adapter2 As New SqlDataAdapter(CMD)
@@ -157,20 +159,24 @@ Public Class Stores
         TextBoxPrice.Text = selectedRow.Cells(1).Value.ToString
         TextBoxUnits.Text = selectedRow.Cells(2).Value.ToString
 
-        Dim queryCode As String = "SELECT Artigo.Codigo FROM Projeto.Artigo
-                                  Where Artigo.Nome='" + productName + "'"
-
-        CMD = New SqlCommand(queryCode, CN)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Artigo.Codigo FROM Projeto.Artigo Where Artigo.Nome = @productName"
+        CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
+        CMD.Parameters("@productName").Value = productName
         CN.Open()
+
         Dim code As String = CMD.ExecuteScalar().ToString
         TextBoxCode.Text = code
         CN.Close()
 
-        Dim queryType As String = "SELECT Artigo.Categoria FROM Projeto.Artigo
-                                  Where Artigo.Nome='" + productName + "'"
-
-        CMD = New SqlCommand(queryType, CN)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "Select Artigo.Categoria FROM Projeto.Artigo Where Artigo.Nome = @productName"
+        CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
+        CMD.Parameters("@productName").Value = productName
         CN.Open()
+
         Dim type As String = CMD.ExecuteScalar().ToString
         TextBoxType.Text = type
 
@@ -196,14 +202,16 @@ Public Class Stores
             lastIndex = index
         End If
 
-        Dim queryProducts As String = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                                      FROM ((Projeto.Armazem JOIN Projeto.Artigo_Armazem ON Armazem.IDArmazem=Artigo_Armazem.IDArmazem) 
-					                  JOIN Projeto.Artigo ON Artigo_Armazem.Codigo=Artigo.Codigo)
-                                      WHERE Armazem.IDArmazem='" + warehouseID + "'"
-
         Dim ds As New DataSet()
 
-        CMD = New SqlCommand(queryProducts, CN)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+                        FROM ((Projeto.Armazem JOIN Projeto.Artigo_Armazem ON Armazem.IDArmazem=Artigo_Armazem.IDArmazem) 
+                        Join Projeto.Artigo ON Artigo_Armazem.Codigo=Artigo.Codigo)
+                        WHERE Armazem.IDArmazem = @warehouseID"
+        CMD.Parameters.Add("@warehouseID", SqlDbType.VarChar, 3)
+        CMD.Parameters("@warehouseID").Value = warehouseID
         CN.Open()
 
         Dim adapter As New SqlDataAdapter(CMD)
@@ -214,18 +222,19 @@ Public Class Stores
             .Columns(0).Width = 180
             .Columns(1).Width = 42
             .Columns(2).Width = 37
+            .ClearSelection()
         End With
-
-        WharehousesProductsDataGridView.ClearSelection()
-
         CN.Close()
 
-        Dim queryStorageOccupied As String = "Select Sum(Artigo_Armazem.QuantArtigos) AS Storage_Occupied
-                                             From Projeto.Artigo_Armazem
-                                             Where Artigo_Armazem.IDArmazem = '" + warehouseID + "'"
-
-        CMD = New SqlCommand(queryStorageOccupied, CN)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "Select Sum(Artigo_Armazem.QuantArtigos) AS Storage_Occupied
+                           From Projeto.Artigo_Armazem
+                           Where Artigo_Armazem.IDArmazem = @warehouseID"
+        CMD.Parameters.Add("@warehouseID", SqlDbType.VarChar, 3)
+        CMD.Parameters("@warehouseID").Value = warehouseID
         CN.Open()
+
         Dim storageOccupied As String = CMD.ExecuteScalar().ToString
 
         TextBoxTotalStorage.Text = selectedRow.Cells(1).Value.ToString
@@ -246,20 +255,24 @@ Public Class Stores
         TextBoxPrice2.Text = selectedRow.Cells(1).Value.ToString
         TextBoxUnits2.Text = selectedRow.Cells(2).Value.ToString
 
-        Dim queryCode As String = "SELECT Artigo.Codigo FROM Projeto.Artigo
-                                  Where Artigo.Nome='" + productName + "'"
-
-        CMD = New SqlCommand(queryCode, CN)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Artigo.Codigo FROM Projeto.Artigo Where Artigo.Nome = @productName"
+        CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
+        CMD.Parameters("@productName").Value = productName
         CN.Open()
+
         Dim code As String = CMD.ExecuteScalar().ToString
         TextBoxCode2.Text = code
         CN.Close()
 
-        Dim queryType As String = "SELECT Artigo.Categoria FROM Projeto.Artigo
-                                  Where Artigo.Nome='" + productName + "'"
-
-        CMD = New SqlCommand(queryType, CN)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Artigo.Categoria FROM Projeto.Artigo Where Artigo.Nome = @productName"
+        CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
+        CMD.Parameters("@productName").Value = productName
         CN.Open()
+
         Dim type As String = CMD.ExecuteScalar().ToString
         TextBoxType2.Text = type
 
