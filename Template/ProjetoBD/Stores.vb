@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Security.Cryptography
 
 Public Class Stores
     Dim CMD As SqlCommand
@@ -288,5 +289,28 @@ Public Class Stores
 
     Private Sub Stores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StoresDataGridView.ClearSelection()
+    End Sub
+
+    'To add a new Store
+    Public Sub addStore(ByVal storeName As String, ByVal storeLocation As String)
+        Dim numStore As Integer = StoresDataGridView.Rows.Count + 1
+        Dim table As New DataTable()
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "INSERT INTO Projeto.Loja(NumLoja, Nome, Localizacao) 
+                                             VALUES (@numStore, @storeName, @storeLocation)"
+        CMD.Parameters.Add("@numStore", SqlDbType.Int)
+        CMD.Parameters.Add("@storeName", SqlDbType.VarChar, 30)
+        CMD.Parameters.Add("@storeLocation", SqlDbType.VarChar, 20)
+        CMD.Parameters("@numStore").Value = numStore
+        CMD.Parameters("@storeName").Value = storeName
+        CMD.Parameters("@storeLocation").Value = storeLocation
+        CN.Open()
+
+        'VER COMO PASSAR OS DADOS PARA O storesDataGrid
+
+        CN.Close()
+
     End Sub
 End Class

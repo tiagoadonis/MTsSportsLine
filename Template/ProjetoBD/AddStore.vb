@@ -1,12 +1,12 @@
 ﻿Public Class AddStore
     'Cancel Button
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        TextBox1.Text = ""
-        TextBox2.Text = ""
+        LocationText.Text = ""
+        NameText.Text = ""
     End Sub
 
     'Location TextBox
-    Private Sub TextBox1_KeyPress(sender As Object, e As EventArgs) Handles TextBox1.KeyPress
+    Private Sub TextBox1_KeyPress(sender As Object, e As EventArgs) Handles LocationText.KeyPress
         LettersOnly(e)
     End Sub
 
@@ -19,8 +19,13 @@
 
     'Confirm Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If TextBox1.Text = "" Or TextBox2.Text = "" Then
+        If LocationText.Text = "" Or NameText.Text = "" Then
             MsgBox("Some textbox is empty!", MsgBoxStyle.Information, "ERROR")
         End If
+
+        'To add in Stores DataGridView
+        Dim storeName As String = NameText.Text
+        Dim storeLocation As String = LocationText.Text
+        Stores.addStore(storeName, storeLocation)
     End Sub
 End Class

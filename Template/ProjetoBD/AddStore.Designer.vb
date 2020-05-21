@@ -23,11 +23,11 @@ Partial Class AddStore
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.NameText = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.LocationText = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
@@ -41,12 +41,12 @@ Partial Class AddStore
         Me.Label2.TabIndex = 45
         Me.Label2.Text = "Add New Store"
         '
-        'TextBox2
+        'NameText
         '
-        Me.TextBox2.Location = New System.Drawing.Point(15, 60)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(232, 20)
-        Me.TextBox2.TabIndex = 47
+        Me.NameText.Location = New System.Drawing.Point(15, 60)
+        Me.NameText.Name = "NameText"
+        Me.NameText.Size = New System.Drawing.Size(232, 20)
+        Me.NameText.TabIndex = 47
         '
         'Label1
         '
@@ -75,12 +75,12 @@ Partial Class AddStore
         Me.Button1.Text = "Confirm"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'LocationText
         '
-        Me.TextBox1.Location = New System.Drawing.Point(15, 108)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(232, 20)
-        Me.TextBox1.TabIndex = 51
+        Me.LocationText.Location = New System.Drawing.Point(15, 108)
+        Me.LocationText.Name = "LocationText"
+        Me.LocationText.Size = New System.Drawing.Size(232, 20)
+        Me.LocationText.TabIndex = 51
         '
         'Label3
         '
@@ -96,11 +96,11 @@ Partial Class AddStore
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(262, 177)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.LocationText)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.NameText)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label2)
         Me.Name = "AddStore"
@@ -111,10 +111,10 @@ Partial Class AddStore
     End Sub
 
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents NameText As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents LocationText As TextBox
     Friend WithEvents Label3 As Label
 End Class
