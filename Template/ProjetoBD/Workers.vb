@@ -26,7 +26,7 @@ Public Class Workers
     End Sub
 
     'Stores DataGridView
-    Private Sub DataGridview1_CellClick(sender As Object, e As DataGridViewCellEventArgs)
+    Private Sub DataGridview1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StoresDataGridView.CellClick
         Dim lastIndex As Integer = -1
         Dim index As Integer = e.RowIndex
         Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
@@ -40,7 +40,7 @@ Public Class Workers
 
         CMD = New SqlCommand
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Funcionario.NumFunc AS Num, Nome AS Name, Morada AS Address
+        CMD.CommandText = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address
                            FROM (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja)
                            WHERE Loja.NumLoja = @store"
         CMD.Parameters.Add("@store", SqlDbType.VarChar, 1)
@@ -143,4 +143,7 @@ Public Class Workers
 
     End Sub
 
+    Private Sub StoresDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles StoresDataGridView.CellContentClick
+
+    End Sub
 End Class
