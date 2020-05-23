@@ -70,3 +70,26 @@ D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Templa
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template\ProjetoBD\obj\Debug\ProjetoBD.exe
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template\ProjetoBD\obj\Debug\ProjetoBD.xml
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template\ProjetoBD\obj\Debug\ProjetoBD.pdb
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\bin\Debug\ProjetoBD.exe.config
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\bin\Debug\ProjetoBD.exe
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\bin\Debug\ProjetoBD.pdb
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\bin\Debug\ProjetoBD.xml
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.vbprojAssemblyReference.cache
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.AddProduct.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.AddStore.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.AddWarehouse.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.BuyProduct.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.Clients.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.Deliveries.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.EditClient.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.EditProduct.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.MainForm.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.Resources.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.RemoveProduct.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.ReturnProduct.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.Stores.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.Workers.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.vbproj.GenerateResource.cache
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.exe
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.xml
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.pdb

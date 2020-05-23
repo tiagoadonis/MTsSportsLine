@@ -32,36 +32,40 @@ Partial Class MainForm
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(513, 14)
+        Me.Button4.Location = New System.Drawing.Point(684, 17)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 34)
+        Me.Button4.Size = New System.Drawing.Size(100, 42)
         Me.Button4.TabIndex = 79
         Me.Button4.Text = "Deliveries"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(432, 14)
+        Me.Button3.Location = New System.Drawing.Point(576, 17)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 34)
+        Me.Button3.Size = New System.Drawing.Size(100, 42)
         Me.Button3.TabIndex = 78
         Me.Button3.Text = "Workers"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(351, 14)
+        Me.Button2.Location = New System.Drawing.Point(468, 17)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 34)
+        Me.Button2.Size = New System.Drawing.Size(100, 42)
         Me.Button2.TabIndex = 77
         Me.Button2.Text = "Clients"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(270, 14)
+        Me.Button1.Location = New System.Drawing.Point(360, 17)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 34)
+        Me.Button1.Size = New System.Drawing.Size(100, 42)
         Me.Button1.TabIndex = 76
         Me.Button1.Text = "Stores"
         Me.Button1.UseVisualStyleBackColor = True
@@ -70,30 +74,33 @@ Partial Class MainForm
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Location = New System.Drawing.Point(16, 11)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(247, 37)
+        Me.Label1.Size = New System.Drawing.Size(307, 46)
         Me.Label1.TabIndex = 75
         Me.Label1.Text = "MT's - Sports Line"
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(0, 55)
+        Me.Panel1.Location = New System.Drawing.Point(0, 68)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(955, 508)
+        Me.Panel1.Size = New System.Drawing.Size(1273, 625)
         Me.Panel1.TabIndex = 80
         '
         'MainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(955, 563)
+        Me.ClientSize = New System.Drawing.Size(1273, 693)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "MainForm"
         Me.Text = "MT's - Sports Line"
         Me.ResumeLayout(False)

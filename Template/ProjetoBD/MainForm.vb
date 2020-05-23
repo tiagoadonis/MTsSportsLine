@@ -58,6 +58,22 @@ Public Class MainForm
         End With
     End Sub
 
+    'Workers Button
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        With Workers
+            .loadStores()
+            .TopLevel = False
+            Panel1.Controls.Add(Workers)
+            .BringToFront()
+            .Show()
+        End With
+    End Sub
+
+    'Deliveries Button
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+
+    End Sub
+
     Private Sub clearStoresSection()
         With Stores
             .StoresDataGridView.ClearSelection()
@@ -86,4 +102,5 @@ Public Class MainForm
             .ReturnedProdcutsGridView.DataSource = Nothing
         End With
     End Sub
+
 End Class
