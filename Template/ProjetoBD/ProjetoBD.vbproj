@@ -94,6 +94,18 @@
     <Compile Include="AddProduct.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AddReturn.Designer.vb">
+      <DependentUpon>AddReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSales.Designer.vb">
+      <DependentUpon>AddSales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddSales.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AddStore.Designer.vb">
       <DependentUpon>AddStore.vb</DependentUpon>
     </Compile>
@@ -104,6 +116,12 @@
       <DependentUpon>AddWarehouse.vb</DependentUpon>
     </Compile>
     <Compile Include="AddWarehouse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddWorker.Designer.vb">
+      <DependentUpon>AddWorker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddWorker.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BuyProduct.Designer.vb">
@@ -191,11 +209,20 @@
     <EmbeddedResource Include="AddProduct.resx">
       <DependentUpon>AddProduct.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddReturn.resx">
+      <DependentUpon>AddReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSales.resx">
+      <DependentUpon>AddSales.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddStore.resx">
       <DependentUpon>AddStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddWarehouse.resx">
       <DependentUpon>AddWarehouse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddWorker.resx">
+      <DependentUpon>AddWorker.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BuyProduct.resx">
       <DependentUpon>BuyProduct.vb</DependentUpon>

@@ -66,6 +66,7 @@ Public Class MainForm
             Panel1.Controls.Add(Workers)
             .BringToFront()
             .Show()
+            clearWorkersSection()
         End With
     End Sub
 
@@ -77,6 +78,7 @@ Public Class MainForm
             Panel1.Controls.Add(Deliveries)
             .BringToFront()
             .Show()
+            clearDeliveriesSection()
         End With
     End Sub
 
@@ -98,6 +100,16 @@ Public Class MainForm
             .TextBoxType2.Text = ""
             .TextBoxTotalStorage.Text = ""
             .TextBoxStorageOccupied.Text = ""
+            .Button11.Enabled = False
+            .Button7.Enabled = False
+            .Button6.Enabled = False
+            .Button20.Enabled = False
+            .Button22.Enabled = False
+            .Button5.Enabled = False
+            .Button8.Enabled = False
+            .Button9.Enabled = False
+            .Button13.Enabled = False
+            .Button14.Enabled = False
         End With
     End Sub
 
@@ -106,6 +118,42 @@ Public Class MainForm
             .ClientsDataGridView.ClearSelection()
             .PurchasedProductsGridView.DataSource = Nothing
             .ReturnedProdcutsGridView.DataSource = Nothing
+            .Button5.Enabled = False
+            .Button6.Enabled = False
+        End With
+    End Sub
+
+    Private Sub clearWorkersSection()
+        With Workers
+            .StoresDataGridView.ClearSelection()
+            .WorkersDataGridView.DataSource = Nothing
+            .SalesDataGridView.DataSource = Nothing
+            .ReturnsDataGridView.DataSource = Nothing
+            .Button3.Enabled = False
+            .Button4.Enabled = False
+            .Button5.Enabled = False
+            .Button6.Enabled = False
+            .Button7.Enabled = False
+            .Button8.Enabled = False
+        End With
+    End Sub
+
+    Private Sub clearDeliveriesSection()
+        With Deliveries
+            .DeliveriesDataGridView.ClearSelection()
+            .TextBoxID.Text = ""
+            .TextBoxCode.Text = ""
+            .TextBoxDate.Text = ""
+            .TextBoxAmount.Text = ""
+            .TextBoxDest.Text = ""
+            .TextBoxID2.Text = ""
+            .TextBoxCode2.Text = ""
+            .TextBoxDate2.Text = ""
+            .TextBoxAmount2.Text = ""
+            .TextBoxDest2.Text = ""
+            '.Button1.Enabled = False
+            .Button2.Enabled = False
+            '.Button3.Enabled = False
         End With
     End Sub
 

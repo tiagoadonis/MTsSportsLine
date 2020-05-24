@@ -98,6 +98,10 @@ Public Class Stores
             lastIndex = index
         End If
 
+        Button7.Enabled = True
+        Button11.Enabled = True
+        Button14.Enabled = True
+
         Dim ds As New DataSet()
 
         CMD = New SqlCommand
@@ -160,6 +164,10 @@ Public Class Stores
         TextBoxPrice.Text = selectedRow.Cells(1).Value.ToString
         TextBoxUnits.Text = selectedRow.Cells(2).Value.ToString
 
+        Button6.Enabled = True
+        Button20.Enabled = True
+        Button22.Enabled = True
+
         CMD = New SqlCommand()
         CMD.Connection = CN
         CMD.CommandText = "SELECT Artigo.Codigo FROM Projeto.Artigo Where Artigo.Nome = @productName"
@@ -202,6 +210,9 @@ Public Class Stores
             TextBoxType2.Text = ""
             lastIndex = index
         End If
+
+        Button9.Enabled = True
+        Button13.Enabled = True
 
         Dim ds As New DataSet()
 
@@ -255,6 +266,9 @@ Public Class Stores
         TextBoxName2.Text = selectedRow.Cells(0).Value.ToString
         TextBoxPrice2.Text = selectedRow.Cells(1).Value.ToString
         TextBoxUnits2.Text = selectedRow.Cells(2).Value.ToString
+
+        Button5.Enabled = True
+        Button8.Enabled = True
 
         CMD = New SqlCommand()
         CMD.Connection = CN

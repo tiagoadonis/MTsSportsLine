@@ -6,13 +6,6 @@ Public Class Workers
     Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
                                                 "Initial Catalog = LojaDesporto; Integrated Security = true;")
 
-    'Add Store Button
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim addStore As New AddStore
-        addStore.StartPosition = FormStartPosition.CenterScreen
-        addStore.ShowDialog()
-    End Sub
-
     Public Sub loadStores()
         Dim adapter As New SqlDataAdapter("SELECT NumLoja AS Number, Nome AS Name FROM Projeto.Loja", CN)
         Dim table As New DataTable()
@@ -33,8 +26,12 @@ Public Class Workers
         Dim numStore As String = selectedRow.Cells(0).Value.ToString
 
         If (lastIndex <> index) Then
+            SalesDataGridView.DataSource = Nothing
+            ReturnsDataGridView.DataSource = Nothing
             lastIndex = index
         End If
+
+        Button3.Enabled = True
 
         Dim ds As New DataSet()
 
@@ -66,6 +63,10 @@ Public Class Workers
         Dim selectedRow As DataGridViewRow = WorkersDataGridView.Rows(index)
         Dim numFunc As String = selectedRow.Cells(0).Value.ToString
 
+        Button4.Enabled = True
+        Button5.Enabled = True
+        Button7.Enabled = True
+
         'Sales
         Dim ds As New DataSet()
 
@@ -84,10 +85,10 @@ Public Class Workers
 
         With SalesDataGridView
             .DataSource = ds.Tables(0)
-            .Columns(0).Width = 54
+            .Columns(0).Width = 94
             .Columns(1).Width = 92
             .Columns(2).Width = 87
-            .Columns(3).Width = 140
+            .Columns(3).Width = 100
             .ClearSelection()
         End With
         CN.Close()
@@ -110,10 +111,10 @@ Public Class Workers
 
         With ReturnsDataGridView
             .DataSource = ds2.Tables(0)
-            .Columns(0).Width = 54
+            .Columns(0).Width = 94
             .Columns(1).Width = 92
             .Columns(2).Width = 87
-            .Columns(3).Width = 140
+            .Columns(3).Width = 100
             .ClearSelection()
         End With
 
@@ -122,26 +123,35 @@ Public Class Workers
         End If
     End Sub
 
-    'To add a new Store
-    Public Sub addStore(ByVal storeName As String, ByVal storeLocation As String)
-        Dim numStore As Integer = StoresDataGridView.Rows.Count + 1
-        Dim table As New DataTable()
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "INSERT INTO Projeto.Loja(NumLoja, Nome, Localizacao) 
-                                             VALUES (@numStore, @storeName, @storeLocation)"
-        CMD.Parameters.Add("@numStore", SqlDbType.Int)
-        CMD.Parameters.Add("@storeName", SqlDbType.VarChar, 30)
-        CMD.Parameters.Add("@storeLocation", SqlDbType.VarChar, 20)
-        CMD.Parameters("@numStore").Value = numStore
-        CMD.Parameters("@storeName").Value = storeName
-        CMD.Parameters("@storeLocation").Value = storeLocation
-        CN.Open()
-
-        'VER COMO PASSAR OS DADOS PARA O storesDataGrid
-
-        CN.Close()
-
+    'Sales DataGridView
+    Private Sub DataGridView3_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles SalesDataGridView.CellClick
+        Button6.Enabled = True
     End Sub
+
+    'Returns DataGridView
+    Private Sub DataGridView4_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ReturnsDataGridView.CellClick
+        Button8.Enabled = True
+    End Sub
+
+    'Add Worker Button
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim addWorker As New AddWorker
+        addWorker.StartPosition = FormStartPosition.CenterScreen
+        addWorker.ShowDialog()
+    End Sub
+
+    'Add Sale Button
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim addSale As New AddSales
+        addSale.StartPosition = FormStartPosition.CenterScreen
+        addSale.ShowDialog()
+    End Sub
+
+    'Add Return Button
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        Dim addReturn As New AddReturn
+        addReturn.StartPosition = FormStartPosition.CenterScreen
+        addReturn.ShowDialog()
+    End Sub
+
 End Class

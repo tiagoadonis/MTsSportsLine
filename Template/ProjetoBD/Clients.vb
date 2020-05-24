@@ -72,6 +72,9 @@ Public Class Clients
         Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
         Dim NIF As String = selectedRow.Cells(0).Value.ToString()
 
+        Button5.Enabled = True
+        Button6.Enabled = True
+
         Dim ds As New DataSet()
 
         CMD = New SqlCommand()
