@@ -65,17 +65,17 @@ Public Class Workers
         Dim index As Integer = e.RowIndex
         Dim selectedRow As DataGridViewRow = WorkersDataGridView.Rows(index)
         Dim numFunc As String = selectedRow.Cells(0).Value.ToString
-        Dim numFunc2 As String = selectedRow.Cells(0).Value.ToString
 
         'Sales
         Dim ds As New DataSet()
 
-        CMD = New SqlCommand
+        CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Compra.NumCompra AS Num, Compra.Data AS Date, Compra.Montante AS Amount, Compra.NIF AS Number
+        CMD.CommandText = "SELECT Compra.NumCompra AS Sale_Number, Compra.Data AS Date, Compra.Montante AS Amount, 
+                           Compra.NIF AS NIF
                            FROM (Projeto.Funcionario JOIN Projeto.Compra ON Funcionario.NumFunc=Compra.NumFunc)
                            WHERE Funcionario.NumFunc = @num"
-        CMD.Parameters.Add("@num", SqlDbType.VarChar, 1)
+        CMD.Parameters.Add("@num", SqlDbType.VarChar, 6)
         CMD.Parameters("@num").Value = numFunc
         CN.Open()
 
@@ -97,11 +97,12 @@ Public Class Workers
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Devolucao.IDDevolucao AS ID, Devolucao.Data AS Date, Devolucao.Montante AS Amount, Devolucao.NIF AS Number
+        CMD.CommandText = "SELECT Devolucao.IDDevolucao AS Return_Number, Devolucao.Data AS Date, 
+                           Devolucao.Montante AS Amount, Devolucao.NIF AS NIF
                            FROM (Projeto.Funcionario JOIN Projeto.Devolucao ON Funcionario.NumFunc=Devolucao.NumFunc)
-                           WHERE Funcionario.NumFunc = @num2"
-        CMD.Parameters.Add("@num2", SqlDbType.VarChar, 1)
-        CMD.Parameters("@num2").Value = numFunc2
+                           WHERE Funcionario.NumFunc = @num"
+        CMD.Parameters.Add("@num", SqlDbType.VarChar, 6)
+        CMD.Parameters("@num").Value = numFunc
         CN.Open()
 
         Dim adapter2 As New SqlDataAdapter(CMD)
@@ -109,7 +110,6 @@ Public Class Workers
 
         With ReturnsDataGridView
             .DataSource = ds2.Tables(0)
-            .DataSource = ds.Tables(0)
             .Columns(0).Width = 54
             .Columns(1).Width = 92
             .Columns(2).Width = 87
