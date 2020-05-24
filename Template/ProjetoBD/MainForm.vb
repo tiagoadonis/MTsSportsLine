@@ -71,7 +71,13 @@ Public Class MainForm
 
     'Deliveries Button
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-
+        With Deliveries
+            .loadDeliveries()
+            .TopLevel = False
+            Panel1.Controls.Add(Deliveries)
+            .BringToFront()
+            .Show()
+        End With
     End Sub
 
     Private Sub clearStoresSection()

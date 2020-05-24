@@ -144,8 +144,4 @@ Public Class Workers
         CN.Close()
 
     End Sub
-
-    Private Sub StoresDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles StoresDataGridView.CellContentClick
-
-    End Sub
 End Class
