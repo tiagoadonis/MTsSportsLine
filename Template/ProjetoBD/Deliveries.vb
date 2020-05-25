@@ -2,8 +2,6 @@
 Imports System.Security.Cryptography
 
 Public Class Deliveries
-    Dim format As String = "DD/MM/YYYY"
-    Dim todaysdate As String = String.Format("{0:dd/MM/yyyy}", DateTime.Now)
     Dim Check As DateTime
     Dim Check2 As DateTime
 
@@ -122,11 +120,14 @@ Public Class Deliveries
         If TextBoxCode.Text = "" Or TextBoxDate.Text = "" Or TextBoxDest.Text = "" Or TextBoxAmount.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
+        If TextBoxDate.Text(2) <> "/" Or TextBoxDate.Text(5) <> "/" Then
+            MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
+        End If
         Check = Convert.ToDateTime(TextBoxDate.Text)
         If Check <= DateTime.Now Then
-            MsgBox("Date must be after today or is not in valid format (DD/MM/YYY)!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check > todaysdate And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
+        If Check > DateTime.Now And TextBoxDate.Text(2) = "/" And TextBoxDate.Text(5) = "/" And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
             TextBoxDate.Enabled = False
             TextBoxAmount.Enabled = False
             TextBoxCode.Enabled = False
@@ -173,11 +174,14 @@ Public Class Deliveries
         If TextBoxCode2.Text = "" Or TextBoxDate2.Text = "" Or TextBoxDest2.Text = "" Or TextBoxAmount2.Text = "" Or TextBoxID2.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
+        If TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Then
+            MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
+        End If
         Check2 = Convert.ToDateTime(TextBoxDate2.Text)
         If Check2 <= DateTime.Now Then
-            MsgBox("Date must be after today or is not in valid format (DD/MM/YYY)!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check2 > todaysdate And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
+        If Check2 > DateTime.Now And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
             'INSERIR NA BASE DE DADOS OS CAMPOS DAS TEXTBOXES
         End If
     End Sub
