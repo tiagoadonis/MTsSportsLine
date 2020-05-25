@@ -2,8 +2,10 @@
 Imports System.Security.Cryptography
 
 Public Class Deliveries
-    Dim Check
-    Dim Check2
+    Dim format As String = "DD/MM/YYYY"
+    Dim todaysdate As String = String.Format("{0:dd/MM/yyyy}", DateTime.Now)
+    Dim Check As DateTime
+    Dim Check2 As DateTime
 
     Dim CMD As SqlCommand
     Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
@@ -29,7 +31,7 @@ Public Class Deliveries
         Dim ID As String = selectedRow.Cells(0).Value.ToString
 
         Button2.Enabled = True
-        'Button3.Enabled = True
+        Button3.Enabled = True
         TextBoxID.Text = selectedRow.Cells(0).Value.ToString
         TextBoxDate.Text = selectedRow.Cells(1).Value.ToString
         TextBoxDest.Text = selectedRow.Cells(2).Value.ToString
@@ -67,8 +69,8 @@ Public Class Deliveries
         TextBoxAmount.Enabled = True
         TextBoxCode.Enabled = True
         TextBoxDest.Enabled = True
-        'Button1.Enabled = True
-        'Button3.Enabled = False
+        Button1.Enabled = True
+        Button3.Enabled = False
     End Sub
 
     'ProductCode TextBox
@@ -114,23 +116,23 @@ Public Class Deliveries
 
     'Save Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Check = IsDate(TextBoxDate.Text)
-        If Check = False Then
-            MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
-        End If
         If TextBoxCode.Text.Length <> 6 Then
             MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         End If
         If TextBoxCode.Text = "" Or TextBoxDate.Text = "" Or TextBoxDest.Text = "" Or TextBoxAmount.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check = True And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text = "" Then
+        Check = Convert.ToDateTime(TextBoxDate.Text)
+        If Check <= DateTime.Now Then
+            MsgBox("Date must be after today or is not in valid format (DD/MM/YYY)!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If Check > todaysdate And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
             TextBoxDate.Enabled = False
             TextBoxAmount.Enabled = False
             TextBoxCode.Enabled = False
             TextBoxDest.Enabled = False
-            'Button1.Enabled = False
-            'Button3.Enabled = True
+            Button1.Enabled = False
+            Button3.Enabled = True
             'INSERIR NA BASE DE DADOS OS CAMPOS DAS TEXTBOXES
         End If
     End Sub
@@ -162,10 +164,6 @@ Public Class Deliveries
 
     'Add Button
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Check2 = IsDate(TextBoxDate2.Text)
-        If Check2 = False Then
-            MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
-        End If
         If TextBoxCode2.Text.Length <> 6 Then
             MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         End If
@@ -175,7 +173,11 @@ Public Class Deliveries
         If TextBoxCode2.Text = "" Or TextBoxDate2.Text = "" Or TextBoxDest2.Text = "" Or TextBoxAmount2.Text = "" Or TextBoxID2.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check2 = True And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
+        Check2 = Convert.ToDateTime(TextBoxDate2.Text)
+        If Check2 <= DateTime.Now Then
+            MsgBox("Date must be after today or is not in valid format (DD/MM/YYY)!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If Check2 > todaysdate And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
             'INSERIR NA BASE DE DADOS OS CAMPOS DAS TEXTBOXES
         End If
     End Sub

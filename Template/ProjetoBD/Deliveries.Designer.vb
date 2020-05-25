@@ -91,6 +91,7 @@ Partial Class Deliveries
         '
         'Button3
         '
+        Me.Button3.Enabled = False
         Me.Button3.Location = New System.Drawing.Point(145, 579)
         Me.Button3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Button3.Name = "Button3"
@@ -369,6 +370,7 @@ Partial Class Deliveries
         '
         'Button1
         '
+        Me.Button1.Enabled = False
         Me.Button1.Location = New System.Drawing.Point(381, 579)
         Me.Button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Button1.Name = "Button1"

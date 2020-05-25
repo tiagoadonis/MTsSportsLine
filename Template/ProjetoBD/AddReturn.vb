@@ -1,11 +1,14 @@
 ﻿Public Class AddReturn
-    Dim Check
+    Dim todaysdate As String = String.Format("{0:dd/MM/yyyy}", DateTime.Now)
+
+    Private Sub Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TextBox4.Text = todaysdate
+    End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         TextBox1.Text = ""
         TextBox2.Text = ""
         TextBox3.Text = ""
-        TextBox4.Text = ""
         TextBox5.Text = ""
         TextBox6.Text = ""
     End Sub
@@ -16,18 +19,6 @@
     End Sub
     Private Sub NumberOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
         If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Or Asc(e.KeyChar) = 8 Then
-        Else
-            e.Handled = True
-            MsgBox("Only numeric characteres are allowed!", MsgBoxStyle.Information, "ERROR")
-        End If
-    End Sub
-
-    'Date TextBox
-    Private Sub TextBox4_KeyPress(sender As Object, e As EventArgs) Handles TextBox4.KeyPress
-        CheckDate(e)
-    End Sub
-    Private Sub CheckDate(ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Or Asc(e.KeyChar) = 47 Or Asc(e.KeyChar) = 8 Then
         Else
             e.Handled = True
             MsgBox("Only numeric characteres are allowed!", MsgBoxStyle.Information, "ERROR")
@@ -71,10 +62,6 @@
         End If
         If TextBox3.Text.Length <> 6 Then
             MsgBox("ProductCode must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
-        End If
-        Check = IsDate(TextBox4.Text)
-        If Check = False Then
-            MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
         End If
         If TextBox1.Text = "" Or TextBox2.Text = "" Or TextBox3.Text = "" Or TextBox4.Text = "" Or TextBox5.Text = "" Or TextBox6.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
