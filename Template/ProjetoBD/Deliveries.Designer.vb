@@ -51,6 +51,9 @@ Partial Class Deliveries
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBoxSearch = New System.Windows.Forms.TextBox()
+        Me.ButtonSearch = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DeliveriesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -92,7 +95,7 @@ Partial Class Deliveries
         'Button3
         '
         Me.Button3.Enabled = False
-        Me.Button3.Location = New System.Drawing.Point(145, 579)
+        Me.Button3.Location = New System.Drawing.Point(77, 579)
         Me.Button3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(131, 38)
@@ -371,7 +374,7 @@ Partial Class Deliveries
         'Button1
         '
         Me.Button1.Enabled = False
-        Me.Button1.Location = New System.Drawing.Point(381, 579)
+        Me.Button1.Location = New System.Drawing.Point(255, 579)
         Me.Button1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(131, 38)
@@ -379,11 +382,42 @@ Partial Class Deliveries
         Me.Button1.Text = "Save"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'TextBoxSearch
+        '
+        Me.TextBoxSearch.Location = New System.Drawing.Point(314, 57)
+        Me.TextBoxSearch.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxSearch.Name = "TextBoxSearch"
+        Me.TextBoxSearch.Size = New System.Drawing.Size(191, 22)
+        Me.TextBoxSearch.TabIndex = 53
+        '
+        'ButtonSearch
+        '
+        Me.ButtonSearch.Location = New System.Drawing.Point(512, 54)
+        Me.ButtonSearch.Name = "ButtonSearch"
+        Me.ButtonSearch.Size = New System.Drawing.Size(92, 29)
+        Me.ButtonSearch.TabIndex = 124
+        Me.ButtonSearch.Text = "Search"
+        Me.ButtonSearch.UseVisualStyleBackColor = True
+        '
+        'Button5
+        '
+        Me.Button5.Enabled = False
+        Me.Button5.Location = New System.Drawing.Point(431, 579)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(131, 38)
+        Me.Button5.TabIndex = 125
+        Me.Button5.Text = "Cancel"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'Deliveries
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1269, 644)
+        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.ButtonSearch)
+        Me.Controls.Add(Me.TextBoxSearch)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.DeliveriesDataGridView)
@@ -434,4 +468,7 @@ Partial Class Deliveries
     Friend WithEvents TextBoxDate As TextBox
     Friend WithEvents TextBoxID As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents TextBoxSearch As TextBox
+    Friend WithEvents ButtonSearch As Button
+    Friend WithEvents Button5 As Button
 End Class

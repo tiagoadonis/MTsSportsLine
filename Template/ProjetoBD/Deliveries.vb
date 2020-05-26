@@ -10,7 +10,7 @@ Public Class Deliveries
                                                 "Initial Catalog = LojaDesporto; Integrated Security = true;")
 
     Public Sub loadDeliveries()
-        Dim adapter As New SqlDataAdapter("SELECT Transporte.IDTransporte AS ID, Data AS Date, Destino AS Destination FROM Projeto.Transporte", CN)
+        Dim adapter As New SqlDataAdapter("SELECT Transporte.IDTransporte AS IDTransporte, Data AS Date, Destino AS Destination FROM Projeto.Transporte", CN)
         Dim table As New DataTable()
         adapter.Fill(table)
 
@@ -20,6 +20,25 @@ Public Class Deliveries
             .Columns(1).Width = 100
             .Columns(2).Width = 220
         End With
+    End Sub
+
+    Public Sub FilterData(valueToSearch As String)
+        Dim searchQuery As String = "SELECT * FROM  Projeto.Transporte WHERE IDTransporte like '%" & TextBoxSearch.Text & "%'"
+        Dim command As New SqlCommand(searchQuery, CN)
+        Dim adapter2 As New SqlDataAdapter(command)
+        Dim table2 As New DataTable()
+
+        adapter2.Fill(table2)
+
+        With DeliveriesDataGridView
+            .DataSource = table2
+            .Columns(0).Width = 100
+            .Columns(1).Width = 110
+            .Columns(2).Width = 217
+        End With
+
+        DeliveriesDataGridView.DataSource = table2
+
     End Sub
 
     'Deliveries DataGridView
@@ -69,6 +88,7 @@ Public Class Deliveries
         TextBoxDest.Enabled = True
         Button1.Enabled = True
         Button3.Enabled = False
+        Button5.Enabled = True
     End Sub
 
     'ProductCode TextBox
@@ -120,22 +140,34 @@ Public Class Deliveries
         If TextBoxCode.Text = "" Or TextBoxDate.Text = "" Or TextBoxDest.Text = "" Or TextBoxAmount.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
-        If TextBoxDate.Text(2) <> "/" Or TextBoxDate.Text(5) <> "/" Then
+        If TextBoxDate.Text(2) <> "/" Or TextBoxDate.Text(5) <> "/" Or TextBoxDate.Text(8) <> "2" Then
             MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
         End If
         Check = Convert.ToDateTime(TextBoxDate.Text)
         If Check <= DateTime.Now Then
             MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check > DateTime.Now And TextBoxDate.Text(2) = "/" And TextBoxDate.Text(5) = "/" And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
+        If Check > DateTime.Now And TextBoxDate.Text(2) = "/" And TextBoxDate.Text(8) = "2" And TextBoxDate.Text(5) = "/" And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
             TextBoxDate.Enabled = False
             TextBoxAmount.Enabled = False
             TextBoxCode.Enabled = False
             TextBoxDest.Enabled = False
             Button1.Enabled = False
             Button3.Enabled = True
+            Button5.Enabled = False
             'INSERIR NA BASE DE DADOS OS CAMPOS DAS TEXTBOXES
         End If
+    End Sub
+
+    'Cancel Button
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        TextBoxDate.Enabled = False
+        TextBoxAmount.Enabled = False
+        TextBoxCode.Enabled = False
+        TextBoxDest.Enabled = False
+        Button5.Enabled = False
+        Button3.Enabled = True
+        Button1.Enabled = False
     End Sub
 
     'ProductCode2 TextBox
@@ -174,15 +206,19 @@ Public Class Deliveries
         If TextBoxCode2.Text = "" Or TextBoxDate2.Text = "" Or TextBoxDest2.Text = "" Or TextBoxAmount2.Text = "" Or TextBoxID2.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
-        If TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Then
+        If TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Or TextBoxDate2.Text(8) <> "2" Then
             MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
         End If
         Check2 = Convert.ToDateTime(TextBoxDate2.Text)
         If Check2 <= DateTime.Now Then
             MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check2 > DateTime.Now And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
+        If Check2 > DateTime.Now And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxDate2.Text(8) = "2" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
             'INSERIR NA BASE DE DADOS OS CAMPOS DAS TEXTBOXES
         End If
+    End Sub
+
+    Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
+        FilterData(TextBoxSearch.Text)
     End Sub
 End Class
