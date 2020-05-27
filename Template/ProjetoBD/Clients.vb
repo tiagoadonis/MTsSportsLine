@@ -66,6 +66,26 @@ Public Class Clients
         End With
     End Sub
 
+    Public Sub FilterData(valueToSearch As String)
+        Dim searchQuery As String = "SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone FROM Projeto.Cliente WHERE CONCAT(Nome, NIF) like '%" & TextBoxSearch.Text & "%'"
+        Dim command As New SqlCommand(searchQuery, CN)
+        Dim adapter2 As New SqlDataAdapter(command)
+        Dim table2 As New DataTable()
+
+        adapter2.Fill(table2)
+
+        With ClientsDataGridView
+            .DataSource = table2
+            .Columns(0).Width = 70
+            .Columns(1).Width = 90
+            .Columns(2).Width = 136
+            .Columns(3).Width = 70
+        End With
+
+        ClientsDataGridView.DataSource = table2
+
+    End Sub
+
     'Purchased Products DataGridView
     Private Sub ClientsDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ClientsDataGridView.CellContentClick
         Dim index As Integer = e.RowIndex
@@ -134,5 +154,9 @@ Public Class Clients
         If CN.State = ConnectionState.Open Then
             CN.Close()
         End If
+    End Sub
+
+    Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
+        FilterData("")
     End Sub
 End Class

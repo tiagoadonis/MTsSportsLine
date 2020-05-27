@@ -40,6 +40,8 @@ Partial Class Clients
         Me.ClientsDataGridView = New System.Windows.Forms.DataGridView()
         Me.PurchasedProductsGridView = New System.Windows.Forms.DataGridView()
         Me.ReturnedProdcutsGridView = New System.Windows.Forms.DataGridView()
+        Me.ButtonSearch = New System.Windows.Forms.Button()
+        Me.TextBoxSearch = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.ClientsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PurchasedProductsGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,7 +52,7 @@ Partial Class Clients
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(19, 368)
+        Me.Label1.Location = New System.Drawing.Point(19, 371)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(226, 32)
@@ -60,8 +62,8 @@ Partial Class Clients
         'Button5
         '
         Me.Button5.Enabled = False
-        Me.Button5.Location = New System.Drawing.Point(25, 316)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button5.Location = New System.Drawing.Point(25, 331)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(4)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(216, 28)
         Me.Button5.TabIndex = 85
@@ -71,8 +73,8 @@ Partial Class Clients
         'Button6
         '
         Me.Button6.Enabled = False
-        Me.Button6.Location = New System.Drawing.Point(301, 316)
-        Me.Button6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button6.Location = New System.Drawing.Point(301, 331)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(4)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(216, 28)
         Me.Button6.TabIndex = 86
@@ -91,9 +93,9 @@ Partial Class Clients
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(25, 407)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Size = New System.Drawing.Size(492, 197)
         Me.GroupBox1.TabIndex = 87
         Me.GroupBox1.TabStop = False
@@ -102,7 +104,7 @@ Partial Class Clients
         'Button7
         '
         Me.Button7.Location = New System.Drawing.Point(308, 149)
-        Me.Button7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button7.Margin = New System.Windows.Forms.Padding(4)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(168, 28)
         Me.Button7.TabIndex = 88
@@ -112,7 +114,7 @@ Partial Class Clients
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(15, 151)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(169, 22)
         Me.TextBox4.TabIndex = 89
@@ -130,7 +132,7 @@ Partial Class Clients
         'TextBox3
         '
         Me.TextBox3.Location = New System.Drawing.Point(15, 97)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(461, 22)
         Me.TextBox3.TabIndex = 89
@@ -148,7 +150,7 @@ Partial Class Clients
         'TextBox2
         '
         Me.TextBox2.Location = New System.Drawing.Point(143, 44)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(332, 22)
         Me.TextBox2.TabIndex = 91
@@ -176,7 +178,7 @@ Partial Class Clients
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(15, 44)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(113, 22)
         Me.TextBox1.TabIndex = 89
@@ -209,8 +211,8 @@ Partial Class Clients
         Me.ClientsDataGridView.AllowUserToResizeColumns = False
         Me.ClientsDataGridView.AllowUserToResizeRows = False
         Me.ClientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ClientsDataGridView.Location = New System.Drawing.Point(25, 31)
-        Me.ClientsDataGridView.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ClientsDataGridView.Location = New System.Drawing.Point(25, 49)
+        Me.ClientsDataGridView.Margin = New System.Windows.Forms.Padding(4)
         Me.ClientsDataGridView.MultiSelect = False
         Me.ClientsDataGridView.Name = "ClientsDataGridView"
         Me.ClientsDataGridView.ReadOnly = True
@@ -228,7 +230,7 @@ Partial Class Clients
         Me.PurchasedProductsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.PurchasedProductsGridView.Enabled = False
         Me.PurchasedProductsGridView.Location = New System.Drawing.Point(576, 63)
-        Me.PurchasedProductsGridView.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PurchasedProductsGridView.Margin = New System.Windows.Forms.Padding(4)
         Me.PurchasedProductsGridView.MultiSelect = False
         Me.PurchasedProductsGridView.Name = "PurchasedProductsGridView"
         Me.PurchasedProductsGridView.ReadOnly = True
@@ -245,7 +247,7 @@ Partial Class Clients
         Me.ReturnedProdcutsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ReturnedProdcutsGridView.Enabled = False
         Me.ReturnedProdcutsGridView.Location = New System.Drawing.Point(576, 362)
-        Me.ReturnedProdcutsGridView.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ReturnedProdcutsGridView.Margin = New System.Windows.Forms.Padding(4)
         Me.ReturnedProdcutsGridView.MultiSelect = False
         Me.ReturnedProdcutsGridView.Name = "ReturnedProdcutsGridView"
         Me.ReturnedProdcutsGridView.ReadOnly = True
@@ -255,11 +257,30 @@ Partial Class Clients
         Me.ReturnedProdcutsGridView.Size = New System.Drawing.Size(673, 242)
         Me.ReturnedProdcutsGridView.TabIndex = 123
         '
+        'ButtonSearch
+        '
+        Me.ButtonSearch.Location = New System.Drawing.Point(424, 16)
+        Me.ButtonSearch.Name = "ButtonSearch"
+        Me.ButtonSearch.Size = New System.Drawing.Size(92, 29)
+        Me.ButtonSearch.TabIndex = 126
+        Me.ButtonSearch.Text = "Search"
+        Me.ButtonSearch.UseVisualStyleBackColor = True
+        '
+        'TextBoxSearch
+        '
+        Me.TextBoxSearch.Location = New System.Drawing.Point(226, 19)
+        Me.TextBoxSearch.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxSearch.Name = "TextBoxSearch"
+        Me.TextBoxSearch.Size = New System.Drawing.Size(191, 22)
+        Me.TextBoxSearch.TabIndex = 125
+        '
         'Clients
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1273, 625)
+        Me.Controls.Add(Me.ButtonSearch)
+        Me.Controls.Add(Me.TextBoxSearch)
         Me.Controls.Add(Me.ReturnedProdcutsGridView)
         Me.Controls.Add(Me.PurchasedProductsGridView)
         Me.Controls.Add(Me.ClientsDataGridView)
@@ -270,7 +291,7 @@ Partial Class Clients
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Clients"
         Me.Text = "Clients"
         Me.GroupBox1.ResumeLayout(False)
@@ -300,4 +321,6 @@ Partial Class Clients
     Friend WithEvents ClientsDataGridView As DataGridView
     Friend WithEvents PurchasedProductsGridView As DataGridView
     Friend WithEvents ReturnedProdcutsGridView As DataGridView
+    Friend WithEvents ButtonSearch As Button
+    Friend WithEvents TextBoxSearch As TextBox
 End Class

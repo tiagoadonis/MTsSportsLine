@@ -219,6 +219,6 @@ Public Class Deliveries
     End Sub
 
     Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
-        FilterData(TextBoxSearch.Text)
+        FilterData("")
     End Sub
 End Class
