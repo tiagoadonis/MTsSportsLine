@@ -18,6 +18,27 @@ Public Class Workers
         End With
     End Sub
 
+    Public Sub FilterData(valueToSearch As String)
+        Dim searchQuery As String = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address 
+        FROM  (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja) 
+        WHERE CONCAT(Funcionario.NumFunc, Funcionario.Nome) like '%" & TextBoxSearch.Text & "%'"
+        Dim command As New SqlCommand(searchQuery, CN)
+        Dim adapter2 As New SqlDataAdapter(command)
+        Dim table2 As New DataTable()
+
+        adapter2.Fill(table2)
+
+        With WorkersDataGridView
+            .DataSource = table2
+            .Columns(0).Width = 80
+            .Columns(1).Width = 112
+            .Columns(2).Width = 164
+        End With
+
+        WorkersDataGridView.DataSource = table2
+
+    End Sub
+
     'Stores DataGridView
     Private Sub DataGridview1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StoresDataGridView.CellClick
         Dim lastIndex As Integer = -1
@@ -152,6 +173,10 @@ Public Class Workers
         Dim addReturn As New AddReturn
         addReturn.StartPosition = FormStartPosition.CenterScreen
         addReturn.ShowDialog()
+    End Sub
+
+    Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
+        FilterData("")
     End Sub
 
 End Class

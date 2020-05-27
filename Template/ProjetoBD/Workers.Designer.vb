@@ -36,6 +36,8 @@ Partial Class Workers
         Me.WorkersDataGridView = New System.Windows.Forms.DataGridView()
         Me.SalesDataGridView = New System.Windows.Forms.DataGridView()
         Me.ReturnsDataGridView = New System.Windows.Forms.DataGridView()
+        Me.ButtonSearch = New System.Windows.Forms.Button()
+        Me.TextBoxSearch = New System.Windows.Forms.TextBox()
         CType(Me.StoresDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WorkersDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SalesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +58,7 @@ Partial Class Workers
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Bold)
-        Me.Label2.Location = New System.Drawing.Point(203, 314)
+        Me.Label2.Location = New System.Drawing.Point(57, 314)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(154, 46)
         Me.Label2.TabIndex = 2
@@ -216,12 +218,31 @@ Partial Class Workers
         Me.ReturnsDataGridView.Size = New System.Drawing.Size(501, 174)
         Me.ReturnsDataGridView.TabIndex = 124
         '
+        'ButtonSearch
+        '
+        Me.ButtonSearch.Location = New System.Drawing.Point(450, 331)
+        Me.ButtonSearch.Name = "ButtonSearch"
+        Me.ButtonSearch.Size = New System.Drawing.Size(92, 29)
+        Me.ButtonSearch.TabIndex = 126
+        Me.ButtonSearch.Text = "Search"
+        Me.ButtonSearch.UseVisualStyleBackColor = True
+        '
+        'TextBoxSearch
+        '
+        Me.TextBoxSearch.Location = New System.Drawing.Point(252, 334)
+        Me.TextBoxSearch.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxSearch.Name = "TextBoxSearch"
+        Me.TextBoxSearch.Size = New System.Drawing.Size(191, 22)
+        Me.TextBoxSearch.TabIndex = 125
+        '
         'Workers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1267, 615)
+        Me.Controls.Add(Me.ButtonSearch)
+        Me.Controls.Add(Me.TextBoxSearch)
         Me.Controls.Add(Me.ReturnsDataGridView)
         Me.Controls.Add(Me.SalesDataGridView)
         Me.Controls.Add(Me.WorkersDataGridView)
@@ -262,4 +283,6 @@ Partial Class Workers
     Friend WithEvents WorkersDataGridView As DataGridView
     Friend WithEvents SalesDataGridView As DataGridView
     Friend WithEvents ReturnsDataGridView As DataGridView
+    Friend WithEvents ButtonSearch As Button
+    Friend WithEvents TextBoxSearch As TextBox
 End Class
