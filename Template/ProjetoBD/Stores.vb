@@ -127,31 +127,7 @@ Public Class Stores
         CN.Close()
 
         'Warehouses
-        Dim ds2 As New DataSet()
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT IDArmazem As Number, capacidade As Capacity
-                           FROM(Projeto.Loja JOIN Projeto.Armazem On Loja.NumLoja=Armazem.NumLoja)
-                           WHERE Loja.NumLoja = @store"
-        CMD.Parameters.Add("@store", SqlDbType.VarChar, 1)
-        CMD.Parameters("@store").Value = numStore
-        CN.Open()
-
-        Dim adapter2 As New SqlDataAdapter(CMD)
-        adapter2.Fill(ds2)
-
-        With WarehousesDataGridView
-            .DataSource = ds2.Tables(0)
-            .Columns(0).Width = 138
-            .Columns(1).Width = 138
-        End With
-
-        WarehousesDataGridView.ClearSelection()
-
-        If CN.State = ConnectionState.Open Then
-            CN.Close()
-        End If
+        loadWarehouses(numStore)
     End Sub
 
     'Stores' products DataGridView
@@ -247,8 +223,13 @@ Public Class Stores
         CMD.Parameters("@warehouseID").Value = warehouseID
         CN.Open()
 
-        Dim storageOccupied As String = CMD.ExecuteScalar().ToString
+        Dim storageOccupied As String
 
+        If (CMD.ExecuteScalar().ToString.Equals("")) Then
+            storageOccupied = "0"
+        Else
+            storageOccupied = CMD.ExecuteScalar().ToString
+        End If
         TextBoxTotalStorage.Text = selectedRow.Cells(1).Value.ToString
         TextBoxStorageOccupied.Text = storageOccupied
 
@@ -308,23 +289,109 @@ Public Class Stores
     'To add a new Store
     Public Sub addStore(ByVal storeName As String, ByVal storeLocation As String)
         Dim numStore As Integer = StoresDataGridView.Rows.Count + 1
-        Dim table As New DataTable()
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "INSERT INTO Projeto.Loja(NumLoja, Nome, Localizacao) 
-                                             VALUES (@numStore, @storeName, @storeLocation)"
-        CMD.Parameters.Add("@numStore", SqlDbType.Int)
-        CMD.Parameters.Add("@storeName", SqlDbType.VarChar, 30)
-        CMD.Parameters.Add("@storeLocation", SqlDbType.VarChar, 20)
-        CMD.Parameters("@numStore").Value = numStore
-        CMD.Parameters("@storeName").Value = storeName
-        CMD.Parameters("@storeLocation").Value = storeLocation
+        CMD.CommandText = "EXEC Projeto.Add_newStore @StoreNum, @Name, @Location"
+        CMD.Parameters.Add("@StoreNum", SqlDbType.Int)
+        CMD.Parameters.Add("@Name", SqlDbType.VarChar, 30)
+        CMD.Parameters.Add("@Location", SqlDbType.VarChar, 20)
+        CMD.Parameters("@StoreNum").Value = numStore
+        CMD.Parameters("@Name").Value = storeName
+        CMD.Parameters("@Location").Value = storeLocation
         CN.Open()
-
-        'VER COMO PASSAR OS DADOS PARA O storesDataGrid
-
+        CMD.ExecuteScalar()
+        loadStores()
         CN.Close()
 
+    End Sub
+
+    'Remove Store Button
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        Dim index As Integer = StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Remove_Store @StoreNum"
+        CMD.Parameters.Add("@StoreNum", SqlDbType.Int)
+        CMD.Parameters("@StoreNum").Value = numStore
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadStores()
+        CN.Close()
+    End Sub
+
+    'To add a Warehouse
+    Public Sub addWarehouse(ByVal totalStorage As Integer)
+        Dim index As Integer = StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT MAX(Armazem.IDArmazem) FROM Projeto.Armazem"
+        CN.Open()
+        Dim WarehouseNumber As Integer = CMD.ExecuteScalar() + 10
+        CN.Close()
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Add_Warehouse @WarehouseID, @Storage, @StoreNum"
+        CMD.Parameters.Add("@WarehouseID", SqlDbType.Int)
+        CMD.Parameters.Add("@Storage", SqlDbType.Int)
+        CMD.Parameters.Add("@StoreNum", SqlDbType.Int)
+        CMD.Parameters("@WarehouseID").Value = WarehouseNumber
+        CMD.Parameters("@Storage").Value = totalStorage
+        CMD.Parameters("@StoreNum").Value = numStore
+        CN.Open()
+        CMD.ExecuteScalar()
+        CN.Close()
+        loadWarehouses(numStore)
+    End Sub
+
+    Private Sub loadWarehouses(ByVal numStore As Integer)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT IDArmazem As Number, capacidade As Storage
+                           FROM(Projeto.Loja JOIN Projeto.Armazem On Loja.NumLoja=Armazem.NumLoja)
+                           WHERE Loja.NumLoja = @store"
+        CMD.Parameters.Add("@store", SqlDbType.Int)
+        CMD.Parameters("@store").Value = numStore
+        CN.Open()
+
+        Dim ds As New DataSet()
+
+        Dim adapter As New SqlDataAdapter(CMD)
+        adapter.Fill(ds)
+
+        With WarehousesDataGridView
+            .DataSource = ds.Tables(0)
+            .Columns(0).Width = 138
+            .Columns(1).Width = 138
+            .ClearSelection()
+        End With
+        CN.Close()
+    End Sub
+
+    'Remove Warehouse Button
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+        Dim index As Integer = StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+        Dim index2 As Integer = WarehousesDataGridView.CurrentRow.Index
+        Dim selectedRow2 As DataGridViewRow = WarehousesDataGridView.Rows(index2)
+        Dim warehouse As Integer = selectedRow2.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Remove_Warehouse @WarehouseID"
+        CMD.Parameters.Add("@WarehouseID", SqlDbType.Int)
+        CMD.Parameters("@WarehouseID").Value = warehouse
+        CN.Open()
+        CMD.ExecuteScalar()
+        CN.Close()
+        loadWarehouses(numStore)
     End Sub
 End Class

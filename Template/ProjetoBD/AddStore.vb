@@ -21,11 +21,12 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If LocationText.Text = "" Or NameText.Text = "" Then
             MsgBox("Some textbox is empty!", MsgBoxStyle.Information, "ERROR")
+        Else
+            'To add in Stores DataGridView
+            Dim storeName As String = NameText.Text
+            Dim storeLocation As String = LocationText.Text
+            Stores.addStore(storeName, storeLocation)
+            Me.Close()
         End If
-
-        'To add in Stores DataGridView
-        Dim storeName As String = NameText.Text
-        Dim storeLocation As String = LocationText.Text
-        Stores.addStore(storeName, storeLocation)
     End Sub
 End Class

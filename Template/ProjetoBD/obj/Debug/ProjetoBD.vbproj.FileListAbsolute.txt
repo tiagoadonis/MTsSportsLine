@@ -120,3 +120,6 @@ D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Templa
 C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.AddWorker.resources
 C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.AddSales.resources
 C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.AddReturn.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template_Martim\ProjetoBD\obj\Debug\ProjetoBD.AddReturn.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template_Martim\ProjetoBD\obj\Debug\ProjetoBD.AddSales.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template_Martim\ProjetoBD\obj\Debug\ProjetoBD.AddWorker.resources

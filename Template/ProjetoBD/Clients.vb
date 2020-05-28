@@ -7,16 +7,27 @@ Public Class Clients
 
     'Client's Insert Button
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        If TextBox1.Text.Length <> 9 Then
+        If NIFTextBox.Text.Length <> 9 Then
             MsgBox("Client's NIF Must Have 9 Numbers!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If TextBox4.Text.Length <> 9 Then
+        ElseIf NameTextBox.Text.Equals("") Then
+            MsgBox("Please Insert Client's Name!", MsgBoxStyle.Information, "ERROR")
+        ElseIf PhoneTextBox.Text.Length <> 9 Then
             MsgBox("Client's Phone Number Must Have 9 Numbers!", MsgBoxStyle.Information, "ERROR")
+        Else
+            Dim NIF As Integer = NIFTextBox.Text
+            Dim name As String = NameTextBox.Text.ToString
+            Dim address As String = AddressTextBox.Text.ToString()
+            Dim phone As Integer = PhoneTextBox.Text
+            addClient(NIF, name, address, phone)
+            NIFTextBox.Text = ""
+            NameTextBox.Text = ""
+            AddressTextBox.Text = ""
+            PhoneTextBox.Text = ""
         End If
     End Sub
 
     'Client's NIF TextBox
-    Private Sub TextBox1_KeyPress(sender As Object, e As EventArgs) Handles TextBox1.KeyPress
+    Private Sub TextBox1_KeyPress(sender As Object, e As EventArgs) Handles NIFTextBox.KeyPress
         NumberOnly(e)
     End Sub
     Private Sub NumberOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
@@ -28,7 +39,7 @@ Public Class Clients
     End Sub
 
     'Client's Name TextBox
-    Private Sub TextBox2_KeyPress(sender As Object, e As EventArgs) Handles TextBox2.KeyPress
+    Private Sub TextBox2_KeyPress(sender As Object, e As EventArgs) Handles NameTextBox.KeyPress
         LettersOnly(e)
     End Sub
     Private Sub LettersOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
@@ -39,7 +50,7 @@ Public Class Clients
     End Sub
 
     'Client's Phone Number TextBox
-    Private Sub TextBox4_KeyPress(sender As Object, e As EventArgs) Handles TextBox4.KeyPress
+    Private Sub TextBox4_KeyPress(sender As Object, e As EventArgs) Handles PhoneTextBox.KeyPress
         NumberOnly(e)
     End Sub
 
@@ -158,5 +169,40 @@ Public Class Clients
 
     Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
         FilterData("")
+    End Sub
+
+    Private Sub addClient(ByVal NIF As Integer, ByVal name As String, ByVal address As String, ByVal phone As Integer)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Add_newClient @NIF, @Address, @Name, @Phone"
+        CMD.Parameters.Add("@NIF", SqlDbType.Int)
+        CMD.Parameters.Add("@Address", SqlDbType.VarChar, 40)
+        CMD.Parameters.Add("@Name", SqlDbType.VarChar, 20)
+        CMD.Parameters.Add("@Phone", SqlDbType.Int)
+        CMD.Parameters("@NIF").Value = NIF
+        CMD.Parameters("@Address").Value = address
+        CMD.Parameters("@Name").Value = name
+        CMD.Parameters("@Phone").Value = phone
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadClients()
+        CN.Close()
+    End Sub
+
+    'Remove Client Button
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim index As Integer = ClientsDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
+        Dim nif As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Remove_Client @NIF"
+        CMD.Parameters.Add("@NIF", SqlDbType.Int)
+        CMD.Parameters("@NIF").Value = nif
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadClients()
+        CN.Close()
     End Sub
 End Class
