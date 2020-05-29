@@ -52,8 +52,8 @@ Partial Class Deliveries
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBoxSearch = New System.Windows.Forms.TextBox()
-        Me.ButtonSearch = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DeliveriesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -387,17 +387,8 @@ Partial Class Deliveries
         Me.TextBoxSearch.Location = New System.Drawing.Point(314, 57)
         Me.TextBoxSearch.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSearch.Name = "TextBoxSearch"
-        Me.TextBoxSearch.Size = New System.Drawing.Size(191, 22)
+        Me.TextBoxSearch.Size = New System.Drawing.Size(290, 22)
         Me.TextBoxSearch.TabIndex = 53
-        '
-        'ButtonSearch
-        '
-        Me.ButtonSearch.Location = New System.Drawing.Point(512, 54)
-        Me.ButtonSearch.Name = "ButtonSearch"
-        Me.ButtonSearch.Size = New System.Drawing.Size(92, 29)
-        Me.ButtonSearch.TabIndex = 124
-        Me.ButtonSearch.Text = "Search"
-        Me.ButtonSearch.UseVisualStyleBackColor = True
         '
         'Button5
         '
@@ -410,13 +401,23 @@ Partial Class Deliveries
         Me.Button5.Text = "Cancel"
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(324, 60)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(249, 17)
+        Me.Label3.TabIndex = 126
+        Me.Label3.Text = "Search deliveries by transport number"
+        '
         'Deliveries
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1269, 644)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.ButtonSearch)
         Me.Controls.Add(Me.TextBoxSearch)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox2)
@@ -469,6 +470,6 @@ Partial Class Deliveries
     Friend WithEvents TextBoxID As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents TextBoxSearch As TextBox
-    Friend WithEvents ButtonSearch As Button
     Friend WithEvents Button5 As Button
+    Friend WithEvents Label3 As Label
 End Class

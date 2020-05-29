@@ -112,6 +112,8 @@ Public Class MainForm
             .Button14.Enabled = False
             .TextBoxSearch.Enabled = False
             .TextBoxSearch2.Enabled = False
+            .Label1.Visible = True
+            .Label1.Enabled = False
         End With
     End Sub
 
@@ -120,8 +122,11 @@ Public Class MainForm
             .ClientsDataGridView.ClearSelection()
             .PurchasedProductsGridView.DataSource = Nothing
             .ReturnedProdcutsGridView.DataSource = Nothing
+            .TextBoxSearch.Text = ""
             .Button5.Enabled = False
             .Button6.Enabled = False
+            .Label2.Enabled = True
+            .Label2.Visible = True
         End With
     End Sub
 
@@ -138,7 +143,8 @@ Public Class MainForm
             .Button7.Enabled = False
             .Button8.Enabled = False
             .TextBoxSearch.Enabled = False
-            .ButtonSearch.Enabled = False
+            .TextBoxSearch.Text = ""
+            .Label5.Visible = True
         End With
     End Sub
 
@@ -155,9 +161,12 @@ Public Class MainForm
             .TextBoxDate2.Text = ""
             .TextBoxAmount2.Text = ""
             .TextBoxDest2.Text = ""
-            '.Button1.Enabled = False
+            .TextBoxSearch.Text = ""
+            .Button1.Enabled = False
             .Button2.Enabled = False
-            '.Button3.Enabled = False
+            .Button3.Enabled = False
+            .Label3.Visible = True
+            .Label3.Enabled = True
         End With
     End Sub
 

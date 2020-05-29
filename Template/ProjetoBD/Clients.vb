@@ -157,10 +157,6 @@ Public Class Clients
         End If
     End Sub
 
-    Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
-        FilterData("")
-    End Sub
-
     Private Sub addClient(ByVal NIF As Integer, ByVal name As String, ByVal address As String, ByVal phone As Integer)
         CMD = New SqlCommand()
         CMD.Connection = CN
@@ -194,5 +190,14 @@ Public Class Clients
         CMD.ExecuteScalar()
         loadClients()
         CN.Close()
+    End Sub
+
+    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
+        FilterData("")
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
+        Label2.Enabled = False
+        Label2.Visible = False
     End Sub
 End Class

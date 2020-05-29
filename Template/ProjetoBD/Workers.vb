@@ -19,9 +19,10 @@ Public Class Workers
     End Sub
 
     Public Sub FilterData(valueToSearch As String)
+        Dim numStore As String = StoresDataGridView.CurrentRow.Cells(0).Value.ToString
         Dim searchQuery As String = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address 
         FROM  (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja) 
-        WHERE CONCAT(Funcionario.NumFunc, Funcionario.Nome) like '%" & TextBoxSearch.Text & "%'"
+        WHERE CONCAT(Funcionario.NumFunc, Funcionario.Nome) like '%" & TextBoxSearch.Text & "%' AND Loja.NumLoja like '%" & numStore & "%'"
         Dim command As New SqlCommand(searchQuery, CN)
         Dim adapter2 As New SqlDataAdapter(command)
         Dim table2 As New DataTable()
@@ -54,7 +55,7 @@ Public Class Workers
 
         Button3.Enabled = True
         TextBoxSearch.Enabled = True
-        ButtonSearch.Enabled = True
+        Label5.Enabled = True
 
         Dim ds As New DataSet()
 
@@ -176,9 +177,16 @@ Public Class Workers
         addReturn.StartPosition = FormStartPosition.CenterScreen
         addReturn.ShowDialog()
     End Sub
+    Private Sub Workers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TextBoxSearch.Text = ""
+    End Sub
 
-    Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
+    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
         FilterData("")
     End Sub
 
+    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
+        Label5.Enabled = False
+        Label5.Visible = False
+    End Sub
 End Class

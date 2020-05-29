@@ -36,8 +36,8 @@ Partial Class Workers
         Me.WorkersDataGridView = New System.Windows.Forms.DataGridView()
         Me.SalesDataGridView = New System.Windows.Forms.DataGridView()
         Me.ReturnsDataGridView = New System.Windows.Forms.DataGridView()
-        Me.ButtonSearch = New System.Windows.Forms.Button()
         Me.TextBoxSearch = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.StoresDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WorkersDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SalesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -218,24 +218,25 @@ Partial Class Workers
         Me.ReturnsDataGridView.Size = New System.Drawing.Size(501, 174)
         Me.ReturnsDataGridView.TabIndex = 124
         '
-        'ButtonSearch
-        '
-        Me.ButtonSearch.Enabled = False
-        Me.ButtonSearch.Location = New System.Drawing.Point(450, 331)
-        Me.ButtonSearch.Name = "ButtonSearch"
-        Me.ButtonSearch.Size = New System.Drawing.Size(92, 29)
-        Me.ButtonSearch.TabIndex = 126
-        Me.ButtonSearch.Text = "Search"
-        Me.ButtonSearch.UseVisualStyleBackColor = True
-        '
         'TextBoxSearch
         '
         Me.TextBoxSearch.Enabled = False
-        Me.TextBoxSearch.Location = New System.Drawing.Point(252, 334)
+        Me.TextBoxSearch.Location = New System.Drawing.Point(227, 334)
         Me.TextBoxSearch.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSearch.Name = "TextBoxSearch"
-        Me.TextBoxSearch.Size = New System.Drawing.Size(191, 22)
+        Me.TextBoxSearch.Size = New System.Drawing.Size(315, 22)
         Me.TextBoxSearch.TabIndex = 125
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.White
+        Me.Label5.Enabled = False
+        Me.Label5.Location = New System.Drawing.Point(234, 337)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(298, 17)
+        Me.Label5.TabIndex = 126
+        Me.Label5.Text = "Search workers by name or employee number"
         '
         'Workers
         '
@@ -243,7 +244,7 @@ Partial Class Workers
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1267, 615)
-        Me.Controls.Add(Me.ButtonSearch)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.TextBoxSearch)
         Me.Controls.Add(Me.ReturnsDataGridView)
         Me.Controls.Add(Me.SalesDataGridView)
@@ -285,6 +286,6 @@ Partial Class Workers
     Friend WithEvents WorkersDataGridView As DataGridView
     Friend WithEvents SalesDataGridView As DataGridView
     Friend WithEvents ReturnsDataGridView As DataGridView
-    Friend WithEvents ButtonSearch As Button
     Friend WithEvents TextBoxSearch As TextBox
+    Friend WithEvents Label5 As Label
 End Class

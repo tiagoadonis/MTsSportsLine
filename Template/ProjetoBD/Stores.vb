@@ -75,10 +75,11 @@ Public Class Stores
     End Sub
 
     Public Sub FilterData(valueToSearch As String)
+        Dim numStore As String = StoresDataGridView.CurrentRow.Cells(0).Value.ToString
         Dim searchQuery As String = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
                                      FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
                                      JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
-                                     WHERE Artigo.Nome like '%" & TextBoxSearch.Text & "%'"
+                                     WHERE Artigo.Nome like '%" & TextBoxSearch.Text & "%' AND Loja.NumLoja like '%" & numStore & "%'"
         Dim command As New SqlCommand(searchQuery, CN)
         Dim adapter2 As New SqlDataAdapter(command)
         Dim table2 As New DataTable()
@@ -98,10 +99,11 @@ Public Class Stores
     End Sub
 
     Public Sub FilterData2(valueToSearch As String)
+        Dim armazem As String = WarehousesDataGridView.CurrentRow.Cells(0).Value.ToString
         Dim searchQuery As String = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
                                      FROM ((Projeto.Armazem JOIN Projeto.Artigo_Armazem ON Armazem.IDArmazem=Artigo_Armazem.IDArmazem) 
                                      Join Projeto.Artigo ON Artigo_Armazem.Codigo=Artigo.Codigo)
-                                     WHERE Artigo.Nome like '%" & TextBoxSearch2.Text & "%'"
+                                     WHERE Artigo.Nome like '%" & TextBoxSearch2.Text & "%' AND Armazem.IDArmazem like '%" & armazem & "%'"
         Dim command As New SqlCommand(searchQuery, CN)
         Dim adapter2 As New SqlDataAdapter(command)
         Dim table2 As New DataTable()
@@ -156,6 +158,7 @@ Public Class Stores
         Button11.Enabled = True
         Button14.Enabled = True
         TextBoxSearch.Enabled = True
+        Label1.Enabled = True
 
         Dim ds As New DataSet()
 
@@ -340,6 +343,8 @@ Public Class Stores
 
     Private Sub Stores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         StoresDataGridView.ClearSelection()
+        TextBoxSearch.Text = ""
+        TextBoxSearch2.Text = ""
     End Sub
 
     'To add a new Store
@@ -451,4 +456,8 @@ Public Class Stores
         loadWarehouses(numStore)
     End Sub
 
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+        Label1.Enabled = False
+        Label1.Visible = False
+    End Sub
 End Class

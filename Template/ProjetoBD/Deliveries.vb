@@ -52,6 +52,7 @@ Public Class Deliveries
         TextBoxID.Text = selectedRow.Cells(0).Value.ToString
         TextBoxDate.Text = selectedRow.Cells(1).Value.ToString
         TextBoxDest.Text = selectedRow.Cells(2).Value.ToString
+        Label3.Enabled = True
 
         CMD = New SqlCommand()
         CMD.Connection = CN
@@ -218,7 +219,12 @@ Public Class Deliveries
         End If
     End Sub
 
-    Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
+    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
         FilterData("")
+    End Sub
+
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+        Label3.Enabled = False
+        Label3.Visible = False
     End Sub
 End Class
