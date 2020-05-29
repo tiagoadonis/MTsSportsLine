@@ -66,6 +66,7 @@ Public Class MainForm
             Panel1.Controls.Add(Workers)
             .BringToFront()
             .Show()
+            .WorkersDataGridView.DataSource = Nothing
             clearWorkersSection()
         End With
     End Sub
@@ -145,6 +146,7 @@ Public Class MainForm
             .TextBoxSearch.Enabled = False
             .TextBoxSearch.Text = ""
             .Label5.Visible = True
+            .WorkersDataGridView.DataSource = Nothing
         End With
     End Sub
 

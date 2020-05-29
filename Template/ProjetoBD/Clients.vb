@@ -78,11 +78,18 @@ Public Class Clients
     End Sub
 
     Public Sub FilterData(valueToSearch As String)
-        Dim searchQuery As String = "SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone FROM Projeto.Cliente WHERE CONCAT(Nome, NIF) like '%" & TextBoxSearch.Text & "%'"
-        Dim command As New SqlCommand(searchQuery, CN)
-        Dim adapter2 As New SqlDataAdapter(command)
+        Dim search As String = TextBoxSearch.Text
         Dim table2 As New DataTable()
 
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone FROM Projeto.Cliente 
+                           WHERE CONCAT(Nome, NIF) like '%' + @search + '%'"
+        CMD.Parameters.Add("@search", SqlDbType.VarChar, 40)
+        CMD.Parameters("@search").Value = search
+        CN.Open()
+
+        Dim adapter2 As New SqlDataAdapter(CMD)
         adapter2.Fill(table2)
 
         With ClientsDataGridView
@@ -92,6 +99,7 @@ Public Class Clients
             .Columns(2).Width = 136
             .Columns(3).Width = 70
         End With
+        CN.Close()
 
         ClientsDataGridView.DataSource = table2
 

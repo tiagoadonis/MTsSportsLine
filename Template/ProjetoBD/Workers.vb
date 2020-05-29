@@ -20,13 +20,21 @@ Public Class Workers
 
     Public Sub FilterData(valueToSearch As String)
         Dim numStore As String = StoresDataGridView.CurrentRow.Cells(0).Value.ToString
-        Dim searchQuery As String = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address 
-        FROM  (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja) 
-        WHERE CONCAT(Funcionario.NumFunc, Funcionario.Nome) like '%" & TextBoxSearch.Text & "%' AND Loja.NumLoja like '%" & numStore & "%'"
-        Dim command As New SqlCommand(searchQuery, CN)
-        Dim adapter2 As New SqlDataAdapter(command)
+        Dim search As String = TextBoxSearch.Text
         Dim table2 As New DataTable()
 
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address 
+                           FROM  (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja) 
+                           WHERE CONCAT(Funcionario.NumFunc, Funcionario.Nome) like '%' + @search + '%' AND Loja.NumLoja like '%' + @store + '%'"
+        CMD.Parameters.Add("@search", SqlDbType.VarChar, 40)
+        CMD.Parameters("@search").Value = search
+        CMD.Parameters.Add("@store", SqlDbType.VarChar, 3)
+        CMD.Parameters("@store").Value = numStore
+        CN.Open()
+
+        Dim adapter2 As New SqlDataAdapter(CMD)
         adapter2.Fill(table2)
 
         With WorkersDataGridView
@@ -34,10 +42,16 @@ Public Class Workers
             .Columns(0).Width = 80
             .Columns(1).Width = 112
             .Columns(2).Width = 164
+            .ClearSelection()
         End With
+        CN.Close()
 
         WorkersDataGridView.DataSource = table2
 
+    End Sub
+
+    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
+        FilterData("")
     End Sub
 
     'Stores DataGridView
@@ -48,6 +62,7 @@ Public Class Workers
         Dim numStore As String = selectedRow.Cells(0).Value.ToString
 
         If (lastIndex <> index) Then
+            WorkersDataGridView.DataSource = Nothing
             SalesDataGridView.DataSource = Nothing
             ReturnsDataGridView.DataSource = Nothing
             lastIndex = index
@@ -177,12 +192,10 @@ Public Class Workers
         addReturn.StartPosition = FormStartPosition.CenterScreen
         addReturn.ShowDialog()
     End Sub
-    Private Sub Workers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TextBoxSearch.Text = ""
-    End Sub
 
-    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
-        FilterData("")
+    Private Sub Workers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StoresDataGridView.ClearSelection()
+        TextBoxSearch.Text = ""
     End Sub
 
     Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click

@@ -23,11 +23,18 @@ Public Class Deliveries
     End Sub
 
     Public Sub FilterData(valueToSearch As String)
-        Dim searchQuery As String = "SELECT * FROM  Projeto.Transporte WHERE IDTransporte like '%" & TextBoxSearch.Text & "%'"
-        Dim command As New SqlCommand(searchQuery, CN)
-        Dim adapter2 As New SqlDataAdapter(command)
+        Dim search As String = TextBoxSearch.Text
         Dim table2 As New DataTable()
 
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT * FROM  Projeto.Transporte WHERE IDTransporte like '%' + @search + '%'"
+
+        CMD.Parameters.Add("@search", SqlDbType.VarChar, 40)
+        CMD.Parameters("@search").Value = search
+        CN.Open()
+
+        Dim adapter2 As New SqlDataAdapter(CMD)
         adapter2.Fill(table2)
 
         With DeliveriesDataGridView
@@ -36,6 +43,7 @@ Public Class Deliveries
             .Columns(1).Width = 110
             .Columns(2).Width = 217
         End With
+        CN.Close()
 
         DeliveriesDataGridView.DataSource = table2
 
