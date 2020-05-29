@@ -53,6 +53,8 @@ Public Class Workers
         End If
 
         Button3.Enabled = True
+        TextBoxSearch.Enabled = True
+        ButtonSearch.Enabled = True
 
         Dim ds As New DataSet()
 

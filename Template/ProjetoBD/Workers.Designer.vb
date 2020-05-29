@@ -220,6 +220,7 @@ Partial Class Workers
         '
         'ButtonSearch
         '
+        Me.ButtonSearch.Enabled = False
         Me.ButtonSearch.Location = New System.Drawing.Point(450, 331)
         Me.ButtonSearch.Name = "ButtonSearch"
         Me.ButtonSearch.Size = New System.Drawing.Size(92, 29)
@@ -229,6 +230,7 @@ Partial Class Workers
         '
         'TextBoxSearch
         '
+        Me.TextBoxSearch.Enabled = False
         Me.TextBoxSearch.Location = New System.Drawing.Point(252, 334)
         Me.TextBoxSearch.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSearch.Name = "TextBoxSearch"

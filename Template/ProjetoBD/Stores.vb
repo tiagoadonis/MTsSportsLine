@@ -74,6 +74,60 @@ Public Class Stores
         End With
     End Sub
 
+    Public Sub FilterData(valueToSearch As String)
+        Dim searchQuery As String = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+                                     FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
+                                     JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
+                                     WHERE Artigo.Nome like '%" & TextBoxSearch.Text & "%'"
+        Dim command As New SqlCommand(searchQuery, CN)
+        Dim adapter2 As New SqlDataAdapter(command)
+        Dim table2 As New DataTable()
+
+        adapter2.Fill(table2)
+
+        With ProductsDataGridView
+            .DataSource = table2
+            .Columns(0).Width = 180
+            .Columns(1).Width = 42
+            .Columns(2).Width = 37
+            .ClearSelection()
+        End With
+
+        ProductsDataGridView.DataSource = table2
+
+    End Sub
+
+    Public Sub FilterData2(valueToSearch As String)
+        Dim searchQuery As String = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+                                     FROM ((Projeto.Armazem JOIN Projeto.Artigo_Armazem ON Armazem.IDArmazem=Artigo_Armazem.IDArmazem) 
+                                     Join Projeto.Artigo ON Artigo_Armazem.Codigo=Artigo.Codigo)
+                                     WHERE Artigo.Nome like '%" & TextBoxSearch2.Text & "%'"
+        Dim command As New SqlCommand(searchQuery, CN)
+        Dim adapter2 As New SqlDataAdapter(command)
+        Dim table2 As New DataTable()
+
+        adapter2.Fill(table2)
+
+        With WharehousesProductsDataGridView
+            .DataSource = table2
+            .Columns(0).Width = 180
+            .Columns(1).Width = 42
+            .Columns(2).Width = 37
+            .ClearSelection()
+        End With
+
+        WharehousesProductsDataGridView.DataSource = table2
+
+    End Sub
+
+    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
+        FilterData("")
+    End Sub
+
+    Private Sub TextBoxSearch2_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch2.TextChanged
+        FilterData2("")
+    End Sub
+
     'Stores DataGridView
     Private Sub DataGridview1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StoresDataGridView.CellClick
         Dim lastIndex As Integer = -1
@@ -101,6 +155,7 @@ Public Class Stores
         Button7.Enabled = True
         Button11.Enabled = True
         Button14.Enabled = True
+        TextBoxSearch.Enabled = True
 
         Dim ds As New DataSet()
 
@@ -189,6 +244,7 @@ Public Class Stores
 
         Button9.Enabled = True
         Button13.Enabled = True
+        TextBoxSearch2.Enabled = True
 
         Dim ds As New DataSet()
 
@@ -394,4 +450,5 @@ Public Class Stores
         CN.Close()
         loadWarehouses(numStore)
     End Sub
+
 End Class

@@ -110,6 +110,8 @@ Public Class MainForm
             .Button9.Enabled = False
             .Button13.Enabled = False
             .Button14.Enabled = False
+            .TextBoxSearch.Enabled = False
+            .TextBoxSearch2.Enabled = False
         End With
     End Sub
 
@@ -135,6 +137,8 @@ Public Class MainForm
             .Button6.Enabled = False
             .Button7.Enabled = False
             .Button8.Enabled = False
+            .TextBoxSearch.Enabled = False
+            .ButtonSearch.Enabled = False
         End With
     End Sub
 
