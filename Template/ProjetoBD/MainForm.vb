@@ -54,6 +54,7 @@ Public Class MainForm
             Panel1.Controls.Add(Stores)
             .BringToFront()
             .Show()
+            .TextBoxSearch2.Text = ""
             clearStoresSection()
         End With
     End Sub
@@ -66,7 +67,6 @@ Public Class MainForm
             Panel1.Controls.Add(Workers)
             .BringToFront()
             .Show()
-            .WorkersDataGridView.DataSource = Nothing
             clearWorkersSection()
         End With
     End Sub
@@ -101,6 +101,7 @@ Public Class MainForm
             .TextBoxType2.Text = ""
             .TextBoxTotalStorage.Text = ""
             .TextBoxStorageOccupied.Text = ""
+            .TextBoxSearch.Text = ""
             .Button11.Enabled = False
             .Button7.Enabled = False
             .Button6.Enabled = False
@@ -115,6 +116,8 @@ Public Class MainForm
             .TextBoxSearch2.Enabled = False
             .Label1.Visible = True
             .Label1.Enabled = False
+            .ProductsDataGridView.DataSource = Nothing
+            .WharehousesProductsDataGridView.DataSource = Nothing
         End With
     End Sub
 

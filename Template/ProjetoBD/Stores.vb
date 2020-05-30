@@ -142,6 +142,7 @@ Public Class Stores
             .ClearSelection()
         End With
         CN.Close()
+
     End Sub
 
     Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged

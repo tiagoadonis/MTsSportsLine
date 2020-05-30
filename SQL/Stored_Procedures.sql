@@ -17,8 +17,8 @@ DROP PROCEDURE Projeto.UpdatePhone;
 ---------------------------------------
 DROP PROCEDURE Projeto.Add_Worker
 DROP PROCEDURE Projeto.Add_Sale
-DROP PROCEDURE Projeto.Add_Return
-DROP PROCEDURE Projeto.Add_Delivery
+--DROP PROCEDURE Projeto.Add_Return
+--DROP PROCEDURE Projeto.Add_Delivery
 
 -- Adding Stored Procedures
 GO

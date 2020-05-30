@@ -154,3 +154,4 @@ D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Templa
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template Martim\ProjetoBD\obj\Debug\ProjetoBD.xml
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template Martim\ProjetoBD\obj\Debug\ProjetoBD.pdb
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\Template Martim\ProjetoBD\obj\Debug\ProjetoBD.addToStore.resources
+C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.addToStore.resources
