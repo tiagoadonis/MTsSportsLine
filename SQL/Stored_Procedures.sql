@@ -9,6 +9,11 @@ DROP PROCEDURE Projeto.Remove_storeProduct;
 DROP PROCEDURE Projeto.Remove_Warehouse;
 DROP PROCEDURE Projeto.Remove_WarehouseProduct;
 DROP PROCEDURE Projeto.Remove_Client;
+---------------------------------------
+DROP PROCEDURE Projeto.Add_Worker-----------
+DROP PROCEDURE Projeto.Add_Sale
+DROP PROCEDURE Projeto.Add_Return
+DROP PROCEDURE Projeto.Add_Delivery
 
 -- Adding Stored Procedures
 GO
@@ -112,6 +117,44 @@ AS
 GO
 --Test Procedure
 EXEC Projeto.Add_newClient 100000000, 'Rua da Frente, Maia', 'Carlos Alberto', 911111111;
+------------------------------------------------------------
+GO
+CREATE PROCEDURE Projeto.Add_Worker (@Num INT, @Address VARCHAR(40), @Name VARCHAR(20), @Phone BIGINT, @StoreNum INT) 
+AS
+	IF EXISTS (SELECT * FROM Projeto.Loja WHERE Loja.NumLoka=@StoreNum)
+	BEGIN
+		IF EXISTS (SELECT * FROM Projeto.Funcionario WHERE Funcionario.NumFunc=@Num)
+		BEGIN
+			RAISERROR ('The worker with number %d already exists', 14, 1, @Num);
+		END
+		ELSE
+			INSERT Projeto.Funcionario (NumFunc, Morada, Nome, NumTelem, NumLoja)
+			VALUES (@Num, @Address, @Name, @Phone, @StoreNum);
+	END
+	ELSE
+		RAISERROR ('The store number %d does not exists', 14, 1, @StoreNum);
+GO
+--Test Procedure
+EXEC Projeto.Add_Worker 100000000, 'Rua da Frente, Maia', 'Carlos Manuel', 911111111, 2;
+----------------------------------------------------------
+GO 
+CREATE PROCEDURE Projeto.Add_Sale (@Num INT,@Data DATE, @Amount DECIMAL(5,2), @NIF INT, @EmpNum INT, @Code INT, @Quant INT)
+AS
+	IF EXISTS (SELECT * FROM Projeto.Compra WHERE Compra.NumCompra=@Num)
+	BEGIN
+		RAISERROR ('The sale with number %d already exists', 14, 1, @Num);
+	END
+	ELSE
+		INSERT Projeto.Compra (NumCompra, Data, Montante, NIF, NumFunc)
+		VALUES (@Num, @Data, @Amount, @NIF, @EmpNum);
+		INSERT Projeto.Artigo_Comprado (Codigo, NumCompra, QuantArtigos)
+		VALUES (@Num, @Code, @Quant);
+
+
+
+
+
+
 
 -- Removing Stored Procedures
 GO
