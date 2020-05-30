@@ -24,20 +24,20 @@ Partial Class ReturnProduct
     Private Sub InitializeComponent()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.UnitsTextBox = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.WorkersNameTextBox = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.CodeTextBox = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.ClientsNameTextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.NIFTextBox = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.ProductTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.ProductsNameTextBox = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
@@ -59,12 +59,12 @@ Partial Class ReturnProduct
         Me.Button1.Text = "Confirm"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'TextBox5
+        'UnitsTextBox
         '
-        Me.TextBox5.Location = New System.Drawing.Point(11, 195)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(57, 20)
-        Me.TextBox5.TabIndex = 76
+        Me.UnitsTextBox.Location = New System.Drawing.Point(11, 195)
+        Me.UnitsTextBox.Name = "UnitsTextBox"
+        Me.UnitsTextBox.Size = New System.Drawing.Size(57, 20)
+        Me.UnitsTextBox.TabIndex = 76
         '
         'Label9
         '
@@ -75,13 +75,13 @@ Partial Class ReturnProduct
         Me.Label9.TabIndex = 77
         Me.Label9.Text = "Nº Units"
         '
-        'TextBox3
+        'WorkersNameTextBox
         '
-        Me.TextBox3.Enabled = False
-        Me.TextBox3.Location = New System.Drawing.Point(130, 105)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(126, 20)
-        Me.TextBox3.TabIndex = 75
+        Me.WorkersNameTextBox.Enabled = False
+        Me.WorkersNameTextBox.Location = New System.Drawing.Point(130, 105)
+        Me.WorkersNameTextBox.Name = "WorkersNameTextBox"
+        Me.WorkersNameTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.WorkersNameTextBox.TabIndex = 75
         '
         'Label4
         '
@@ -92,12 +92,12 @@ Partial Class ReturnProduct
         Me.Label4.TabIndex = 74
         Me.Label4.Text = "Worker's Name"
         '
-        'TextBox4
+        'CodeTextBox
         '
-        Me.TextBox4.Location = New System.Drawing.Point(11, 105)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox4.TabIndex = 73
+        Me.CodeTextBox.Location = New System.Drawing.Point(11, 105)
+        Me.CodeTextBox.Name = "CodeTextBox"
+        Me.CodeTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.CodeTextBox.TabIndex = 73
         '
         'Label5
         '
@@ -108,13 +108,13 @@ Partial Class ReturnProduct
         Me.Label5.TabIndex = 72
         Me.Label5.Text = "Worker's Code"
         '
-        'TextBox2
+        'ClientsNameTextBox
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(130, 60)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(126, 20)
-        Me.TextBox2.TabIndex = 71
+        Me.ClientsNameTextBox.Enabled = False
+        Me.ClientsNameTextBox.Location = New System.Drawing.Point(130, 60)
+        Me.ClientsNameTextBox.Name = "ClientsNameTextBox"
+        Me.ClientsNameTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.ClientsNameTextBox.TabIndex = 71
         '
         'Label3
         '
@@ -125,12 +125,12 @@ Partial Class ReturnProduct
         Me.Label3.TabIndex = 70
         Me.Label3.Text = "Client's Name"
         '
-        'TextBox1
+        'NIFTextBox
         '
-        Me.TextBox1.Location = New System.Drawing.Point(11, 60)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 69
+        Me.NIFTextBox.Location = New System.Drawing.Point(11, 60)
+        Me.NIFTextBox.Name = "NIFTextBox"
+        Me.NIFTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.NIFTextBox.TabIndex = 69
         '
         'Label2
         '
@@ -152,12 +152,12 @@ Partial Class ReturnProduct
         Me.Label1.TabIndex = 67
         Me.Label1.Text = "Return Product"
         '
-        'TextBox6
+        'ProductTextBox
         '
-        Me.TextBox6.Location = New System.Drawing.Point(12, 152)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox6.TabIndex = 81
+        Me.ProductTextBox.Location = New System.Drawing.Point(12, 152)
+        Me.ProductTextBox.Name = "ProductTextBox"
+        Me.ProductTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.ProductTextBox.TabIndex = 81
         '
         'Label6
         '
@@ -168,13 +168,13 @@ Partial Class ReturnProduct
         Me.Label6.TabIndex = 80
         Me.Label6.Text = "Product's Code"
         '
-        'TextBox7
+        'ProductsNameTextBox
         '
-        Me.TextBox7.Enabled = False
-        Me.TextBox7.Location = New System.Drawing.Point(130, 152)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(126, 20)
-        Me.TextBox7.TabIndex = 83
+        Me.ProductsNameTextBox.Enabled = False
+        Me.ProductsNameTextBox.Location = New System.Drawing.Point(130, 152)
+        Me.ProductsNameTextBox.Name = "ProductsNameTextBox"
+        Me.ProductsNameTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.ProductsNameTextBox.TabIndex = 83
         '
         'Label7
         '
@@ -190,21 +190,21 @@ Partial Class ReturnProduct
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(267, 224)
-        Me.Controls.Add(Me.TextBox7)
+        Me.Controls.Add(Me.ProductsNameTextBox)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.TextBox6)
+        Me.Controls.Add(Me.ProductTextBox)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox5)
+        Me.Controls.Add(Me.UnitsTextBox)
         Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.WorkersNameTextBox)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.CodeTextBox)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.ClientsNameTextBox)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.NIFTextBox)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Name = "ReturnProduct"
@@ -216,19 +216,19 @@ Partial Class ReturnProduct
 
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents UnitsTextBox As TextBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents WorkersNameTextBox As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents CodeTextBox As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents ClientsNameTextBox As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents NIFTextBox As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents ProductTextBox As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox7 As TextBox
+    Friend WithEvents ProductsNameTextBox As TextBox
     Friend WithEvents Label7 As Label
 End Class

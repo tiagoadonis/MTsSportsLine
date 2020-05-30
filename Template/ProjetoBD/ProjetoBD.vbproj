@@ -113,6 +113,12 @@
     <Compile Include="AddStore.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="addToStore.Designer.vb">
+      <DependentUpon>addToStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="addToStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AddWarehouse.Designer.vb">
       <DependentUpon>AddWarehouse.vb</DependentUpon>
     </Compile>
@@ -218,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddStore.resx">
       <DependentUpon>AddStore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addToStore.resx">
+      <DependentUpon>addToStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddWarehouse.resx">
       <DependentUpon>AddWarehouse.vb</DependentUpon>

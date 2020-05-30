@@ -23,16 +23,16 @@ Partial Class EditClient
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.CancelButton = New System.Windows.Forms.Button()
+        Me.PhoneTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.AddressTextBox = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.NameTextBox = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.NIFTextBox = New System.Windows.Forms.TextBox()
+        Me.EditButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label2
@@ -45,21 +45,21 @@ Partial Class EditClient
         Me.Label2.TabIndex = 70
         Me.Label2.Text = "Edit Client"
         '
-        'Button7
+        'CancelButton
         '
-        Me.Button7.Location = New System.Drawing.Point(254, 152)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(83, 23)
-        Me.Button7.TabIndex = 92
-        Me.Button7.Text = "Cancel"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.CancelButton.Location = New System.Drawing.Point(254, 152)
+        Me.CancelButton.Name = "CancelButton"
+        Me.CancelButton.Size = New System.Drawing.Size(83, 23)
+        Me.CancelButton.TabIndex = 92
+        Me.CancelButton.Text = "Cancel"
+        Me.CancelButton.UseVisualStyleBackColor = True
         '
-        'TextBox4
+        'PhoneTextBox
         '
-        Me.TextBox4.Location = New System.Drawing.Point(14, 154)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox4.TabIndex = 96
+        Me.PhoneTextBox.Location = New System.Drawing.Point(14, 154)
+        Me.PhoneTextBox.Name = "PhoneTextBox"
+        Me.PhoneTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.PhoneTextBox.TabIndex = 96
         '
         'Label6
         '
@@ -70,12 +70,12 @@ Partial Class EditClient
         Me.Label6.TabIndex = 93
         Me.Label6.Text = "Phone Number"
         '
-        'TextBox3
+        'AddressTextBox
         '
-        Me.TextBox3.Location = New System.Drawing.Point(14, 110)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(323, 20)
-        Me.TextBox3.TabIndex = 97
+        Me.AddressTextBox.Location = New System.Drawing.Point(14, 110)
+        Me.AddressTextBox.Name = "AddressTextBox"
+        Me.AddressTextBox.Size = New System.Drawing.Size(323, 20)
+        Me.AddressTextBox.TabIndex = 97
         '
         'Label5
         '
@@ -86,13 +86,13 @@ Partial Class EditClient
         Me.Label5.TabIndex = 94
         Me.Label5.Text = "Address"
         '
-        'TextBox2
+        'NameTextBox
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(110, 67)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(227, 20)
-        Me.TextBox2.TabIndex = 100
+        Me.NameTextBox.Enabled = False
+        Me.NameTextBox.Location = New System.Drawing.Point(110, 67)
+        Me.NameTextBox.Name = "NameTextBox"
+        Me.NameTextBox.Size = New System.Drawing.Size(227, 20)
+        Me.NameTextBox.TabIndex = 100
         '
         'Label4
         '
@@ -112,38 +112,38 @@ Partial Class EditClient
         Me.Label3.TabIndex = 95
         Me.Label3.Text = "NIF"
         '
-        'TextBox1
+        'NIFTextBox
         '
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(14, 67)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(86, 20)
-        Me.TextBox1.TabIndex = 98
+        Me.NIFTextBox.Enabled = False
+        Me.NIFTextBox.Location = New System.Drawing.Point(14, 67)
+        Me.NIFTextBox.Name = "NIFTextBox"
+        Me.NIFTextBox.Size = New System.Drawing.Size(86, 20)
+        Me.NIFTextBox.TabIndex = 98
         '
-        'Button1
+        'EditButton
         '
-        Me.Button1.Location = New System.Drawing.Point(153, 151)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(83, 23)
-        Me.Button1.TabIndex = 101
-        Me.Button1.Text = "Edit"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.EditButton.Location = New System.Drawing.Point(153, 151)
+        Me.EditButton.Name = "EditButton"
+        Me.EditButton.Size = New System.Drawing.Size(83, 23)
+        Me.EditButton.TabIndex = 101
+        Me.EditButton.Text = "Edit"
+        Me.EditButton.UseVisualStyleBackColor = True
         '
         'EditClient
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(353, 188)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.EditButton)
+        Me.Controls.Add(Me.CancelButton)
+        Me.Controls.Add(Me.PhoneTextBox)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.AddressTextBox)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.NameTextBox)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.NIFTextBox)
         Me.Controls.Add(Me.Label2)
         Me.Name = "EditClient"
         Me.Text = "EditClient"
@@ -153,14 +153,14 @@ Partial Class EditClient
     End Sub
 
     Friend WithEvents Label2 As Label
-    Friend WithEvents Button7 As Button
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents CancelButton As Button
+    Friend WithEvents PhoneTextBox As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents AddressTextBox As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents NameTextBox As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents NIFTextBox As TextBox
+    Friend WithEvents EditButton As Button
 End Class

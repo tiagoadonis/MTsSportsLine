@@ -61,6 +61,7 @@ Public Class Clients
         EditClient.ShowDialog()
     End Sub
 
+    'To load Clients DataGridView
     Public Sub loadClients()
         Dim adapter As New SqlDataAdapter("SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone  
                                            FROM Projeto.Cliente", CN)
@@ -77,9 +78,10 @@ Public Class Clients
         End With
     End Sub
 
+    'Clients Search Bar
     Public Sub FilterData(valueToSearch As String)
         Dim search As String = TextBoxSearch.Text
-        Dim table2 As New DataTable()
+        Dim table As New DataTable()
 
         CMD = New SqlCommand()
         CMD.Connection = CN
@@ -89,20 +91,17 @@ Public Class Clients
         CMD.Parameters("@search").Value = search
         CN.Open()
 
-        Dim adapter2 As New SqlDataAdapter(CMD)
-        adapter2.Fill(table2)
+        Dim adapter As New SqlDataAdapter(CMD)
+        adapter.Fill(table)
 
         With ClientsDataGridView
-            .DataSource = table2
+            .DataSource = table
             .Columns(0).Width = 70
             .Columns(1).Width = 90
             .Columns(2).Width = 136
             .Columns(3).Width = 70
         End With
         CN.Close()
-
-        ClientsDataGridView.DataSource = table2
-
     End Sub
 
     'Purchased Products DataGridView
@@ -165,6 +164,7 @@ Public Class Clients
         End If
     End Sub
 
+    'To add a new Client
     Private Sub addClient(ByVal NIF As Integer, ByVal name As String, ByVal address As String, ByVal phone As Integer)
         CMD = New SqlCommand()
         CMD.Connection = CN
@@ -194,6 +194,44 @@ Public Class Clients
         CMD.CommandText = "EXEC Projeto.Remove_Client @NIF"
         CMD.Parameters.Add("@NIF", SqlDbType.Int)
         CMD.Parameters("@NIF").Value = nif
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadClients()
+        CN.Close()
+    End Sub
+
+    'Update Address
+    Public Sub updateAddress(ByVal newAddress As String)
+        Dim index As Integer = ClientsDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
+        Dim nif As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.UpdateAddress @NIF, @Address"
+        CMD.Parameters.Add("@NIF", SqlDbType.Int)
+        CMD.Parameters.Add("@Address", SqlDbType.VarChar, 40)
+        CMD.Parameters("@NIF").Value = nif
+        CMD.Parameters("@Address").Value = newAddress
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadClients()
+        CN.Close()
+    End Sub
+
+    'Update Phone
+    Public Sub updatePhone(ByVal newPhone As Integer)
+        Dim index As Integer = ClientsDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
+        Dim nif As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.UpdatePhone @NIF, @Phone"
+        CMD.Parameters.Add("@NIF", SqlDbType.Int)
+        CMD.Parameters.Add("@Phone", SqlDbType.Int)
+        CMD.Parameters("@NIF").Value = nif
+        CMD.Parameters("@Phone").Value = newPhone
         CN.Open()
         CMD.ExecuteScalar()
         loadClients()

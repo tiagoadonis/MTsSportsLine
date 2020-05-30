@@ -24,17 +24,17 @@ Partial Class BuyProduct
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.NIFTextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.ClientsNameTextBox = New System.Windows.Forms.TextBox()
+        Me.WorkersNameTextBox = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.UnitsTextBox = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.CodeTextBox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -57,12 +57,12 @@ Partial Class BuyProduct
         Me.Label2.Text = "Client's NIF"
         Me.Label2.UseWaitCursor = True
         '
-        'TextBox1
+        'NIFTextBox
         '
-        Me.TextBox1.Location = New System.Drawing.Point(13, 62)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 2
+        Me.NIFTextBox.Location = New System.Drawing.Point(13, 62)
+        Me.NIFTextBox.Name = "NIFTextBox"
+        Me.NIFTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.NIFTextBox.TabIndex = 2
         '
         'Label3
         '
@@ -73,21 +73,21 @@ Partial Class BuyProduct
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "Client's Name"
         '
-        'TextBox2
+        'ClientsNameTextBox
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(132, 62)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(126, 20)
-        Me.TextBox2.TabIndex = 4
+        Me.ClientsNameTextBox.Enabled = False
+        Me.ClientsNameTextBox.Location = New System.Drawing.Point(132, 62)
+        Me.ClientsNameTextBox.Name = "ClientsNameTextBox"
+        Me.ClientsNameTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.ClientsNameTextBox.TabIndex = 4
         '
-        'TextBox3
+        'WorkersNameTextBox
         '
-        Me.TextBox3.Enabled = False
-        Me.TextBox3.Location = New System.Drawing.Point(132, 107)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(126, 20)
-        Me.TextBox3.TabIndex = 8
+        Me.WorkersNameTextBox.Enabled = False
+        Me.WorkersNameTextBox.Location = New System.Drawing.Point(132, 107)
+        Me.WorkersNameTextBox.Name = "WorkersNameTextBox"
+        Me.WorkersNameTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.WorkersNameTextBox.TabIndex = 8
         '
         'Label4
         '
@@ -98,13 +98,6 @@ Partial Class BuyProduct
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "Worker's Name"
         '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(13, 107)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox4.TabIndex = 6
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -114,12 +107,12 @@ Partial Class BuyProduct
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Worker's Code"
         '
-        'TextBox5
+        'UnitsTextBox
         '
-        Me.TextBox5.Location = New System.Drawing.Point(13, 153)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(57, 20)
-        Me.TextBox5.TabIndex = 63
+        Me.UnitsTextBox.Location = New System.Drawing.Point(13, 153)
+        Me.UnitsTextBox.Name = "UnitsTextBox"
+        Me.UnitsTextBox.Size = New System.Drawing.Size(57, 20)
+        Me.UnitsTextBox.TabIndex = 63
         '
         'Label9
         '
@@ -148,22 +141,29 @@ Partial Class BuyProduct
         Me.Button1.Text = "Confirm"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'CodeTextBox
+        '
+        Me.CodeTextBox.Location = New System.Drawing.Point(13, 107)
+        Me.CodeTextBox.Name = "CodeTextBox"
+        Me.CodeTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.CodeTextBox.TabIndex = 67
+        '
         'BuyProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(270, 186)
+        Me.Controls.Add(Me.CodeTextBox)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox5)
+        Me.Controls.Add(Me.UnitsTextBox)
         Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.WorkersNameTextBox)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.ClientsNameTextBox)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.NIFTextBox)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Name = "BuyProduct"
@@ -175,15 +175,15 @@ Partial Class BuyProduct
 
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents NIFTextBox As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents ClientsNameTextBox As TextBox
+    Friend WithEvents WorkersNameTextBox As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents UnitsTextBox As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents CodeTextBox As TextBox
 End Class
