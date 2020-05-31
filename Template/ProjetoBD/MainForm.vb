@@ -142,10 +142,6 @@ Public Class MainForm
             .ReturnsDataGridView.DataSource = Nothing
             .Button3.Enabled = False
             .Button4.Enabled = False
-            .Button5.Enabled = False
-            .Button6.Enabled = False
-            .Button7.Enabled = False
-            .Button8.Enabled = False
             .TextBoxSearch.Enabled = False
             .TextBoxSearch.Text = ""
             .Label5.Visible = True

@@ -1,6 +1,8 @@
 --Deleting Zone
 DROP FUNCTION Projeto.PurchasedProductsPerClient;
 DROP FUNCTION Projeto.ReturnedProductsPerClient;
+DROP FUNCTION Projeto.SoldProductsPerEmployee;
+DROP FUNCTION Projeto.ReturnedProductsPerEmployee;
 
 --UDF'S
 GO
@@ -37,3 +39,30 @@ GO
 --Test Function
 SELECT * FROM Projeto.ReturnedProductsPerClient(123456789);
 --------------------------------------------------------------------------------------------
+GO
+CREATE FUNCTION Projeto.SoldProductsPerEmployee(@Num INT) RETURNS @Sales TABLE
+												  (Sale_Number INT, Date DATE, Sale_Price DECIMAL(5,2), NIF BIGINT)
+AS
+BEGIN
+	INSERT @Sales SELECT Compra.NumCompra AS Sale_Number, Compra.Data AS Date, Compra.Montante AS Sale_Price, Compra.NIF AS NIF
+                  FROM (Projeto.Funcionario JOIN Projeto.Compra ON Funcionario.NumFunc=Compra.NumFunc)
+                  WHERE Funcionario.NumFunc = @Num
+	RETURN;
+END
+GO
+--Test Function
+SELECT * FROM Projeto.SoldProductsPerEmployee(112034);
+---------------------------------------------------------------------------------------------
+GO
+CREATE FUNCTION Projeto.ReturnedProductsPerEmployee(@Num INT) RETURNS @Returns TABLE
+												  (Return_Number INT, Date DATE, Returned_Value DECIMAL(5,2), NIF BIGINT)
+AS
+BEGIN
+	INSERT @Returns SELECT Devolucao.IDDevolucao AS Return_Number, Devolucao.Data AS Date, Devolucao.Montante AS Returned_Value, Devolucao.NIF AS NIF
+                    FROM (Projeto.Funcionario JOIN Projeto.Devolucao ON Funcionario.NumFunc=Devolucao.NumFunc)
+                    WHERE Funcionario.NumFunc = @Num
+	RETURN;
+END
+GO
+--Test Function
+SELECT * FROM Projeto.ReturnedProductsPerEmployee(112034);

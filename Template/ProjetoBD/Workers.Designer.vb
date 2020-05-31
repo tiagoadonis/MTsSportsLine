@@ -28,10 +28,6 @@ Partial Class Workers
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
         Me.StoresDataGridView = New System.Windows.Forms.DataGridView()
         Me.WorkersDataGridView = New System.Windows.Forms.DataGridView()
         Me.SalesDataGridView = New System.Windows.Forms.DataGridView()
@@ -68,7 +64,7 @@ Partial Class Workers
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Bold)
-        Me.Label3.Location = New System.Drawing.Point(905, 21)
+        Me.Label3.Location = New System.Drawing.Point(894, 21)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(100, 46)
         Me.Label3.TabIndex = 3
@@ -105,50 +101,6 @@ Partial Class Workers
         Me.Button4.TabIndex = 11
         Me.Button4.Text = "Remove"
         Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button5
-        '
-        Me.Button5.Enabled = False
-        Me.Button5.Location = New System.Drawing.Point(787, 258)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(117, 33)
-        Me.Button5.TabIndex = 12
-        Me.Button5.Text = "Add"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button6
-        '
-        Me.Button6.Enabled = False
-        Me.Button6.Location = New System.Drawing.Point(1011, 258)
-        Me.Button6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(117, 33)
-        Me.Button6.TabIndex = 13
-        Me.Button6.Text = "Remove"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'Button7
-        '
-        Me.Button7.Enabled = False
-        Me.Button7.Location = New System.Drawing.Point(787, 558)
-        Me.Button7.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(117, 33)
-        Me.Button7.TabIndex = 14
-        Me.Button7.Text = "Add"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Enabled = False
-        Me.Button8.Location = New System.Drawing.Point(1011, 558)
-        Me.Button8.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(117, 33)
-        Me.Button8.TabIndex = 15
-        Me.Button8.Text = "Remove"
-        Me.Button8.UseVisualStyleBackColor = True
         '
         'StoresDataGridView
         '
@@ -250,10 +202,6 @@ Partial Class Workers
         Me.Controls.Add(Me.SalesDataGridView)
         Me.Controls.Add(Me.WorkersDataGridView)
         Me.Controls.Add(Me.StoresDataGridView)
-        Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Button6)
-        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label4)
@@ -278,10 +226,6 @@ Partial Class Workers
     Friend WithEvents Label4 As Label
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
     Friend WithEvents StoresDataGridView As DataGridView
     Friend WithEvents WorkersDataGridView As DataGridView
     Friend WithEvents SalesDataGridView As DataGridView

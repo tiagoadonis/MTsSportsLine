@@ -16,9 +16,10 @@ DROP PROCEDURE Projeto.UpdateAddress;
 DROP PROCEDURE Projeto.UpdatePhone;
 ---------------------------------------
 DROP PROCEDURE Projeto.Add_Worker
-DROP PROCEDURE Projeto.Add_Sale
---DROP PROCEDURE Projeto.Add_Return
---DROP PROCEDURE Projeto.Add_Delivery
+DROP PROCEDURE Projeto.Add_Delivery
+DROP PROCEDURE Projeto.Update_Delivery
+DROP PROCEDURE Projeto.Remove_Worker
+DROP PROCEDURE Projeto.Remove_Delivery
 
 -- Adding Stored Procedures
 GO
@@ -301,24 +302,29 @@ GO
 --Test Procedure
 EXEC Projeto.Add_Worker 100000000, 'Rua da Frente, Maia', 'Carlos Manuel', 911111111, 2;
 ----------------------------------------------------------
-GO 
-CREATE PROCEDURE Projeto.Add_Sale (@Num INT,@Data DATE, @Amount DECIMAL(5,2), @NIF INT, @EmpNum INT, @Code INT, @Quant INT)
+GO
+CREATE PROCEDURE Projeto.Add_Delivery (@Id INT, @Data DATE, @Dest VARCHAR(40), @Code INT, @Quant INT)
 AS
-	IF EXISTS (SELECT * FROM Projeto.Compra WHERE Compra.NumCompra=@Num)
+	IF EXISTS (SELECT * FROM Projeto.Transporte WHERE Transporte.IDTransporte=@Id)
 	BEGIN
-		RAISERROR ('The sale with number %d already exists', 14, 1, @Num);
+		RAISERROR ('The delivery with number %d already exists', 14, 1, @Id);
 	END
 	ELSE
-		INSERT Projeto.Compra (NumCompra, Data, Montante, NIF, NumFunc)
-		VALUES (@Num, @Data, @Amount, @NIF, @EmpNum);
-		INSERT Projeto.Artigo_Comprado (Codigo, NumCompra, QuantArtigos)
-		VALUES (@Num, @Code, @Quant);
-
-
-
-
-
-
+		INSERT Projeto.Transporte (IDTransporte, Data, Destino)
+		VALUES (@iD, @Data, @Dest);
+		INSERT Projeto.Artigo_Transporte (Codigo, IDTransporte, QuantArtigos)
+		VALUES (@Code, @Id, @Quant);
+----------------------------------------------------------------
+GO
+CREATE PROCEDURE Projeto.Update_Delivery (@Id INT, @Data DATE, @Dest VARCHAR(40), @Code INT, @Quant INT)
+AS
+	IF EXISTS (SELECT * FROM Projeto.Transporte WHERE Transporte.IDTransporte=@Id)
+	BEGIN
+		UPDATE Projeto.Transporte SET Transporte.Data=@Data, Transporte.Destino=@Dest WHERE Transporte.IDTransporte=@Id;
+		UPDATE Projeto.Artigo_Transporte SET Artigo_Transporte.Codigo=@Code, Artigo_Transporte.QuantArtigos=@Quant WHERE Artigo_Transporte.IDTransporte=@Id;
+	END
+	ELSE
+		RAISERROR ('The delivery with number %d does not exist', 14, 1, @Id);
 
 -- Removing Stored Procedures
 GO
@@ -448,3 +454,44 @@ AS
 GO
 --Test Procedure
 EXEC Projeto.Remove_Client 100000000;
+------------------------------------------------------------
+GO
+CREATE PROCEDURE Projeto.Remove_Worker (@Num INT) 
+AS
+	IF EXISTS (SELECT * FROM Projeto.Funcionario WHERE Funcionario.NumFunc=@Num)
+	BEGIN
+		IF EXISTS (SELECT * FROM Projeto.Compra WHERE Compra.NumFunc=@Num)
+		BEGIN
+			DECLARE @PurchaseID INT;
+			SELECT  @PurchaseID = Compra.NumCompra FROM Projeto.Compra WHERE Compra.NumFunc=@Num;
+			DELETE FROM Projeto.Artigo_Comprado WHERE Artigo_Comprado.NumCompra=@PurchaseID;
+			DELETE FROM Projeto.Compra WHERE Compra.NumFunc=@Num;
+		END
+		IF EXISTS (SELECT * FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num)
+		BEGIN
+			DECLARE @ReturnID INT;
+			SELECT @ReturnID = Devolucao.IDDevolucao FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num;
+			DELETE FROM Projeto.Artigo_Devolvido WHERE Artigo_Devolvido.IDDevolucao=@ReturnID;
+			DELETE FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num;
+		END
+		DELETE FROM Projeto.Funcionario WHERE Funcionario.NumFunc=@Num;
+	END
+	ELSE
+		RAISERROR ('The employee with the numer %d does not exists', 14, 1, @Num);
+GO
+--Test Procedure
+EXEC Projeto.Remove_Worker 110969;
+--------------------------------------------------------------
+GO
+CREATE PROCEDURE Projeto.Remove_Delivery (@Id INT) 
+AS
+	IF EXISTS (SELECT * FROM Projeto.Transporte WHERE Transporte.IDTransporte=@Id)
+	BEGIN
+		DELETE FROM Projeto.Artigo_Transporte WHERE Artigo_Transporte.IDTransporte=@Id;
+		DELETE FROM Projeto.Transporte WHERE Transporte.IDTransporte=@Id;
+	END
+	ELSE 
+		RAISERROR ('The delivery with ID %d does not exists', 14, 1, @Id);
+GO
+--Test Procedure
+EXEC Projeto.Remove_Delivery 100259;

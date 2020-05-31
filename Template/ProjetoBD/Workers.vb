@@ -103,8 +103,6 @@ Public Class Workers
         Dim numFunc As String = selectedRow.Cells(0).Value.ToString
 
         Button4.Enabled = True
-        Button5.Enabled = True
-        Button7.Enabled = True
 
         'Sales
         Dim ds As New DataSet()
@@ -162,35 +160,11 @@ Public Class Workers
         End If
     End Sub
 
-    'Sales DataGridView
-    Private Sub DataGridView3_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles SalesDataGridView.CellClick
-        Button6.Enabled = True
-    End Sub
-
-    'Returns DataGridView
-    Private Sub DataGridView4_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ReturnsDataGridView.CellClick
-        Button8.Enabled = True
-    End Sub
-
     'Add Worker Button
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim addWorker As New AddWorker
         addWorker.StartPosition = FormStartPosition.CenterScreen
         addWorker.ShowDialog()
-    End Sub
-
-    'Add Sale Button
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Dim addSale As New AddSales
-        addSale.StartPosition = FormStartPosition.CenterScreen
-        addSale.ShowDialog()
-    End Sub
-
-    'Add Return Button
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        Dim addReturn As New AddReturn
-        addReturn.StartPosition = FormStartPosition.CenterScreen
-        addReturn.ShowDialog()
     End Sub
 
     Private Sub Workers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
