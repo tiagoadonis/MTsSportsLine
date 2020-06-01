@@ -88,11 +88,8 @@ Public Class Workers
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Compra.NumCompra AS Sale_Number, Compra.Data AS Date, Compra.Montante AS Amount, 
-                           Compra.NIF AS NIF
-                           FROM (Projeto.Funcionario JOIN Projeto.Compra ON Funcionario.NumFunc=Compra.NumFunc)
-                           WHERE Funcionario.NumFunc = @num"
-        CMD.Parameters.Add("@num", SqlDbType.VarChar, 6)
+        CMD.CommandText = "SELECT * FROM Projeto.SoldProductsPerEmployee(@num);"
+        CMD.Parameters.Add("@num", SqlDbType.Int)
         CMD.Parameters("@num").Value = numFunc
         CN.Open()
 
@@ -114,11 +111,8 @@ Public Class Workers
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Devolucao.IDDevolucao AS Return_Number, Devolucao.Data AS Date, 
-                           Devolucao.Montante AS Amount, Devolucao.NIF AS NIF
-                           FROM (Projeto.Funcionario JOIN Projeto.Devolucao ON Funcionario.NumFunc=Devolucao.NumFunc)
-                           WHERE Funcionario.NumFunc = @num"
-        CMD.Parameters.Add("@num", SqlDbType.VarChar, 6)
+        CMD.CommandText = "SELECT * FROM Projeto.ReturnedProductsPerEmployee(@num);"
+        CMD.Parameters.Add("@num", SqlDbType.Int)
         CMD.Parameters("@num").Value = numFunc
         CN.Open()
 
@@ -209,5 +203,24 @@ Public Class Workers
             .ClearSelection()
         End With
         CN.Close()
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim index As Integer = StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+        Dim index2 As Integer = WorkersDataGridView.CurrentRow.Index
+        Dim selectedRow2 As DataGridViewRow = WorkersDataGridView.Rows(index2)
+        Dim worker As Integer = selectedRow2.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Remove_Worker @worker"
+        CMD.Parameters.Add("@worker", SqlDbType.Int)
+        CMD.Parameters("@worker").Value = worker
+        CN.Open()
+        CMD.ExecuteScalar()
+        CN.Close()
+        loadWorkers(numStore)
     End Sub
 End Class

@@ -289,4 +289,27 @@ Public Class Deliveries
         loadDeliveries()
         CN.Close()
     End Sub
+
+    'Remove Delivery
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim index As Integer = DeliveriesDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = DeliveriesDataGridView.Rows(index)
+        Dim num As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Remove_Delivery @num"
+        CMD.Parameters.Add("@num", SqlDbType.Int)
+        CMD.Parameters("@num").Value = num
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadDeliveries()
+        CN.Close()
+        TextBoxID.Text = ""
+        TextBoxDate.Text = ""
+        TextBoxAmount.Text = ""
+        TextBoxDest.Text = ""
+        TextBoxCode.Text = ""
+        DeliveriesDataGridView.ClearSelection()
+    End Sub
 End Class
