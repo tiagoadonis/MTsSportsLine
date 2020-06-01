@@ -72,28 +72,7 @@ Public Class Workers
         TextBoxSearch.Enabled = True
         Label5.Enabled = True
 
-        Dim ds As New DataSet()
-
-        CMD = New SqlCommand
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address
-                           FROM (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja)
-                           WHERE Loja.NumLoja = @store"
-        CMD.Parameters.Add("@store", SqlDbType.VarChar, 1)
-        CMD.Parameters("@store").Value = numStore
-        CN.Open()
-
-        Dim adapter As New SqlDataAdapter(CMD)
-        adapter.Fill(ds)
-
-        With WorkersDataGridView
-            .DataSource = ds.Tables(0)
-            .Columns(0).Width = 80
-            .Columns(1).Width = 112
-            .Columns(2).Width = 164
-            .ClearSelection()
-        End With
-        CN.Close()
+        loadWorkers(numStore)
     End Sub
 
     'Workers DataGridView
@@ -175,5 +154,60 @@ Public Class Workers
     Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
         Label5.Enabled = False
         Label5.Visible = False
+    End Sub
+
+    Public Sub addWorker(ByVal num As Integer, ByVal morada As String, ByVal nome As String, ByVal phone As Integer)
+        Dim index As Integer = StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Add_Worker @num, @morada, @nome, @phone, @store"
+        CMD.Parameters.Add("@num", SqlDbType.Int)
+        CMD.Parameters.Add("@morada", SqlDbType.VarChar, 40)
+        CMD.Parameters.Add("@nome", SqlDbType.VarChar, 20)
+        CMD.Parameters.Add("@phone", SqlDbType.BigInt)
+        CMD.Parameters.Add("@store", SqlDbType.Int)
+        CMD.Parameters("@num").Value = num
+        CMD.Parameters("@morada").Value = morada
+        CMD.Parameters("@nome").Value = nome
+        CMD.Parameters("@phone").Value = phone
+        CMD.Parameters("@store").Value = numStore
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadWorkers(numStore)
+        CN.Close()
+
+    End Sub
+
+    Private Sub loadWorkers(ByVal numStore As Integer)
+        Dim ds As New DataSet()
+
+        CMD = New SqlCommand
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address
+                           FROM (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja)
+                           WHERE Loja.NumLoja = @store"
+        CMD.Parameters.Add("@store", SqlDbType.VarChar, 1)
+        CMD.Parameters("@store").Value = numStore
+
+        If CN.State = ConnectionState.Open Then
+            CN.Close()
+        End If
+
+        CN.Open()
+
+        Dim adapter As New SqlDataAdapter(CMD)
+        adapter.Fill(ds)
+
+        With WorkersDataGridView
+            .DataSource = ds.Tables(0)
+            .Columns(0).Width = 80
+            .Columns(1).Width = 112
+            .Columns(2).Width = 164
+            .ClearSelection()
+        End With
+        CN.Close()
     End Sub
 End Class

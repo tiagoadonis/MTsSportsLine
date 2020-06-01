@@ -112,10 +112,6 @@ Public Class Deliveries
         End If
     End Sub
 
-    'Date TextBox
-    Private Sub TextBoxDate_KeyPress(sender As Object, e As EventArgs) Handles TextBoxDate.KeyPress
-        CheckDate(e)
-    End Sub
     Private Sub CheckDate(ByVal e As System.Windows.Forms.KeyPressEventArgs)
         If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Or Asc(e.KeyChar) = 47 Or Asc(e.KeyChar) = 8 Then
         Else
@@ -134,7 +130,7 @@ Public Class Deliveries
         LettersOnly(e)
     End Sub
     Private Sub LettersOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        If (Asc(e.KeyChar) >= 65 And Asc(e.KeyChar) <= 90) Or (Asc(e.KeyChar) >= 97 And Asc(e.KeyChar) <= 122) Or Asc(e.KeyChar) = 8 Then
+        If (Asc(e.KeyChar) >= 65 And Asc(e.KeyChar) <= 90) Or (Asc(e.KeyChar) >= 97 And Asc(e.KeyChar) <= 122) Or Asc(e.KeyChar) = 8 Or Asc(e.KeyChar) = 32 Or Asc(e.KeyChar) = 44 Then
         Else
             e.Handled = True
             MsgBox("Only alphabetic characteres are allowed!", MsgBoxStyle.Information, "ERROR")
@@ -164,7 +160,11 @@ Public Class Deliveries
             Button1.Enabled = False
             Button3.Enabled = True
             Button5.Enabled = False
-            'INSERIR NA BASE DE DADOS OS CAMPOS DAS TEXTBOXES
+            Dim data As Date = TextBoxDate.Text
+            Dim dest As String = TextBoxDest.Text
+            Dim code As Integer = TextBoxCode.Text
+            Dim quant As Integer = TextBoxAmount.Text
+            updateDelivery(data, dest, code, quant)
         End If
     End Sub
 
@@ -216,14 +216,24 @@ Public Class Deliveries
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
         If TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Or TextBoxDate2.Text(8) <> "2" Then
-            MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
+            MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
         End If
         Check2 = Convert.ToDateTime(TextBoxDate2.Text)
         If Check2 <= DateTime.Now Then
             MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
         End If
         If Check2 > DateTime.Now And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxDate2.Text(8) = "2" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
-            'INSERIR NA BASE DE DADOS OS CAMPOS DAS TEXTBOXES
+            Dim id As Integer = TextBoxID2.Text
+            Dim data As Date = TextBoxDate2.Text
+            Dim dest As String = TextBoxDest2.Text
+            Dim code As Integer = TextBoxCode2.Text
+            Dim quant As Integer = TextBoxAmount2.Text
+            addDelivery(id, data, dest, code, quant)
+            TextBoxID2.Text = ""
+            TextBoxDate2.Text = ""
+            TextBoxDest2.Text = ""
+            TextBoxCode2.Text = ""
+            TextBoxAmount2.Text = ""
         End If
     End Sub
 
@@ -234,5 +244,49 @@ Public Class Deliveries
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
         Label3.Enabled = False
         Label3.Visible = False
+    End Sub
+
+    Private Sub addDelivery(ByVal id As Integer, ByVal data As Date, ByVal dest As String, ByVal code As Integer, ByVal quant As Integer)
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Add_Delivery @id, @data, @dest, @code, @quant"
+        CMD.Parameters.Add("@id", SqlDbType.Int)
+        CMD.Parameters.Add("@data", SqlDbType.Date)
+        CMD.Parameters.Add("@dest", SqlDbType.VarChar, 40)
+        CMD.Parameters.Add("@code", SqlDbType.Int)
+        CMD.Parameters.Add("@quant", SqlDbType.Int)
+        CMD.Parameters("@id").Value = id
+        CMD.Parameters("@data").Value = data
+        CMD.Parameters("@dest").Value = dest
+        CMD.Parameters("@code").Value = code
+        CMD.Parameters("@quant").Value = quant
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadDeliveries()
+        CN.Close()
+    End Sub
+
+    Private Sub updateDelivery(ByVal data As Date, ByVal dest As String, ByVal code As Integer, ByVal quant As Integer)
+        Dim index As Integer = DeliveriesDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = DeliveriesDataGridView.Rows(index)
+        Dim id As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Update_Delivery @id, @data, @dest, @code, @quant"
+        CMD.Parameters.Add("@id", SqlDbType.Int)
+        CMD.Parameters.Add("@data", SqlDbType.Date)
+        CMD.Parameters.Add("@dest", SqlDbType.VarChar, 40)
+        CMD.Parameters.Add("@code", SqlDbType.Int)
+        CMD.Parameters.Add("@quant", SqlDbType.Int)
+        CMD.Parameters("@id").Value = id
+        CMD.Parameters("@data").Value = data
+        CMD.Parameters("@dest").Value = dest
+        CMD.Parameters("@code").Value = code
+        CMD.Parameters("@quant").Value = quant
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadDeliveries()
+        CN.Close()
     End Sub
 End Class

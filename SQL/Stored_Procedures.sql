@@ -14,7 +14,6 @@ DROP PROCEDURE Projeto.ReturnProduct;
 DROP PROCEDURE Projeto.ProductsFromWarehouseToStore;
 DROP PROCEDURE Projeto.UpdateAddress;
 DROP PROCEDURE Projeto.UpdatePhone;
----------------------------------------
 DROP PROCEDURE Projeto.Add_Worker
 DROP PROCEDURE Projeto.Add_Delivery
 DROP PROCEDURE Projeto.Update_Delivery

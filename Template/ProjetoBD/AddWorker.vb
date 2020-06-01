@@ -29,7 +29,7 @@
         LettersOnly(e)
     End Sub
     Private Sub LettersOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        If (Asc(e.KeyChar) >= 65 And Asc(e.KeyChar) <= 90) Or (Asc(e.KeyChar) >= 97 And Asc(e.KeyChar) <= 122) Or Asc(e.KeyChar) = 8 Then
+        If (Asc(e.KeyChar) >= 65 And Asc(e.KeyChar) <= 90) Or (Asc(e.KeyChar) >= 97 And Asc(e.KeyChar) <= 122) Or Asc(e.KeyChar) = 8 Or Asc(e.KeyChar) = 32 Or Asc(e.KeyChar) = 44 Then
         Else
             e.Handled = True
             MsgBox("Only alphabetic characteres are allowed!", MsgBoxStyle.Information, "ERROR")
@@ -51,6 +51,14 @@
         End If
         If TextBox2.Text = "" Or TextBox4.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If TextBox1.Text.Length = 6 And TextBox5.Text.Length = 9 And TextBox2.Text <> "" And TextBox4.Text <> "" Then
+            Dim num As Integer = TextBox1.Text
+            Dim morada As String = TextBox2.Text
+            Dim nome As String = TextBox4.Text
+            Dim phone As Integer = TextBox5.Text
+            Workers.addWorker(num, morada, nome, phone)
+            Me.Close()
         End If
     End Sub
 
