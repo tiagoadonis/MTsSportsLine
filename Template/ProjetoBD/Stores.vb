@@ -90,10 +90,8 @@ Public Class Stores
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
-                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
-                           WHERE Artigo.Nome like '%' + @search + '%' AND Loja.NumLoja like '%' + @store + '%'"
+        CMD.CommandText = "SELECT Name, Price, Units, NumLoja FROM FilterProducts
+                           WHERE Name like '%' + @search + '%' AND NumLoja like '%' + @store + '%'"
         CMD.Parameters.Add("@search", SqlDbType.VarChar, 40)
         CMD.Parameters("@search").Value = search
         CMD.Parameters.Add("@store", SqlDbType.VarChar, 3)
@@ -121,10 +119,8 @@ Public Class Stores
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                           FROM ((Projeto.Armazem JOIN Projeto.Artigo_Armazem ON Armazem.IDArmazem=Artigo_Armazem.IDArmazem) 
-                           Join Projeto.Artigo ON Artigo_Armazem.Codigo=Artigo.Codigo)
-                           WHERE Artigo.Nome like '%' + @search + '%' AND Armazem.IDArmazem like '%' + @armazem + '%'"
+        CMD.CommandText = "SELECT Name, Price, Units, Armazem FROM FilterWarehouseProducts
+                           WHERE Name like '%' + @search + '%' AND Armazem like '%' + @armazem + '%'"
         CMD.Parameters.Add("@search", SqlDbType.VarChar, 40)
         CMD.Parameters("@search").Value = search
         CMD.Parameters.Add("@armazem", SqlDbType.VarChar, 3)

@@ -20,7 +20,7 @@ AS
 	SELECT @QuantStore = QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
 	IF (@Units > @QuantStore)
 	BEGIN
-		RAISERROR('Theres not enough units in the store to realize the purchase', 16, 1);
+		RAISERROR('Theres not enough units in the store to complete the purchase', 16, 1);
 		ROLLBACK TRAN;
 	END
 	ELSE IF (@Units - @QuantStore = 0)

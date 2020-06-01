@@ -1,4 +1,24 @@
-﻿Public Class AddWorker
+﻿Imports System.Data.SqlClient
+Imports System.Security.Cryptography
+
+Public Class AddWorker
+    Dim CMD As SqlCommand
+    Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
+                                                "Initial Catalog = LojaDesporto; Integrated Security = true;")
+
+    Public Function CheckNum(num As Integer)
+        Dim numcheck As Object
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT * FROM Projeto.Funcionario WHERE Funcionario.NumFunc=@num;"
+        CMD.Parameters.Add("@num", SqlDbType.Int)
+        CMD.Parameters("@num").Value = num
+        CN.Open()
+        numcheck = CMD.ExecuteScalar()
+        CN.Close()
+        Return numcheck
+    End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         TextBox1.Text = ""
@@ -43,6 +63,9 @@
 
     'Confirm Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim idcheck As Object
+        Dim aux As Integer = Convert.ToInt32(TextBox1.Text)
+        idcheck = CheckNum(aux)
         If TextBox1.Text.Length <> 6 Then
             MsgBox("FuncNum must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         End If
@@ -52,7 +75,10 @@
         If TextBox2.Text = "" Or TextBox4.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
-        If TextBox1.Text.Length = 6 And TextBox5.Text.Length = 9 And TextBox2.Text <> "" And TextBox4.Text <> "" Then
+        If Not idcheck Is Nothing Then
+            MsgBox("The worker with that number already exist!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If idcheck Is Nothing And TextBox1.Text.Length = 6 And TextBox5.Text.Length = 9 And TextBox2.Text <> "" And TextBox4.Text <> "" Then
             Dim num As Integer = TextBox1.Text
             Dim morada As String = TextBox2.Text
             Dim nome As String = TextBox4.Text

@@ -25,9 +25,8 @@ Public Class Workers
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address 
-                           FROM  (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja) 
-                           WHERE CONCAT(Funcionario.NumFunc, Funcionario.Nome) like '%' + @search + '%' AND Loja.NumLoja like '%' + @store + '%'"
+        CMD.CommandText = "SELECT Num, Name, Address FROM FilterWorkers
+                           WHERE CONCAT(Num, Name) like '%' + @search + '%' AND NumLoja like '%' + @store + '%'"
         CMD.Parameters.Add("@search", SqlDbType.VarChar, 40)
         CMD.Parameters("@search").Value = search
         CMD.Parameters.Add("@store", SqlDbType.VarChar, 3)
@@ -180,9 +179,8 @@ Public Class Workers
 
         CMD = New SqlCommand
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Funcionario.NumFunc AS Num, Funcionario.Nome AS Name, Morada AS Address
-                           FROM (Projeto.Loja JOIN Projeto.Funcionario ON Loja.NumLoja=Funcionario.NumLoja)
-                           WHERE Loja.NumLoja = @store"
+        CMD.CommandText = "SELECT Num, Name, Address FROM Workers
+                           WHERE NumLoja = @store"
         CMD.Parameters.Add("@store", SqlDbType.VarChar, 1)
         CMD.Parameters("@store").Value = numStore
 

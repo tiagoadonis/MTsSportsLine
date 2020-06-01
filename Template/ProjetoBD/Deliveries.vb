@@ -2,8 +2,8 @@
 Imports System.Security.Cryptography
 
 Public Class Deliveries
-    Dim Check As DateTime
-    Dim Check2 As DateTime
+    Dim Check As Date
+    Dim Check2 As Date
 
     Dim CMD As SqlCommand
     Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
@@ -21,6 +21,34 @@ Public Class Deliveries
             .Columns(2).Width = 220
         End With
     End Sub
+
+    Public Function CheckCode(code As Integer)
+        Dim codecheck As Object
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT * FROM Projeto.Artigo WHERE Artigo.Codigo=@code;"
+        CMD.Parameters.Add("@code", SqlDbType.Int)
+        CMD.Parameters("@code").Value = code
+        CN.Open()
+        codecheck = CMD.ExecuteScalar()
+        CN.Close()
+        Return codecheck
+    End Function
+
+    Public Function CheckID(id As Integer)
+        Dim idcheck As Object
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT * FROM Projeto.Transporte WHERE Transporte.IDTransporte=@id;"
+        CMD.Parameters.Add("@id", SqlDbType.Int)
+        CMD.Parameters("@id").Value = id
+        CN.Open()
+        idcheck = CMD.ExecuteScalar()
+        CN.Close()
+        Return idcheck
+    End Function
 
     Public Sub FilterData(valueToSearch As String)
         Dim search As String = TextBoxSearch.Text
@@ -58,7 +86,8 @@ Public Class Deliveries
         Button2.Enabled = True
         Button3.Enabled = True
         TextBoxID.Text = selectedRow.Cells(0).Value.ToString
-        TextBoxDate.Text = selectedRow.Cells(1).Value.ToString
+        Dim tmp As Date = selectedRow.Cells(1).Value
+        TextBoxDate.Text = tmp.ToString("dd/MM/yyyy")
         TextBoxDest.Text = selectedRow.Cells(2).Value.ToString
         Label3.Enabled = True
 
@@ -139,6 +168,9 @@ Public Class Deliveries
 
     'Save Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim codecheck As Object
+        Dim aux As Integer = Convert.ToInt32(TextBoxCode.Text)
+        codecheck = CheckCode(aux)
         If TextBoxCode.Text.Length <> 6 Then
             MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         End If
@@ -149,10 +181,13 @@ Public Class Deliveries
             MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
         End If
         Check = Convert.ToDateTime(TextBoxDate.Text)
-        If Check <= DateTime.Now Then
+        If Check <= Date.Now Then
             MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check > DateTime.Now And TextBoxDate.Text(2) = "/" And TextBoxDate.Text(8) = "2" And TextBoxDate.Text(5) = "/" And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
+        If codecheck Is Nothing Then
+            MsgBox("The product with that code does not exist!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If Check > Date.Now And Not codecheck Is Nothing And TextBoxDate.Text(2) = "/" And TextBoxDate.Text(8) = "2" And TextBoxDate.Text(5) = "/" And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
             TextBoxDate.Enabled = False
             TextBoxAmount.Enabled = False
             TextBoxCode.Enabled = False
@@ -206,6 +241,12 @@ Public Class Deliveries
 
     'Add Button
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim codecheck As Object
+        Dim aux As Integer = Convert.ToInt32(TextBoxCode2.Text)
+        codecheck = CheckCode(aux)
+        Dim idcheck As Object
+        Dim aux2 As Integer = Convert.ToInt32(TextBoxID2.Text)
+        idcheck = CheckID(aux2)
         If TextBoxCode2.Text.Length <> 6 Then
             MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         End If
@@ -219,10 +260,16 @@ Public Class Deliveries
             MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
         End If
         Check2 = Convert.ToDateTime(TextBoxDate2.Text)
-        If Check2 <= DateTime.Now Then
+        If Check2 <= Date.Now Then
             MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check2 > DateTime.Now And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxDate2.Text(8) = "2" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
+        If codecheck Is Nothing Then
+            MsgBox("The product with that code does not exist!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If Not idcheck Is Nothing Then
+            MsgBox("The delivery with that code already exist!", MsgBoxStyle.Information, "ERROR")
+        End If
+        If Check2 > Date.Now And Not codecheck Is Nothing And idcheck Is Nothing And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxDate2.Text(8) = "2" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
             Dim id As Integer = TextBoxID2.Text
             Dim data As Date = TextBoxDate2.Text
             Dim dest As String = TextBoxDest2.Text
