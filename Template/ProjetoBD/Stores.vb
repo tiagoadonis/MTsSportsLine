@@ -335,9 +335,7 @@ Public Class Stores
     Private Sub loadWarehouses(ByVal numStore As Integer)
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT IDArmazem As Number, capacidade As Storage
-                           FROM(Projeto.Loja JOIN Projeto.Armazem On Loja.NumLoja=Armazem.NumLoja)
-                           WHERE Loja.NumLoja = @store"
+        CMD.CommandText = "SELECT Number, Storage FROM Warehouse WHERE Store = @store"
         CMD.Parameters.Add("@store", SqlDbType.Int)
         CMD.Parameters("@store").Value = numStore
         CN.Open()
@@ -547,10 +545,7 @@ Public Class Stores
 
         CMD = New SqlCommand
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
-                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
-                           WHERE Loja.NumLoja = @store"
+        CMD.CommandText = "SELECT Name, Price, Units FROM StoreProducts WHERE Store = @store"
         CMD.Parameters.Add("@store", SqlDbType.VarChar, 1)
         CMD.Parameters("@store").Value = numStore
         CN.Open()
@@ -591,10 +586,8 @@ Public Class Stores
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                        FROM ((Projeto.Armazem JOIN Projeto.Artigo_Armazem ON Armazem.IDArmazem=Artigo_Armazem.IDArmazem) 
-                        Join Projeto.Artigo ON Artigo_Armazem.Codigo=Artigo.Codigo)
-                        WHERE Armazem.IDArmazem = @warehouseID"
+        CMD.CommandText = "SELECT Name, Price, Units FROM WarehousesProducts 
+                           		        WHERE WarehouseID = @warehouseID"
         CMD.Parameters.Add("@warehouseID", SqlDbType.VarChar, 3)
         CMD.Parameters("@warehouseID").Value = warehouseID
         CN.Open()
