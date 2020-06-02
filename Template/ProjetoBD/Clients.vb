@@ -107,60 +107,64 @@ Public Class Clients
     'Purchased Products DataGridView
     Private Sub ClientsDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ClientsDataGridView.CellContentClick
         Dim index As Integer = e.RowIndex
-        Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
-        Dim NIF As String = selectedRow.Cells(0).Value.ToString()
+        'To not crash when user clicks in the header
+        If (index = -1) Then
+        Else
+            Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
+            Dim NIF As String = selectedRow.Cells(0).Value.ToString()
 
-        Button5.Enabled = True
-        Button6.Enabled = True
+            Button5.Enabled = True
+            Button6.Enabled = True
 
-        Dim ds As New DataSet()
+            Dim ds As New DataSet()
 
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT * FROM Projeto.PurchasedProductsPerClient(@NIF);"
-        CMD.Parameters.Add("@NIF", SqlDbType.Int)
-        CMD.Parameters("@NIF").Value = NIF
-        CN.Open()
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT * FROM Projeto.PurchasedProductsPerClient(@NIF);"
+            CMD.Parameters.Add("@NIF", SqlDbType.Int)
+            CMD.Parameters("@NIF").Value = NIF
+            CN.Open()
 
-        Dim adapter As New SqlDataAdapter(CMD)
-        adapter.Fill(ds)
+            Dim adapter As New SqlDataAdapter(CMD)
+            adapter.Fill(ds)
 
-        With PurchasedProductsGridView
-            .DataSource = ds.Tables(0)
-            .Columns(0).Width = 69
-            .Columns(1).Width = 193
-            .Columns(2).Width = 64
-            .Columns(3).Width = 83
-            .Columns(4).Width = 93
-            .ClearSelection()
-        End With
-        CN.Close()
-
-        'Returned Products
-        Dim ds2 As New DataSet()
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT * FROM Projeto.ReturnedProductsPerClient(@NIF);"
-        CMD.Parameters.Add("@NIF", SqlDbType.Int)
-        CMD.Parameters("@NIF").Value = NIF
-        CN.Open()
-
-        Dim adapter2 As New SqlDataAdapter(CMD)
-        adapter2.Fill(ds2)
-
-        With ReturnedProdcutsGridView
-            .DataSource = ds2.Tables(0)
-            .Columns(0).Width = 69
-            .Columns(1).Width = 193
-            .Columns(2).Width = 64
-            .Columns(3).Width = 83
-            .Columns(4).Width = 93
-            .ClearSelection()
-        End With
-
-        If CN.State = ConnectionState.Open Then
+            With PurchasedProductsGridView
+                .DataSource = ds.Tables(0)
+                .Columns(0).Width = 69
+                .Columns(1).Width = 193
+                .Columns(2).Width = 64
+                .Columns(3).Width = 83
+                .Columns(4).Width = 93
+                .ClearSelection()
+            End With
             CN.Close()
+
+            'Returned Products
+            Dim ds2 As New DataSet()
+
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT * FROM Projeto.ReturnedProductsPerClient(@NIF);"
+            CMD.Parameters.Add("@NIF", SqlDbType.Int)
+            CMD.Parameters("@NIF").Value = NIF
+            CN.Open()
+
+            Dim adapter2 As New SqlDataAdapter(CMD)
+            adapter2.Fill(ds2)
+
+            With ReturnedProdcutsGridView
+                .DataSource = ds2.Tables(0)
+                .Columns(0).Width = 69
+                .Columns(1).Width = 193
+                .Columns(2).Width = 64
+                .Columns(3).Width = 83
+                .Columns(4).Width = 93
+                .ClearSelection()
+            End With
+
+            If CN.State = ConnectionState.Open Then
+                CN.Close()
+            End If
         End If
     End Sub
 

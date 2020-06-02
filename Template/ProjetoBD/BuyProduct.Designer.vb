@@ -34,7 +34,7 @@ Partial Class BuyProduct
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.CodeTextBox = New System.Windows.Forms.TextBox()
+        Me.CodeComboBox = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -141,19 +141,20 @@ Partial Class BuyProduct
         Me.Button1.Text = "Confirm"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'CodeTextBox
+        'CodeComboBox
         '
-        Me.CodeTextBox.Location = New System.Drawing.Point(13, 107)
-        Me.CodeTextBox.Name = "CodeTextBox"
-        Me.CodeTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.CodeTextBox.TabIndex = 67
+        Me.CodeComboBox.FormattingEnabled = True
+        Me.CodeComboBox.Location = New System.Drawing.Point(13, 106)
+        Me.CodeComboBox.Name = "CodeComboBox"
+        Me.CodeComboBox.Size = New System.Drawing.Size(100, 21)
+        Me.CodeComboBox.TabIndex = 67
         '
         'BuyProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(270, 186)
-        Me.Controls.Add(Me.CodeTextBox)
+        Me.Controls.Add(Me.CodeComboBox)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.UnitsTextBox)
@@ -185,5 +186,5 @@ Partial Class BuyProduct
     Friend WithEvents Label9 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents CodeTextBox As TextBox
+    Friend WithEvents CodeComboBox As ComboBox
 End Class

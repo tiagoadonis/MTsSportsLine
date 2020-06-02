@@ -178,3 +178,29 @@ C:\Users\Tiago\Documents\GitHub\MTsSportsLine\Template\ProjetoBD\obj\Debug\Proje
 C:\Users\Tiago\Documents\GitHub\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.exe
 C:\Users\Tiago\Documents\GitHub\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.xml
 C:\Users\Tiago\Documents\GitHub\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.pdb
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\bin\Debug\ProjetoBD.exe.config
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\bin\Debug\ProjetoBD.exe
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\bin\Debug\ProjetoBD.pdb
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\bin\Debug\ProjetoBD.xml
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.vbprojAssemblyReference.cache
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.AddProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.AddStore.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.addToStore.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.AddWarehouse.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.AddWorker.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.BuyProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.Clients.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.Deliveries.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.EditClient.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.EditProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.MainForm.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.Resources.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.RemoveProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.ReturnProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.Stores.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.Workers.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.vbproj.GenerateResource.cache
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.vbproj.CoreCompileInputs.cache
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.exe
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.xml
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.pdb

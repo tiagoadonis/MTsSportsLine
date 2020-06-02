@@ -19,6 +19,20 @@
         End If
     End Sub
 
+    'To allow "." character only once
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+        Dim cont As Integer = 0
+        For Each c As Char In TextBox3.Text
+            If (c = ".") Then
+                cont += 1
+            End If
+        Next
+        If (cont > 1) Then
+            MsgBox("The character '.' is allowed only one time!", MsgBoxStyle.Information, "ERROR")
+            TextBox3.Text = TextBox3.Text.Substring(0, TextBox3.TextLength - 1)
+        End If
+    End Sub
+
     'Code TextBox
     Private Sub TextBox1_KeyPress(sender As Object, e As EventArgs) Handles TextBox1.KeyPress
         NumberOnly(e)
@@ -60,5 +74,4 @@
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         End If
     End Sub
-
 End Class

@@ -88,7 +88,7 @@ Public Class MainForm
             .StoresDataGridView.ClearSelection()
             .ProductsDataGridView.DataSource = Nothing
             .WarehousesDataGridView.DataSource = Nothing
-            .WharehousesProductsDataGridView.DataSource = Nothing
+            .WarehousesProductsDataGridView.DataSource = Nothing
             .TextBoxName.Text = ""
             .TextBoxPrice.Text = ""
             .TextBoxUnits.Text = ""
@@ -117,7 +117,7 @@ Public Class MainForm
             .Label1.Visible = True
             .Label1.Enabled = False
             .ProductsDataGridView.DataSource = Nothing
-            .WharehousesProductsDataGridView.DataSource = Nothing
+            .WarehousesProductsDataGridView.DataSource = Nothing
         End With
     End Sub
 

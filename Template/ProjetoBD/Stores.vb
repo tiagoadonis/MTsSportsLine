@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Security.Cryptography
 
 Public Class Stores
     Dim CMD As SqlCommand
@@ -79,6 +78,7 @@ Public Class Stores
             .DataSource = table
             .Columns(0).Width = 80
             .Columns(1).Width = 196
+            .ClearSelection()
         End With
     End Sub
 
@@ -130,7 +130,7 @@ Public Class Stores
         Dim adapter As New SqlDataAdapter(CMD)
         adapter.Fill(table)
 
-        With WharehousesProductsDataGridView
+        With WarehousesProductsDataGridView
             .DataSource = table
             .Columns(0).Width = 180
             .Columns(1).Width = 42
@@ -152,107 +152,121 @@ Public Class Stores
     'Stores DataGridView
     Private Sub DataGridview1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StoresDataGridView.CellClick
         Dim index As Integer = e.RowIndex
-        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
-        Dim numStore As String = selectedRow.Cells(0).Value.ToString
+        'To not crash when user clicks in the header
+        If (index = -1) Then
+        Else
+            Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+            Dim numStore As String = selectedRow.Cells(0).Value.ToString
 
-        'Store Prducts
-        loadStoresProducts(numStore)
+            'Store Prducts
+            loadStoresProducts(numStore)
 
-        'Warehouses
-        loadWarehouses(numStore)
+            'Warehouses
+            loadWarehouses(numStore)
+        End If
     End Sub
 
     'Stores' products DataGridView
     Private Sub DataGridView2_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ProductsDataGridView.CellClick
         Dim index As Integer = e.RowIndex
-        Dim selectedRow As DataGridViewRow = ProductsDataGridView.Rows(index)
-        Dim productName As String = selectedRow.Cells(0).Value.ToString
+        'To not crash when user clicks in the header
+        If (index = -1) Then
+        Else
+            Dim selectedRow As DataGridViewRow = ProductsDataGridView.Rows(index)
+            Dim productName As String = selectedRow.Cells(0).Value.ToString
 
-        TextBoxName.Text = selectedRow.Cells(0).Value.ToString
-        TextBoxPrice.Text = selectedRow.Cells(1).Value.ToString
-        TextBoxUnits.Text = selectedRow.Cells(2).Value.ToString
+            TextBoxName.Text = selectedRow.Cells(0).Value.ToString
+            TextBoxPrice.Text = selectedRow.Cells(1).Value.ToString
+            TextBoxUnits.Text = selectedRow.Cells(2).Value.ToString
 
-        Button6.Enabled = True
-        Button20.Enabled = True
+            Button6.Enabled = True
+            Button20.Enabled = True
 
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo.Codigo FROM Projeto.Artigo Where Artigo.Nome = @productName"
-        CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
-        CMD.Parameters("@productName").Value = productName
-        CN.Open()
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT Artigo.Codigo FROM Projeto.Artigo Where Artigo.Nome = @productName"
+            CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
+            CMD.Parameters("@productName").Value = productName
+            CN.Open()
 
-        Dim code As String = CMD.ExecuteScalar().ToString
-        TextBoxCode.Text = code
-        CN.Close()
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "Select Artigo.Categoria FROM Projeto.Artigo Where Artigo.Nome = @productName"
-        CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
-        CMD.Parameters("@productName").Value = productName
-        CN.Open()
-
-        Dim type As String = CMD.ExecuteScalar().ToString
-        TextBoxType.Text = type
-
-        If CN.State = ConnectionState.Open Then
+            Dim code As String = CMD.ExecuteScalar().ToString
+            TextBoxCode.Text = code
             CN.Close()
-        End If
 
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "Select Artigo.Categoria FROM Projeto.Artigo Where Artigo.Nome = @productName"
+            CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
+            CMD.Parameters("@productName").Value = productName
+            CN.Open()
+
+            Dim type As String = CMD.ExecuteScalar().ToString
+            TextBoxType.Text = type
+
+            If CN.State = ConnectionState.Open Then
+                CN.Close()
+            End If
+        End If
     End Sub
 
     'Warehouses DataGridView
     Private Sub DataGridView3_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles WarehousesDataGridView.CellClick
         Dim index As Integer = WarehousesDataGridView.CurrentRow.Index
-        Dim selectedRow As DataGridViewRow = WarehousesDataGridView.Rows(Index)
-        Dim warehouseID As Integer = selectedRow.Cells(0).Value
-
-        loadWarehousesProducts(warehouseID)
+        'To not crash when user clicks in the header
+        If (index = -1) Then
+        Else
+            Dim selectedRow As DataGridViewRow = WarehousesDataGridView.Rows(index)
+            Dim warehouseID As Integer = selectedRow.Cells(0).Value
+            loadWarehousesProducts(warehouseID)
+        End If
     End Sub
 
     'Warehouses' Products DataGridView
-    Private Sub DataGridView4_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles WharehousesProductsDataGridView.CellClick
+    Private Sub DataGridView4_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles WarehousesProductsDataGridView.CellClick
         Dim index As Integer = e.RowIndex
-        Dim selectedRow As DataGridViewRow = WharehousesProductsDataGridView.Rows(index)
-        Dim productName As String = selectedRow.Cells(0).Value.ToString
+        'To not crash when user clicks in the header
+        If (index = -1) Then
+        Else
+            Dim selectedRow As DataGridViewRow = WarehousesProductsDataGridView.Rows(index)
+            Dim productName As String = selectedRow.Cells(0).Value.ToString
 
-        TextBoxName2.Text = selectedRow.Cells(0).Value.ToString
-        TextBoxPrice2.Text = selectedRow.Cells(1).Value.ToString
-        TextBoxUnits2.Text = selectedRow.Cells(2).Value.ToString
+            TextBoxName2.Text = selectedRow.Cells(0).Value.ToString
+            TextBoxPrice2.Text = selectedRow.Cells(1).Value.ToString
+            TextBoxUnits2.Text = selectedRow.Cells(2).Value.ToString
 
-        Button5.Enabled = True
-        Button8.Enabled = True
+            Button5.Enabled = True
+            Button8.Enabled = True
 
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo.Codigo FROM Projeto.Artigo Where Artigo.Nome = @productName"
-        CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
-        CMD.Parameters("@productName").Value = productName
-        CN.Open()
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT Artigo.Codigo FROM Projeto.Artigo Where Artigo.Nome = @productName"
+            CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
+            CMD.Parameters("@productName").Value = productName
+            CN.Open()
 
-        Dim code As String = CMD.ExecuteScalar().ToString
-        TextBoxCode2.Text = code
-        CN.Close()
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo.Categoria FROM Projeto.Artigo Where Artigo.Nome = @productName"
-        CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
-        CMD.Parameters("@productName").Value = productName
-        CN.Open()
-
-        Dim type As String = CMD.ExecuteScalar().ToString
-        TextBoxType2.Text = type
-
-        If CN.State = ConnectionState.Open Then
+            Dim code As String = CMD.ExecuteScalar().ToString
+            TextBoxCode2.Text = code
             CN.Close()
+
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT Artigo.Categoria FROM Projeto.Artigo Where Artigo.Nome = @productName"
+            CMD.Parameters.Add("@productName", SqlDbType.VarChar, 40)
+            CMD.Parameters("@productName").Value = productName
+            CN.Open()
+
+            Dim type As String = CMD.ExecuteScalar().ToString
+            TextBoxType2.Text = type
+
+            If CN.State = ConnectionState.Open Then
+                CN.Close()
+            End If
         End If
     End Sub
 
     'To clear Warehouses' DataGridView when a new one Store is selected 
     Private Sub clearWarehousesProducts()
-        WharehousesProductsDataGridView.DataSource = Nothing
+        WarehousesProductsDataGridView.DataSource = Nothing
     End Sub
 
     'Form Loader
@@ -284,19 +298,28 @@ Public Class Stores
 
     'Remove Store Button
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        Dim index As Integer = StoresDataGridView.CurrentRow.Index
-        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
-        Dim numStore As Integer = selectedRow.Cells(0).Value
+        Dim result As DialogResult = MessageBox.Show("Do you really want to delete the store selected?",
+                                                     "Information", MessageBoxButtons.YesNo)
 
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "EXEC Projeto.Remove_Store @StoreNum"
-        CMD.Parameters.Add("@StoreNum", SqlDbType.Int)
-        CMD.Parameters("@StoreNum").Value = numStore
-        CN.Open()
-        CMD.ExecuteScalar()
-        loadStores()
-        CN.Close()
+        If (result = DialogResult.Yes) Then
+            Dim index As Integer = StoresDataGridView.CurrentRow.Index
+            Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+            Dim numStore As Integer = selectedRow.Cells(0).Value
+
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "EXEC Projeto.Remove_Store @StoreNum"
+            CMD.Parameters.Add("@StoreNum", SqlDbType.Int)
+            CMD.Parameters("@StoreNum").Value = numStore
+            CN.Open()
+            CMD.ExecuteScalar()
+            loadStores()
+            CN.Close()
+
+            ProductsDataGridView.DataSource = Nothing
+            WarehousesDataGridView.DataSource = Nothing
+            WarehousesProductsDataGridView.DataSource = Nothing
+        End If
     End Sub
 
     'To add a Warehouse
@@ -551,9 +574,16 @@ Public Class Stores
 
         With ProductsDataGridView
             .DataSource = ds.Tables(0)
-            .Columns(0).Width = 180
-            .Columns(1).Width = 42
-            .Columns(2).Width = 37
+            Dim scroll As VScrollBar = ProductsDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (ProductsDataGridView.Size.Width - 20) * 0.69
+                .Columns(1).Width = (ProductsDataGridView.Size.Width - 20) * 0.16
+                .Columns(2).Width = (ProductsDataGridView.Size.Width - 20) * 0.15
+            Else
+                .Columns(0).Width = (ProductsDataGridView.Size.Width - 3) * 0.69
+                .Columns(1).Width = (ProductsDataGridView.Size.Width - 3) * 0.16
+                .Columns(2).Width = (ProductsDataGridView.Size.Width - 3) * 0.15
+            End If
             .ClearSelection()
         End With
         CN.Close()
@@ -591,11 +621,18 @@ Public Class Stores
         Dim adapter As New SqlDataAdapter(CMD)
         adapter.Fill(ds)
 
-        With WharehousesProductsDataGridView
+        With WarehousesProductsDataGridView
             .DataSource = ds.Tables(0)
-            .Columns(0).Width = 180
-            .Columns(1).Width = 42
-            .Columns(2).Width = 37
+            Dim scroll As VScrollBar = WarehousesProductsDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (WarehousesProductsDataGridView.Size.Width - 20) * 0.69
+                .Columns(1).Width = (WarehousesProductsDataGridView.Size.Width - 20) * 0.16
+                .Columns(2).Width = (WarehousesProductsDataGridView.Size.Width - 20) * 0.15
+            Else
+                .Columns(0).Width = (WarehousesProductsDataGridView.Size.Width - 3) * 0.69
+                .Columns(1).Width = (WarehousesProductsDataGridView.Size.Width - 3) * 0.16
+                .Columns(2).Width = (WarehousesProductsDataGridView.Size.Width - 3) * 0.15
+            End If
             .ClearSelection()
         End With
         CN.Close()

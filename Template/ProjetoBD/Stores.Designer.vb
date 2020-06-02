@@ -64,20 +64,20 @@ Partial Class Stores
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
-        Me.StoresDataGridView = New System.Windows.Forms.DataGridView()
         Me.ProductsDataGridView = New System.Windows.Forms.DataGridView()
         Me.WarehousesDataGridView = New System.Windows.Forms.DataGridView()
-        Me.WharehousesProductsDataGridView = New System.Windows.Forms.DataGridView()
+        Me.WarehousesProductsDataGridView = New System.Windows.Forms.DataGridView()
         Me.TextBoxSearch = New System.Windows.Forms.TextBox()
         Me.TextBoxSearch2 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.StoresDataGridView = New System.Windows.Forms.DataGridView()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.StoresDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProductsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WarehousesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.WharehousesProductsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.WarehousesProductsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.StoresDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button20
@@ -484,22 +484,6 @@ Partial Class Stores
         Me.Button9.Text = "Add"
         Me.Button9.UseVisualStyleBackColor = True
         '
-        'StoresDataGridView
-        '
-        Me.StoresDataGridView.AllowUserToAddRows = False
-        Me.StoresDataGridView.AllowUserToResizeColumns = False
-        Me.StoresDataGridView.AllowUserToResizeRows = False
-        Me.StoresDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.StoresDataGridView.Location = New System.Drawing.Point(19, 41)
-        Me.StoresDataGridView.MultiSelect = False
-        Me.StoresDataGridView.Name = "StoresDataGridView"
-        Me.StoresDataGridView.ReadOnly = True
-        Me.StoresDataGridView.RowHeadersVisible = False
-        Me.StoresDataGridView.RowHeadersWidth = 51
-        Me.StoresDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.StoresDataGridView.Size = New System.Drawing.Size(279, 171)
-        Me.StoresDataGridView.TabIndex = 120
-        '
         'ProductsDataGridView
         '
         Me.ProductsDataGridView.AllowUserToAddRows = False
@@ -518,6 +502,7 @@ Partial Class Stores
         'WarehousesDataGridView
         '
         Me.WarehousesDataGridView.AllowUserToAddRows = False
+        Me.WarehousesDataGridView.AllowUserToOrderColumns = True
         Me.WarehousesDataGridView.AllowUserToResizeColumns = False
         Me.WarehousesDataGridView.AllowUserToResizeRows = False
         Me.WarehousesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -531,20 +516,20 @@ Partial Class Stores
         Me.WarehousesDataGridView.Size = New System.Drawing.Size(279, 171)
         Me.WarehousesDataGridView.TabIndex = 122
         '
-        'WharehousesProductsDataGridView
+        'WarehousesProductsDataGridView
         '
-        Me.WharehousesProductsDataGridView.AllowUserToAddRows = False
-        Me.WharehousesProductsDataGridView.AllowUserToResizeColumns = False
-        Me.WharehousesProductsDataGridView.AllowUserToResizeRows = False
-        Me.WharehousesProductsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.WharehousesProductsDataGridView.Location = New System.Drawing.Point(337, 289)
-        Me.WharehousesProductsDataGridView.Name = "WharehousesProductsDataGridView"
-        Me.WharehousesProductsDataGridView.ReadOnly = True
-        Me.WharehousesProductsDataGridView.RowHeadersVisible = False
-        Me.WharehousesProductsDataGridView.RowHeadersWidth = 51
-        Me.WharehousesProductsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.WharehousesProductsDataGridView.Size = New System.Drawing.Size(279, 171)
-        Me.WharehousesProductsDataGridView.TabIndex = 123
+        Me.WarehousesProductsDataGridView.AllowUserToAddRows = False
+        Me.WarehousesProductsDataGridView.AllowUserToResizeColumns = False
+        Me.WarehousesProductsDataGridView.AllowUserToResizeRows = False
+        Me.WarehousesProductsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.WarehousesProductsDataGridView.Location = New System.Drawing.Point(337, 289)
+        Me.WarehousesProductsDataGridView.Name = "WarehousesProductsDataGridView"
+        Me.WarehousesProductsDataGridView.ReadOnly = True
+        Me.WarehousesProductsDataGridView.RowHeadersVisible = False
+        Me.WarehousesProductsDataGridView.RowHeadersWidth = 51
+        Me.WarehousesProductsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.WarehousesProductsDataGridView.Size = New System.Drawing.Size(279, 171)
+        Me.WarehousesProductsDataGridView.TabIndex = 123
         '
         'TextBoxSearch
         '
@@ -574,18 +559,35 @@ Partial Class Stores
         Me.Label1.TabIndex = 126
         Me.Label1.Text = "Search products by name"
         '
+        'StoresDataGridView
+        '
+        Me.StoresDataGridView.AllowUserToAddRows = False
+        Me.StoresDataGridView.AllowUserToOrderColumns = True
+        Me.StoresDataGridView.AllowUserToResizeColumns = False
+        Me.StoresDataGridView.AllowUserToResizeRows = False
+        Me.StoresDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.StoresDataGridView.Location = New System.Drawing.Point(19, 41)
+        Me.StoresDataGridView.MultiSelect = False
+        Me.StoresDataGridView.Name = "StoresDataGridView"
+        Me.StoresDataGridView.ReadOnly = True
+        Me.StoresDataGridView.RowHeadersVisible = False
+        Me.StoresDataGridView.RowHeadersWidth = 51
+        Me.StoresDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.StoresDataGridView.Size = New System.Drawing.Size(279, 171)
+        Me.StoresDataGridView.TabIndex = 127
+        '
         'Stores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(955, 508)
+        Me.Controls.Add(Me.StoresDataGridView)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextBoxSearch2)
         Me.Controls.Add(Me.TextBoxSearch)
-        Me.Controls.Add(Me.WharehousesProductsDataGridView)
+        Me.Controls.Add(Me.WarehousesProductsDataGridView)
         Me.Controls.Add(Me.WarehousesDataGridView)
         Me.Controls.Add(Me.ProductsDataGridView)
-        Me.Controls.Add(Me.StoresDataGridView)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button7)
@@ -613,10 +615,10 @@ Partial Class Stores
         Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.StoresDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ProductsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.WarehousesDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.WharehousesProductsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.WarehousesProductsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.StoresDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -664,11 +666,11 @@ Partial Class Stores
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Button9 As Button
-    Friend WithEvents StoresDataGridView As DataGridView
     Friend WithEvents ProductsDataGridView As DataGridView
     Friend WithEvents WarehousesDataGridView As DataGridView
-    Friend WithEvents WharehousesProductsDataGridView As DataGridView
+    Friend WithEvents WarehousesProductsDataGridView As DataGridView
     Friend WithEvents TextBoxSearch As TextBox
     Friend WithEvents TextBoxSearch2 As TextBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents StoresDataGridView As DataGridView
 End Class
