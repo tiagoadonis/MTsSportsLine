@@ -157,12 +157,14 @@ Public Class MainForm
             .TextBoxDate.Text = ""
             .TextBoxAmount.Text = ""
             .TextBoxDest.Text = ""
+            .TextBoxStore.Text = ""
             .TextBoxID2.Text = ""
             .TextBoxCode2.Text = ""
             .TextBoxDate2.Text = ""
             .TextBoxAmount2.Text = ""
             .TextBoxDest2.Text = ""
             .TextBoxSearch.Text = ""
+            .TextBoxStore2.Text = ""
             .Button1.Enabled = False
             .Button2.Enabled = False
             .Button3.Enabled = False

@@ -192,6 +192,12 @@
     <Compile Include="Stores.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StoreSelect.Designer.vb">
+      <DependentUpon>StoreSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StoreSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Warehouse.vb" />
     <Compile Include="Workers.Designer.vb">
       <DependentUpon>Workers.vb</DependentUpon>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stores.resx">
       <DependentUpon>Stores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StoreSelect.resx">
+      <DependentUpon>StoreSelect.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Workers.resx">
       <DependentUpon>Workers.vb</DependentUpon>

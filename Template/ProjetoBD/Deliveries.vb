@@ -122,8 +122,8 @@ Public Class Deliveries
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         TextBoxDate.Enabled = True
         TextBoxAmount.Enabled = True
-        TextBoxCode.Enabled = True
         TextBoxDest.Enabled = True
+        TextBoxStore.Enabled = True
         Button1.Enabled = True
         Button3.Enabled = False
         Button5.Enabled = True
@@ -139,6 +139,11 @@ Public Class Deliveries
             e.Handled = True
             MsgBox("Only numeric characteres are allowed!", MsgBoxStyle.Information, "ERROR")
         End If
+    End Sub
+
+    'Store Number TextBox
+    Private Sub TextBoxStore_KeyPress(sender As Object, e As EventArgs) Handles TextBoxStore.KeyPress
+        NumberOnly(e)
     End Sub
 
     Private Sub CheckDate(ByVal e As System.Windows.Forms.KeyPressEventArgs)
@@ -187,10 +192,10 @@ Public Class Deliveries
         If codecheck Is Nothing Then
             MsgBox("The product with that code does not exist!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check > Date.Now And Not codecheck Is Nothing And TextBoxDate.Text(2) = "/" And TextBoxDate.Text(8) = "2" And TextBoxDate.Text(5) = "/" And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
+        If Check > Date.Now And Not codecheck Is Nothing And TextBoxDate.Text(2) = "/" And TextBoxDate.Text(8) = "2" And TextBoxDate.Text(5) = "/" And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxStore.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
             TextBoxDate.Enabled = False
             TextBoxAmount.Enabled = False
-            TextBoxCode.Enabled = False
+            TextBoxStore.Enabled = False
             TextBoxDest.Enabled = False
             Button1.Enabled = False
             Button3.Enabled = True
@@ -199,7 +204,8 @@ Public Class Deliveries
             Dim dest As String = TextBoxDest.Text
             Dim code As Integer = TextBoxCode.Text
             Dim quant As Integer = TextBoxAmount.Text
-            updateDelivery(data, dest, code, quant)
+            Dim store As Integer = TextBoxStore.Text
+            updateDelivery(data, dest, code, quant, store)
         End If
     End Sub
 
@@ -216,6 +222,11 @@ Public Class Deliveries
 
     'ProductCode2 TextBox
     Private Sub TextBoxCode2_KeyPress(sender As Object, e As EventArgs) Handles TextBoxCode2.KeyPress
+        NumberOnly(e)
+    End Sub
+
+    'Store Number2 TextBox
+    Private Sub TextBoxStore2_KeyPress(sender As Object, e As EventArgs) Handles TextBoxStore2.KeyPress
         NumberOnly(e)
     End Sub
 
@@ -269,18 +280,20 @@ Public Class Deliveries
         If Not idcheck Is Nothing Then
             MsgBox("The delivery with that code already exist!", MsgBoxStyle.Information, "ERROR")
         End If
-        If Check2 > Date.Now And Not codecheck Is Nothing And idcheck Is Nothing And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxDate2.Text(8) = "2" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
+        If Check2 > Date.Now And Not codecheck Is Nothing And idcheck Is Nothing And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxDate2.Text(8) = "2" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxStore2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
             Dim id As Integer = TextBoxID2.Text
             Dim data As Date = TextBoxDate2.Text
             Dim dest As String = TextBoxDest2.Text
             Dim code As Integer = TextBoxCode2.Text
             Dim quant As Integer = TextBoxAmount2.Text
-            addDelivery(id, data, dest, code, quant)
+            Dim store As Integer = TextBoxStore2.Text
+            addDelivery(id, data, dest, code, quant, store)
             TextBoxID2.Text = ""
             TextBoxDate2.Text = ""
             TextBoxDest2.Text = ""
             TextBoxCode2.Text = ""
             TextBoxAmount2.Text = ""
+            TextBoxStore2.Text = ""
         End If
     End Sub
 
@@ -293,44 +306,48 @@ Public Class Deliveries
         Label3.Visible = False
     End Sub
 
-    Private Sub addDelivery(ByVal id As Integer, ByVal data As Date, ByVal dest As String, ByVal code As Integer, ByVal quant As Integer)
+    Private Sub addDelivery(ByVal id As Integer, ByVal data As Date, ByVal dest As String, ByVal code As Integer, ByVal quant As Integer, ByVal store As Integer)
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "EXEC Projeto.Add_Delivery @id, @data, @dest, @code, @quant"
+        CMD.CommandText = "EXEC Projeto.Add_Delivery @id, @data, @dest, @code, @quant,@store"
         CMD.Parameters.Add("@id", SqlDbType.Int)
         CMD.Parameters.Add("@data", SqlDbType.Date)
         CMD.Parameters.Add("@dest", SqlDbType.VarChar, 40)
         CMD.Parameters.Add("@code", SqlDbType.Int)
         CMD.Parameters.Add("@quant", SqlDbType.Int)
+        CMD.Parameters.Add("@store", SqlDbType.Int)
         CMD.Parameters("@id").Value = id
         CMD.Parameters("@data").Value = data
         CMD.Parameters("@dest").Value = dest
         CMD.Parameters("@code").Value = code
         CMD.Parameters("@quant").Value = quant
+        CMD.Parameters("@store").Value = store
         CN.Open()
         CMD.ExecuteScalar()
         loadDeliveries()
         CN.Close()
     End Sub
 
-    Private Sub updateDelivery(ByVal data As Date, ByVal dest As String, ByVal code As Integer, ByVal quant As Integer)
+    Private Sub updateDelivery(ByVal data As Date, ByVal dest As String, ByVal code As Integer, ByVal quant As Integer, ByVal store As Integer)
         Dim index As Integer = DeliveriesDataGridView.CurrentRow.Index
         Dim selectedRow As DataGridViewRow = DeliveriesDataGridView.Rows(index)
         Dim id As Integer = selectedRow.Cells(0).Value
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "EXEC Projeto.Update_Delivery @id, @data, @dest, @code, @quant"
+        CMD.CommandText = "EXEC Projeto.Update_Delivery @id, @data, @dest, @code, @quant,@store"
         CMD.Parameters.Add("@id", SqlDbType.Int)
         CMD.Parameters.Add("@data", SqlDbType.Date)
         CMD.Parameters.Add("@dest", SqlDbType.VarChar, 40)
         CMD.Parameters.Add("@code", SqlDbType.Int)
         CMD.Parameters.Add("@quant", SqlDbType.Int)
+        CMD.Parameters.Add("@store", SqlDbType.Int)
         CMD.Parameters("@id").Value = id
         CMD.Parameters("@data").Value = data
         CMD.Parameters("@dest").Value = dest
         CMD.Parameters("@code").Value = code
         CMD.Parameters("@quant").Value = quant
+        CMD.Parameters("@store").Value = store
         CN.Open()
         CMD.ExecuteScalar()
         loadDeliveries()
@@ -342,14 +359,10 @@ Public Class Deliveries
         Dim index As Integer = DeliveriesDataGridView.CurrentRow.Index
         Dim selectedRow As DataGridViewRow = DeliveriesDataGridView.Rows(index)
         Dim num As Integer = selectedRow.Cells(0).Value
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "EXEC Projeto.Remove_Delivery @num"
-        CMD.Parameters.Add("@num", SqlDbType.Int)
-        CMD.Parameters("@num").Value = num
+        Dim selectstore As New StoreSelect
+        selectstore.StartPosition = FormStartPosition.CenterScreen
+        selectstore.ShowDialog()
         CN.Open()
-        CMD.ExecuteScalar()
         loadDeliveries()
         CN.Close()
         TextBoxID.Text = ""
@@ -357,6 +370,7 @@ Public Class Deliveries
         TextBoxAmount.Text = ""
         TextBoxDest.Text = ""
         TextBoxCode.Text = ""
+        TextBoxStore.Text = ""
         DeliveriesDataGridView.ClearSelection()
     End Sub
 End Class

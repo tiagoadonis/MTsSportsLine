@@ -28,6 +28,8 @@ Partial Class Deliveries
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBoxStore2 = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBoxCode2 = New System.Windows.Forms.TextBox()
         Me.TextBoxDest2 = New System.Windows.Forms.TextBox()
@@ -40,6 +42,8 @@ Partial Class Deliveries
         Me.Label9 = New System.Windows.Forms.Label()
         Me.DeliveriesDataGridView = New System.Windows.Forms.DataGridView()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TextBoxStore = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBoxDest = New System.Windows.Forms.TextBox()
         Me.TextBoxCode = New System.Windows.Forms.TextBox()
         Me.TextBoxAmount = New System.Windows.Forms.TextBox()
@@ -105,7 +109,7 @@ Partial Class Deliveries
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(974, 509)
+        Me.Button4.Location = New System.Drawing.Point(976, 540)
         Me.Button4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(131, 38)
@@ -116,6 +120,8 @@ Partial Class Deliveries
         'GroupBox1
         '
         Me.GroupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.GroupBox1.Controls.Add(Me.TextBoxStore2)
+        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.TextBoxCode2)
         Me.GroupBox1.Controls.Add(Me.TextBoxDest2)
@@ -131,10 +137,29 @@ Partial Class Deliveries
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.GroupBox1.Size = New System.Drawing.Size(425, 348)
+        Me.GroupBox1.Size = New System.Drawing.Size(425, 395)
         Me.GroupBox1.TabIndex = 43
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Details"
+        '
+        'TextBoxStore2
+        '
+        Me.TextBoxStore2.Location = New System.Drawing.Point(127, 367)
+        Me.TextBoxStore2.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxStore2.Name = "TextBoxStore2"
+        Me.TextBoxStore2.Size = New System.Drawing.Size(188, 22)
+        Me.TextBoxStore2.TabIndex = 56
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Label6.Location = New System.Drawing.Point(125, 340)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(124, 23)
+        Me.Label6.TabIndex = 55
+        Me.Label6.Text = "Store Number"
         '
         'Label5
         '
@@ -251,6 +276,8 @@ Partial Class Deliveries
         'GroupBox2
         '
         Me.GroupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.GroupBox2.Controls.Add(Me.TextBoxStore)
+        Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.TextBoxDest)
         Me.GroupBox2.Controls.Add(Me.TextBoxCode)
         Me.GroupBox2.Controls.Add(Me.TextBoxAmount)
@@ -271,10 +298,30 @@ Partial Class Deliveries
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Delivery Details"
         '
+        'TextBoxStore
+        '
+        Me.TextBoxStore.Enabled = False
+        Me.TextBoxStore.Location = New System.Drawing.Point(230, 107)
+        Me.TextBoxStore.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxStore.Name = "TextBoxStore"
+        Me.TextBoxStore.Size = New System.Drawing.Size(129, 22)
+        Me.TextBoxStore.TabIndex = 54
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Label4.Location = New System.Drawing.Point(228, 80)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(124, 23)
+        Me.Label4.TabIndex = 53
+        Me.Label4.Text = "Store Number"
+        '
         'TextBoxDest
         '
         Me.TextBoxDest.Enabled = False
-        Me.TextBoxDest.Location = New System.Drawing.Point(226, 148)
+        Me.TextBoxDest.Location = New System.Drawing.Point(228, 175)
         Me.TextBoxDest.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxDest.Name = "TextBoxDest"
         Me.TextBoxDest.Size = New System.Drawing.Size(255, 22)
@@ -283,7 +330,7 @@ Partial Class Deliveries
         'TextBoxCode
         '
         Me.TextBoxCode.Enabled = False
-        Me.TextBoxCode.Location = New System.Drawing.Point(226, 72)
+        Me.TextBoxCode.Location = New System.Drawing.Point(228, 45)
         Me.TextBoxCode.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxCode.Name = "TextBoxCode"
         Me.TextBoxCode.Size = New System.Drawing.Size(129, 22)
@@ -320,7 +367,7 @@ Partial Class Deliveries
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Label14.Location = New System.Drawing.Point(224, 45)
+        Me.Label14.Location = New System.Drawing.Point(226, 18)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(119, 23)
@@ -331,7 +378,7 @@ Partial Class Deliveries
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Label15.Location = New System.Drawing.Point(224, 123)
+        Me.Label15.Location = New System.Drawing.Point(226, 150)
         Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(102, 23)
@@ -472,4 +519,8 @@ Partial Class Deliveries
     Friend WithEvents TextBoxSearch As TextBox
     Friend WithEvents Button5 As Button
     Friend WithEvents Label3 As Label
+    Friend WithEvents TextBoxStore2 As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents TextBoxStore As TextBox
+    Friend WithEvents Label4 As Label
 End Class
