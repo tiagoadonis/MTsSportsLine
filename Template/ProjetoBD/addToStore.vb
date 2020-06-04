@@ -18,9 +18,13 @@
 
     'Confirm Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ConfirmButton.Click
+        Dim index As Integer = Stores.WarehousesProductsDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = Stores.WarehousesProductsDataGridView.Rows(index)
+        Dim Quant As Integer = selectedRow.Cells(2).Value
+
         If UnitsTextBox.Text = "" Then
             MsgBox("Nº units is needed!", MsgBoxStyle.Information, "ERROR")
-        ElseIf UnitsTextBox.Text > Stores.TextBoxUnits2.Text Then
+        ElseIf (UnitsTextBox.Text > Quant) Then
             MsgBox("Number inserted is biger than the product's units available!", MsgBoxStyle.Information, "ERROR")
         Else
             Dim units As Integer = UnitsTextBox.Text

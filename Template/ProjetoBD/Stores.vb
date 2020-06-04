@@ -477,8 +477,6 @@ Public Class Stores
         Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
         Dim numStore As Integer = selectedRow.Cells(0).Value
 
-
-
         CMD = New SqlCommand()
         CMD.Connection = CN
         CMD.CommandText = "EXEC Projeto.ReturnProduct @ReturnID, @Date, @Value, @NIF, @WorkersCode, @StoreNum, 
@@ -502,6 +500,7 @@ Public Class Stores
         CN.Open()
         CMD.ExecuteScalar()
         CN.Close()
+        loadStoresProducts(numStore)
     End Sub
 
     'To add products from an warehouse to the respective store

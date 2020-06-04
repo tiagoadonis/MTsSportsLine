@@ -161,10 +161,6 @@ AS
 				INSERT Projeto.Artigo_Comprado(Codigo, NumCompra, QuantArtigos)
 				VALUES (@Code, @PurchaseID, @Units);
 			END
-			IF (@Units > @Quant)
-			BEGIN
-				RAISERROR ('Theres not enough units to complete the purchase', 14, 1);
-			END
 		END
 		ELSE
 		BEGIN

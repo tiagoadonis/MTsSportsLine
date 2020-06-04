@@ -36,13 +36,22 @@ Public Class BuyProduct
         ElseIf UnitsTextBox.Text = "" Then
             MsgBox("Nº units is needed!", MsgBoxStyle.Information, "ERROR")
         Else
+            Dim index As Integer = Stores.ProductsDataGridView.CurrentRow.Index
+            Dim selectedRow As DataGridViewRow = Stores.ProductsDataGridView.Rows(index)
+            Dim storeQuant As Integer = selectedRow.Cells(2).Value
+
             Dim nif As Integer = NIFTextBox.Text
             Dim drv As DataRowView = CodeComboBox.SelectedItem
             Dim tmp As String = drv.Item("NumFunc").ToString()
             Dim code As Int32 = Convert.ToInt32(tmp)
             Dim units As Integer = Convert.ToInt32(UnitsTextBox.Text)
-            Stores.BuyProduct(nif, code, units)
-            Me.Close()
+
+            If (units > storeQuant) Then
+                MsgBox("There's not enough units in the store!", MsgBoxStyle.Information, "ERROR")
+            Else
+                Stores.BuyProduct(nif, code, units)
+                Me.Close()
+            End If
         End If
     End Sub
 
