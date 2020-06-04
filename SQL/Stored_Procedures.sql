@@ -332,7 +332,7 @@ AS
 		IF EXISTS (SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store)
 		BEGIN
 			DECLARE @Units INT
-			SELECT @Units=Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code
+			SELECT @Units=Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store
 			IF (@Quant>@Units)
 			BEGIN
 				RAISERROR ('There are not enough units to complete the delivery! Number of available units: %d', 14, 1, @Units);
@@ -341,7 +341,7 @@ AS
 				IF (@Quant=@Units)
 				BEGIN
 					INSERT Projeto.Transporte (IDTransporte, Data, Destino)
-					VALUES (@iD, @Data, @Dest);
+					VALUES (@Id, @Data, @Dest);
 					INSERT Projeto.Artigo_Transporte (Codigo, IDTransporte, QuantArtigos)
 					VALUES (@Code, @Id, @Quant);
 					DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
@@ -350,7 +350,7 @@ AS
 					DECLARE @NewQuant INT = @Units - @Quant;
 					UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@NewQuant WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
 					INSERT Projeto.Transporte (IDTransporte, Data, Destino)
-					VALUES (@iD, @Data, @Dest);
+					VALUES (@Id, @Data, @Dest);
 					INSERT Projeto.Artigo_Transporte (Codigo, IDTransporte, QuantArtigos)
 					VALUES (@Code, @Id, @Quant);
 		END
@@ -370,8 +370,8 @@ AS
 			DECLARE @TransUnits INT
 			SELECT @TransUnits=Artigo_Transporte.QuantArtigos FROM Projeto.Artigo_Transporte WHERE Artigo_Transporte.IDTransporte=@Id
 			DECLARE @Units INT
-			SELECT @Units=Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code
-			IF (@TransUnits+@Units>@Quant)
+			SELECT @Units=Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store
+			IF (@TransUnits+@Units<@Quant)
 			BEGIN	
 				RAISERROR ('There are not enough units to complete the delivery! Number of available units: %d', 14, 1, @Units);
 			END
@@ -383,7 +383,7 @@ AS
 					DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
 				END
 				ELSE
-					UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@TransUnits+@Units-@Quant;
+					UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@TransUnits+@Units-@Quant WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
 					UPDATE Projeto.Transporte SET Transporte.Data=@Data, Transporte.Destino=@Dest WHERE Transporte.IDTransporte=@Id;
 					UPDATE Projeto.Artigo_Transporte SET Artigo_Transporte.Codigo=@Code, Artigo_Transporte.QuantArtigos=@Quant WHERE Artigo_Transporte.IDTransporte=@Id;
 		END
@@ -393,7 +393,6 @@ AS
 	ELSE
 		RAISERROR ('The delivery with number %d does not exist', 14, 1, @Id);
 GO
-
 -- Removing Stored Procedures
 GO
 CREATE PROCEDURE Projeto.Remove_Store (@StoreNum INT) 
