@@ -16,9 +16,23 @@ Public Class StoreSelect
         adapter.Fill(table)
 
         ComboBox1.DataSource = table
-        ComboBox1.DisplayMember = "NumLoja"
+        ComboBox1.DisplayMember = "Nome"
         ComboBox1.ValueMember = "NumLoja"
     End Sub
+
+    Public Function getStoreNum(name As String)
+        Dim storenum As Integer
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Loja.NumLoja FROM Projeto.Loja WHERE Loja.Nome=@name;"
+        CMD.Parameters.Add("@name", SqlDbType.VarChar, 30)
+        CMD.Parameters("@name").Value = name
+        CN.Open()
+        storenum = CMD.ExecuteScalar()
+        CN.Close()
+        Return storenum
+    End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim index As Integer = Deliveries.DeliveriesDataGridView.CurrentRow.Index
@@ -26,8 +40,8 @@ Public Class StoreSelect
         Dim num As Integer = selectedRow.Cells(0).Value
         Dim store As Integer
         Dim stores As String
-        store = ComboBox1.Text
-        stores = Convert.ToInt16(store)
+        stores = ComboBox1.Text
+        store = getStoreNum(stores)
 
         CMD = New SqlCommand()
         CMD.Connection = CN
