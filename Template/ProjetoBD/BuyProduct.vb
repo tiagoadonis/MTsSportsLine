@@ -40,7 +40,7 @@ Public Class BuyProduct
             Dim drv As DataRowView = CodeComboBox.SelectedItem
             Dim tmp As String = drv.Item("NumFunc").ToString()
             Dim code As Int32 = Convert.ToInt32(tmp)
-            Dim units As Integer = UnitsTextBox.Text
+            Dim units As Integer = Convert.ToInt32(UnitsTextBox.Text)
             Stores.BuyProduct(nif, code, units)
             Me.Close()
         End If
