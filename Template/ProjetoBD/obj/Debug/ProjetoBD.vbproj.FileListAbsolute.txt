@@ -205,3 +205,6 @@ D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's 
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.xml
 D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.pdb
 C:\Users\Martim\Desktop\Uni\3 ano 2 semestre\BD\Projeto\MTsSportsLine\Template\ProjetoBD\obj\Debug\ProjetoBD.StoreSelect.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.StoreSelect.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.addWarehouseProduct.resources
+D:\Universidade\MIECT\3º Ano\2º Semestre\Cadeiras\Base de Dados\Projeto\M&T's - Sports Line\Template\ProjetoBD\obj\Debug\ProjetoBD.RemoveWarehouseProduct.resources

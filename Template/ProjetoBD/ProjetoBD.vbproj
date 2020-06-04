@@ -113,6 +113,12 @@
     <Compile Include="AddWarehouse.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="addWarehouseProduct.Designer.vb">
+      <DependentUpon>addWarehouseProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="addWarehouseProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AddWorker.Designer.vb">
       <DependentUpon>AddWorker.vb</DependentUpon>
     </Compile>
@@ -179,6 +185,12 @@
     <Compile Include="RemoveProduct.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RemoveWarehouseProduct.Designer.vb">
+      <DependentUpon>RemoveWarehouseProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveWarehouseProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ReturnProduct.Designer.vb">
       <DependentUpon>ReturnProduct.vb</DependentUpon>
     </Compile>
@@ -219,6 +231,9 @@
     <EmbeddedResource Include="AddWarehouse.resx">
       <DependentUpon>AddWarehouse.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="addWarehouseProduct.resx">
+      <DependentUpon>addWarehouseProduct.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddWorker.resx">
       <DependentUpon>AddWorker.vb</DependentUpon>
     </EmbeddedResource>
@@ -248,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RemoveProduct.resx">
       <DependentUpon>RemoveProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RemoveWarehouseProduct.resx">
+      <DependentUpon>RemoveWarehouseProduct.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReturnProduct.resx">
       <DependentUpon>ReturnProduct.vb</DependentUpon>

@@ -1,4 +1,4 @@
-﻿Public Class RemoveProduct
+﻿Public Class RemoveWarehouseProduct
     ' Nº Units TextBox
     Private Sub TextBox1_KeyPress(sender As Object, e As EventArgs) Handles UnitsTextBox.KeyPress
         NumberOnly(e)
@@ -26,10 +26,10 @@
             Dim selectedRow As DataGridViewRow = Stores.ProductsDataGridView.Rows(index)
             Dim quant As Integer = selectedRow.Cells(2).Value
             If (units > quant) Then
-                MsgBox("There's not " + units.ToString + " units of the selected product in the store!",
+                MsgBox("There's not " + units.ToString + " units of the selected product in the warehouse!",
                        MsgBoxStyle.Information, "ERROR")
             Else
-                Stores.removeProduct(units)
+                Stores.removeWarehouseProduct(units)
                 Me.Close()
             End If
         End If

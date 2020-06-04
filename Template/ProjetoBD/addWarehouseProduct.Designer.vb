@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class AddProduct
+Partial Class addWarehouseProduct
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -44,7 +44,7 @@ Partial Class AddProduct
         Me.Label2.Location = New System.Drawing.Point(78, 9)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(138, 30)
-        Me.Label2.TabIndex = 44
+        Me.Label2.TabIndex = 57
         Me.Label2.Text = "Add Product"
         '
         'Button2
@@ -52,7 +52,7 @@ Partial Class AddProduct
         Me.Button2.Location = New System.Drawing.Point(168, 143)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 43
+        Me.Button2.TabIndex = 56
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
@@ -61,7 +61,7 @@ Partial Class AddProduct
         Me.Button1.Location = New System.Drawing.Point(45, 143)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 42
+        Me.Button1.TabIndex = 55
         Me.Button1.Text = "Confirm"
         Me.Button1.UseVisualStyleBackColor = True
         '
@@ -70,7 +70,7 @@ Partial Class AddProduct
         Me.UnitsTextBox.Location = New System.Drawing.Point(212, 111)
         Me.UnitsTextBox.Name = "UnitsTextBox"
         Me.UnitsTextBox.Size = New System.Drawing.Size(62, 20)
-        Me.UnitsTextBox.TabIndex = 40
+        Me.UnitsTextBox.TabIndex = 53
         '
         'Label9
         '
@@ -78,7 +78,7 @@ Partial Class AddProduct
         Me.Label9.Location = New System.Drawing.Point(209, 95)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(46, 13)
-        Me.Label9.TabIndex = 41
+        Me.Label9.TabIndex = 54
         Me.Label9.Text = "Nº Units"
         '
         'Label8
@@ -87,7 +87,7 @@ Partial Class AddProduct
         Me.Label8.Location = New System.Drawing.Point(87, 95)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(31, 13)
-        Me.Label8.TabIndex = 39
+        Me.Label8.TabIndex = 52
         Me.Label8.Text = "Type"
         '
         'TypeTextBox
@@ -95,7 +95,7 @@ Partial Class AddProduct
         Me.TypeTextBox.Location = New System.Drawing.Point(90, 111)
         Me.TypeTextBox.Name = "TypeTextBox"
         Me.TypeTextBox.Size = New System.Drawing.Size(116, 20)
-        Me.TypeTextBox.TabIndex = 38
+        Me.TypeTextBox.TabIndex = 51
         '
         'Label6
         '
@@ -103,7 +103,7 @@ Partial Class AddProduct
         Me.Label6.Location = New System.Drawing.Point(10, 95)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(32, 13)
-        Me.Label6.TabIndex = 34
+        Me.Label6.TabIndex = 47
         Me.Label6.Text = "Code"
         '
         'PriceTextBox
@@ -111,7 +111,7 @@ Partial Class AddProduct
         Me.PriceTextBox.Location = New System.Drawing.Point(222, 64)
         Me.PriceTextBox.Name = "PriceTextBox"
         Me.PriceTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.PriceTextBox.TabIndex = 37
+        Me.PriceTextBox.TabIndex = 50
         '
         'Label7
         '
@@ -119,7 +119,7 @@ Partial Class AddProduct
         Me.Label7.Location = New System.Drawing.Point(219, 48)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(31, 13)
-        Me.Label7.TabIndex = 36
+        Me.Label7.TabIndex = 49
         Me.Label7.Text = "Price"
         '
         'CodeTextBox
@@ -127,14 +127,14 @@ Partial Class AddProduct
         Me.CodeTextBox.Location = New System.Drawing.Point(13, 111)
         Me.CodeTextBox.Name = "CodeTextBox"
         Me.CodeTextBox.Size = New System.Drawing.Size(71, 20)
-        Me.CodeTextBox.TabIndex = 35
+        Me.CodeTextBox.TabIndex = 48
         '
         'NameTextBox
         '
         Me.NameTextBox.Location = New System.Drawing.Point(13, 64)
         Me.NameTextBox.Name = "NameTextBox"
         Me.NameTextBox.Size = New System.Drawing.Size(203, 20)
-        Me.NameTextBox.TabIndex = 33
+        Me.NameTextBox.TabIndex = 46
         '
         'Label1
         '
@@ -142,10 +142,10 @@ Partial Class AddProduct
         Me.Label1.Location = New System.Drawing.Point(10, 48)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(35, 13)
-        Me.Label1.TabIndex = 32
+        Me.Label1.TabIndex = 45
         Me.Label1.Text = "Name"
         '
-        'AddProduct
+        'addWarehouseProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -163,8 +163,8 @@ Partial Class AddProduct
         Me.Controls.Add(Me.CodeTextBox)
         Me.Controls.Add(Me.NameTextBox)
         Me.Controls.Add(Me.Label1)
-        Me.Name = "AddProduct"
-        Me.Text = "AddProduct"
+        Me.Name = "addWarehouseProduct"
+        Me.Text = "addWarehouseProduct"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

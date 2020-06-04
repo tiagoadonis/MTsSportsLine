@@ -18,11 +18,6 @@ Public Class ReturnProduct
         End If
     End Sub
 
-    'Worker's Code TextBox (KeyPressed)
-    Private Sub TextBox4_KeyPress(sender As Object, e As EventArgs) Handles CodeTextBox.KeyPress
-        NumberOnly(e)
-    End Sub
-
     'Product's Code TextBox (KeyPressed)
     Private Sub TextBox6_KeyPress(sender As Object, e As EventArgs) Handles ProductTextBox.KeyPress
         NumberOnly(e)
@@ -38,7 +33,6 @@ Public Class ReturnProduct
         NIFTextBox.Text = ""
         ClientsNameTextBox.Text = ""
         WorkersNameTextBox.Text = ""
-        CodeTextBox.Text = ""
         UnitsTextBox.Text = ""
         ProductTextBox.Text = ""
         ProductsNameTextBox.Text = ""
@@ -48,18 +42,18 @@ Public Class ReturnProduct
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If NIFTextBox.Text.Length <> 9 Then
             MsgBox("Client's NIF must have 9 numbers!", MsgBoxStyle.Information, "ERROR")
-        ElseIf CodeTextBox.Text.Length <> 6 Then
-            MsgBox("Worker's code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         ElseIf ProductTextBox.Text.Length <> 6 Then
             MsgBox("Product's code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         ElseIf UnitsTextBox.Text = "" Then
             MsgBox("Nº units is needed!", MsgBoxStyle.Information, "ERROR")
         Else
             Dim nif As Integer = NIFTextBox.Text
-            Dim workersCode As Integer = CodeTextBox.Text
+            Dim drv As DataRowView = CodeComboBox.SelectedItem
+            Dim tmp As String = drv.Item("NumFunc").ToString()
+            Dim workersCode As Int32 = Convert.ToInt32(tmp)
             Dim productCode As Integer = ProductTextBox.Text
             Dim units As Integer = UnitsTextBox.Text
-            Stores.ReturnProduct(nif, workersCode, productCode, units)
+            Stores.returnProduct(nif, workersCode, productCode, units)
             Me.Close()
         End If
     End Sub
@@ -92,42 +86,6 @@ Public Class ReturnProduct
         CN.Close()
     End Sub
 
-    'Worker's code TextBox (TextChanged)
-    Private Sub CodeTextBox_TextChanged(sender As Object, e As EventArgs) Handles CodeTextBox.TextChanged
-        If (CodeTextBox.Text.Length = 6) Then
-            getWorker()
-        Else
-            WorkersNameTextBox.Text = ""
-        End If
-    End Sub
-
-    Private Sub getWorker()
-        Dim index As Integer = Stores.StoresDataGridView.CurrentRow.Index
-        Dim selectedRow As DataGridViewRow = Stores.StoresDataGridView.Rows(index)
-        Dim numStore As Integer = selectedRow.Cells(0).Value
-        Dim code As Integer = CodeTextBox.Text
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT Funcionario.Nome FROM Projeto.Funcionario WHERE Funcionario.NumFunc = @Code
-                          AND Funcionario.NumLoja = @Store"
-        CMD.Parameters.Add("@Code", SqlDbType.Int)
-        CMD.Parameters.Add("@Store", SqlDbType.Int)
-        CMD.Parameters("@Code").Value = code
-        CMD.Parameters("@Store").Value = numStore
-        CN.Open()
-
-        Dim workersName As Object = CMD.ExecuteScalar()
-
-        If workersName Is Nothing Then
-            MsgBox("The worker inserted does not exist or does not work in the " +
-                   "selected store!", MsgBoxStyle.Information, "ERROR")
-        Else
-            WorkersNameTextBox.Text = workersName.ToString
-        End If
-        CN.Close()
-    End Sub
-
     'Product's Code TextBox
     Private Sub ProductTextBox_TextChanged(sender As Object, e As EventArgs) Handles ProductTextBox.TextChanged
         If (ProductTextBox.Text.Length = 6) Then
@@ -153,6 +111,56 @@ Public Class ReturnProduct
         Else
             ProductsNameTextBox.Text = productName.ToString
         End If
+        CN.Close()
+    End Sub
+
+    'Form Loader
+    Private Sub ReturnProduct_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim index As Integer = Stores.StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = Stores.StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+        Dim table As New DataTable()
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT * FROM Projeto.Funcionario WHERE Funcionario.NumLoja=@Store"
+        CMD.Parameters.Add("@Store", SqlDbType.Int)
+        CMD.Parameters("@Store").Value = numStore
+        CN.Open()
+
+        Dim adapter As New SqlDataAdapter(CMD)
+        adapter.Fill(table)
+        With CodeComboBox
+            .DataSource = table
+            .DisplayMember = "NumFunc"
+            .ValueMember = "NumFunc"
+        End With
+        CN.Close()
+    End Sub
+
+    'Get Worker's name
+    Private Sub CodeComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CodeComboBox.SelectedIndexChanged
+
+        CN.Close()
+        Dim index As Integer = Stores.StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = Stores.StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+
+        Dim drv As DataRowView = CodeComboBox.SelectedItem
+        Dim tmp As String = drv.Item("NumFunc").ToString()
+        Dim code As Int32 = Convert.ToInt32(tmp)
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Funcionario.Nome FROM Projeto.Funcionario WHERE Funcionario.NumFunc = @Code
+                          AND Funcionario.NumLoja = @Store"
+        CMD.Parameters.Add("@Code", SqlDbType.Int)
+        CMD.Parameters.Add("@Store", SqlDbType.Int)
+        CMD.Parameters("@Code").Value = code
+        CMD.Parameters("@Store").Value = numStore
+        CN.Open()
+        Dim workersName As Object = CMD.ExecuteScalar()
+        WorkersNameTextBox.Text = workersName.ToString()
         CN.Close()
     End Sub
 End Class

@@ -42,24 +42,30 @@ AS
 			UPDATE Projeto.Artigo_Loja SET QuantArtigos=@Units + @NumUnits WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@StoreNum;
 		END
 		ELSE
+		BEGIN
 			IF EXISTS (SELECT * FROM Projeto.Artigo WHERE Artigo.Codigo=@Code)
 			BEGIN
 				INSERT Projeto.Artigo_Loja(Codigo, NumLoja, QuantArtigos) 
 				VALUES (@Code, @StoreNum, @NumUnits);
 			END
 			ELSE
+			BEGIN
 				INSERT Projeto.Artigo(Codigo, Preco, Nome, Categoria) 
 				VALUES (@Code, @Price, @Name, @Category);
 				INSERT Projeto.Artigo_Loja(Codigo, NumLoja, QuantArtigos) 
 				VALUES (@Code, @StoreNum, @NumUnits);
+			END
+		END
 	END
 	ELSE
+	BEGIN
 		RAISERROR ('The store number %d does not exists', 14, 1, @StoreNum);
+	END
 GO
 --Test Procedure
 SELECT * FROM Projeto.Artigo;
 SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=1;
-EXEC Projeto.Add_storeProduct 100001, 1.0, 'Meias curtas Reebok', 'Vestuário', 1, 1;
+EXEC Projeto.Add_storeProduct 100004, 10.0, 'Calções Timberland', 'Vestuário', 1, 1;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Add_Warehouse (@WarehouseID INT, @Storage INT, @StoreNum INT) 
@@ -90,24 +96,30 @@ AS
 
 		END
 		ELSE
-		IF EXISTS (SELECT * FROM Projeto.Artigo WHERE Artigo.Codigo=@Code)
 		BEGIN
-			INSERT Projeto.Artigo_Armazem(Codigo, IDArmazem, QuantArtigos) 
-			VALUES (@Code, @WarehouseID, @NumUnits);
+			IF EXISTS (SELECT * FROM Projeto.Artigo WHERE Artigo.Codigo=@Code)
+			BEGIN
+				INSERT Projeto.Artigo_Armazem(Codigo, IDArmazem, QuantArtigos) 
+				VALUES (@Code, @WarehouseID, @NumUnits);
+			END
+			ELSE
+			BEGIN
+				INSERT Projeto.Artigo(Codigo, Preco, Nome, Categoria) 
+				VALUES (@Code, @Price, @Name, @Category);
+				INSERT Projeto.Artigo_Armazem(Codigo, IDArmazem, QuantArtigos) 
+				VALUES (@Code, @WarehouseID, @NumUnits);
+			END
 		END
-		ELSE	
-			INSERT Projeto.Artigo(Codigo, Preco, Nome, Categoria) 
-			VALUES (@Code, @Price, @Name, @Category);
-			INSERT Projeto.Artigo_Armazem(Codigo, IDArmazem, QuantArtigos) 
-			VALUES (@Code, @WarehouseID, @NumUnits);
 	END
 	ELSE
+	BEGIN
 		RAISERROR ('The warehouse number %d does not exists', 14, 1, @WarehouseID);
+	END
 GO
 --Test Procedure
 SELECT * FROM Projeto.Artigo;
-SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=110;
-EXEC Projeto.Add_warehouseProduct 100002, 1.50, 'Touca natação Reebok', 'Acessório', 110, 1;
+SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=160;
+EXEC Projeto.Add_warehouseProduct 100001, 1.0, 'Meias curtas Reebok', 'Vestuário', 160, 15;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Add_newClient (@NIF INT, @Address VARCHAR(40), @Name VARCHAR(20), @Phone BIGINT) 
@@ -124,53 +136,54 @@ GO
 EXEC Projeto.Add_newClient 100000000, 'Rua da Frente, Maia', 'Carlos Alberto', 911111111;
 ------------------------------------------------------------
 GO
-CREATE PROCEDURE Projeto.BuyProduct (@PurchaseID INT, @Date Date, @Value DECIMAL(5,2), @NIF BIGINT, @WorkersCode INT, @StoreNum INT, 
-								     @Code INT, @Quant INT)
+CREATE PROCEDURE Projeto.BuyProduct (@PurchaseID INT, @Date Date, @Value DECIMAL(5,2), @NIF BIGINT, @WorkersCode INT, @Store INT, 
+								     @Code INT, @Units INT)
 AS
 	IF EXISTS(SELECT * FROM Projeto.Cliente WHERE Cliente.NIF=@NIF)
 	BEGIN
 		IF EXISTS(SELECT * FROM Projeto.Funcionario WHERE Funcionario.NumFunc=@WorkersCode)
 		BEGIN
-			DECLARE @Units INT;
-			SELECT @Units=Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@StoreNum;
-			PRINT 'Units: ' + STR(@Units);
-			IF(@Quant > @Units)
+			DECLARE @Quant INT;
+			SELECT @Quant = Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
+			IF (@Quant > @Units)
 			BEGIN
-				RAISERROR ('There is no more units of this product! Number of units: %d', 14, 1, @Units);
+				UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@Quant-@Units WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
+				INSERT Projeto.Compra(NumCompra, Data, Montante, NIF, NumFunc)
+				VALUES (@PurchaseID, @Date, @Value, @NIF, @WorkersCode);
+				INSERT Projeto.Artigo_Comprado(Codigo, NumCompra, QuantArtigos)
+				VALUES (@Code, @PurchaseID, @Units);
 			END
-			ELSE
-				IF (@Units = 1 AND @Quant = 1)
-				BEGIN
-					DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@StoreNum;
-					INSERT Projeto.Compra (NumCompra, Data, Montante, NIF, NumFunc)
-					VALUES (@PurchaseID, @Date, @Value, @NIF, @WorkersCode);
-					INSERT Projeto.Artigo_Comprado (Codigo, NumCompra, QuantArtigos)
-					VALUES (@Code, @PurchaseID, @Quant);
-				END
-				ELSE
-					PRINT 'Quant: ' +STR(@Quant);
-					DECLARE @NewQuant INT = @Units - @Quant;
-					PRINT 'NewQuant: ' +STR(@NewQuant);
-					UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@NewQuant WHERE Artigo_Loja.Codigo=@Code 
-																					  AND Artigo_Loja.NumLoja=@StoreNum;
-					INSERT Projeto.Compra (NumCompra, Data, Montante, NIF, NumFunc)
-					VALUES (@PurchaseID, @Date, @Value, @NIF, @WorkersCode);
-					INSERT Projeto.Artigo_Comprado (Codigo, NumCompra, QuantArtigos)
-					VALUES (@Code, @PurchaseID, @Quant);
+			IF (@Quant - @Units = 0)
+			BEGIN
+				DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@Store AND Artigo_Loja.Codigo=@Code;
+				INSERT Projeto.Compra(NumCompra, Data, Montante, NIF, NumFunc)
+				VALUES (@PurchaseID, @Date, @Value, @NIF, @WorkersCode);
+				INSERT Projeto.Artigo_Comprado(Codigo, NumCompra, QuantArtigos)
+				VALUES (@Code, @PurchaseID, @Units);
+			END
+			IF (@Units > @Quant)
+			BEGIN
+				RAISERROR ('Theres not enough units to complete the purchase', 14, 1);
+			END
 		END
 		ELSE
+		BEGIN
 			RAISERROR ('The worker with the code %d does not exists', 14, 1, @WorkersCode);
+		END
 	END
 	ELSE
+	BEGIN
 		RAISERROR ('The client with NIF %d does not exists', 14, 1, @NIF);
+	END
 GO
 --Test Procedure
-EXEC Projeto.BuyProduct 39216, '2020-05-30', 1.99, 123456789, 132996, 1, 103568, 1;
+EXEC Projeto.BuyProduct 39230, '2020-06-04', 39.99, 123456789, 132996, 1, 101561, 1;
 SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
                            FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
                            JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
                            WHERE Loja.NumLoja = 1
 SELECT * FROM Projeto.Artigo_Comprado;
+SELECT * FROM Projeto.Compra;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.ReturnProduct (@ReturnID INT, @Date Date, @Value DECIMAL(5,2), @NIF BIGINT, @WorkersCode INT, @StoreNum INT, 
@@ -187,34 +200,45 @@ AS
 					DECLARE @Units INT;
 					SELECT @Units=Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code 
 																					  AND Artigo_Loja.NumLoja=@StoreNum;
-					DECLARE @NewQuant INT = @Units + @Quant;
-					UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@NewQuant WHERE Artigo_Loja.Codigo=@Code 
-																						AND Artigo_Loja.NumLoja=@StoreNum;
+					UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@Units + @Quant WHERE Artigo_Loja.Codigo=@Code 
+																							  AND Artigo_Loja.NumLoja=@StoreNum;
 					INSERT Projeto.Devolucao(IDDevolucao, Data, Montante, NIF, NumFunc)
 					VALUES (@ReturnID, @Date, @Value, @NIF, @WorkersCode);
 					INSERT Projeto.Artigo_Devolvido(Codigo, IDDevolucao, QuantArtigos)
 					VALUES (@Code, @ReturnID, @Quant);
 				END
 				ELSE
+				BEGIN
 					INSERT Projeto.Artigo_Loja(Codigo, NumLoja, QuantArtigos)
 					VALUES (@Code, @StoreNum, @Quant);
 					INSERT Projeto.Devolucao(IDDevolucao, Data, Montante, NIF, NumFunc)
 					VALUES (@ReturnID, @Date, @Value, @NIF, @WorkersCode);
 					INSERT Projeto.Artigo_Devolvido(Codigo, IDDevolucao, QuantArtigos)
 					VALUES (@Code, @ReturnID, @Quant);
+				END
 			END
 			ELSE
+			BEGIN
 				RAISERROR ('The product with the code %d does not exists', 14, 1, @Code);
+			END
 		END
 		ELSE
+		BEGIN
 			RAISERROR ('The worker with the code %d does not exists', 14, 1, @WorkersCode);
+		END
 	END
 	ELSE
+	BEGIN
 		RAISERROR ('The client with NIF %d does not exists', 14, 1, @NIF);
+	END
 GO
 --Test Procedure
-EXEC Projeto.ReturnProduct 30061, '2020-02-01', 4.99, 123456789, 123091, 1, 172630, 1;
+EXEC Projeto.ReturnProduct 30067, '2020-01-01', 10.00, 123456789, 123091, 1, 100004, 1;
 SELECT * FROM Projeto.Devolucao;
+SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
+                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
+                           WHERE Loja.NumLoja = 1
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.ProductsFromWarehouseToStore (@WarehouseID INT, @Code INT, @StoreNum INT, @Units INT)
@@ -435,17 +459,41 @@ GO
 EXEC Projeto.Remove_Store 4;
 ----------------------------------------------------------
 GO
-CREATE PROCEDURE Projeto.Remove_storeProduct (@StoreNum INT, @Code INT) 
+CREATE PROCEDURE Projeto.Remove_storeProduct (@StoreNum INT, @Code INT, @Units INT) 
 AS
-	IF EXISTS (SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum AND Artigo_Loja.Codigo=@Code)
+	IF EXISTS(SELECT * FROM Projeto.Loja WHERE Loja.NumLoja=@StoreNum)
 	BEGIN
-		DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum AND Artigo_Loja.Codigo=@Code;
+		IF EXISTS (SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum AND Artigo_Loja.Codigo=@Code)
+		BEGIN
+			DECLARE @Quant INT;
+			SELECT @Quant = Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum AND Artigo_Loja.Codigo=@Code;
+			IF(@Units < @Quant)
+			BEGIN
+				UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@Quant-@Units WHERE Artigo_Loja.NumLoja=@StoreNum AND Artigo_Loja.Codigo=@Code;
+			END
+			IF(@Quant - @Units = 0)
+			BEGIN
+				DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum AND Artigo_Loja.Codigo=@Code;
+			END
+			IF(@Units > @Quant)
+			BEGIN
+				RAISERROR ('Theres not %d units of the product %d in the store %d', 14, 1, @Units, @Code, @StoreNum);
+			END
+		END
+		ELSE
+		BEGIN
+			RAISERROR ('The product %d in the store number %d does not exists', 14, 1, @Code, @StoreNum);
+		END
 	END
 	ELSE
-		RAISERROR ('The product %d in the store number %d does not exists', 14, 1, @Code, @StoreNum);
+	BEGIN
+		RAISERROR ('The store number %d does not exists', 14, 1, @StoreNum);
+	END
 GO
 --Test Procedure
-EXEC Projeto.Remove_storeProduct 1, 100001;	
+EXEC Projeto.Remove_storeProduct 1, 100003, 2;	
+SELECT * FROM Projeto.Artigo;
+SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=1;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_Warehouse (@WarehouseID INT) 
@@ -464,17 +512,42 @@ GO
 EXEC Projeto.Remove_Warehouse 160; 
 ----------------------------------------------------------
 GO
-CREATE PROCEDURE Projeto.Remove_WarehouseProduct (@WarehouseID INT, @Code INT) 
+CREATE PROCEDURE Projeto.Remove_WarehouseProduct (@WarehouseID INT, @Code INT, @Units INT) 
 AS
-	IF EXISTS (SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@WarehouseID AND Artigo_Armazem.Codigo=@Code)
+	IF EXISTS(SELECT * FROM Projeto.Armazem WHERE Armazem.IDArmazem=@WarehouseID)
 	BEGIN
-		DELETE FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@WarehouseID AND Artigo_Armazem.Codigo=@Code;
+		IF EXISTS (SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@WarehouseID AND Artigo_Armazem.Codigo=@Code)
+		BEGIN
+			DECLARE @Quant INT;
+			SELECT @Quant = Artigo_Armazem.QuantArtigos FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@WarehouseID 
+																					  AND Artigo_Armazem.Codigo=@Code;
+			IF(@Units < @Quant)
+			BEGIN
+				UPDATE Projeto.Artigo_Armazem SET Artigo_Armazem.QuantArtigos=@Quant-@Units WHERE Artigo_Armazem.IDArmazem=@WarehouseID 
+																							  AND Artigo_Armazem.Codigo=@Code;
+			END
+			IF(@Quant - @Units = 0)
+			BEGIN
+				DELETE FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@WarehouseID AND Artigo_Armazem.Codigo=@Code;
+			END
+			IF(@Units > @Quant)
+			BEGIN
+				RAISERROR ('Theres not %d units of the product %d in the warehouse %d', 14, 1, @Units, @Code, @WarehouseID);
+			END
+		END
+		ELSE
+		BEGIN
+			RAISERROR ('The product %d in the warehouse number %d does not exists', 14, 1, @Code, @WarehouseID);
+		END
 	END
 	ELSE
-		RAISERROR ('The product %d in the warehouse number %d does not exists', 14, 1, @Code, @WarehouseID);
+	BEGIN
+		RAISERROR ('The warehouse number %d does not exists', 14, 1, @WarehouseID);
+	END
 GO
 --Test Procedure
-EXEC Projeto.Remove_WarehouseProduct 110, 100002;
+SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=160;
+EXEC Projeto.Remove_WarehouseProduct 160, 100001, 14;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_Client (@NIF BIGINT) 

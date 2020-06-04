@@ -1,6 +1,8 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class Stores
+    Dim toStore As Boolean
+    Dim toWarehouse As Boolean
     Dim CMD As SqlCommand
     Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
                                                 "Initial Catalog = LojaDesporto; Integrated Security = true;")
@@ -35,9 +37,9 @@ Public Class Stores
 
     'Add Product Button (Warehouse)
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        Dim addProduct As New AddProduct
-        addProduct.StartPosition = FormStartPosition.CenterScreen
-        addProduct.ShowDialog()
+        Dim addWarehouseProduct As New addWarehouseProduct
+        addWarehouseProduct.StartPosition = FormStartPosition.CenterScreen
+        addWarehouseProduct.ShowDialog()
     End Sub
 
     'Add Warehouse Button
@@ -56,9 +58,9 @@ Public Class Stores
 
     'Remove Product Button (Warehouse)
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Dim removeProduct As New RemoveProduct
-        removeProduct.StartPosition = FormStartPosition.CenterScreen
-        removeProduct.ShowDialog()
+        Dim removeWarehouseProduct As New RemoveWarehouseProduct
+        removeWarehouseProduct.StartPosition = FormStartPosition.CenterScreen
+        removeWarehouseProduct.ShowDialog()
     End Sub
 
     'Add to the Store Button
@@ -445,6 +447,7 @@ Public Class Stores
         CN.Open()
         CMD.ExecuteScalar()
         CN.Close()
+        loadStoresProducts(numStore)
     End Sub
 
     'Return Product
@@ -659,5 +662,105 @@ Public Class Stores
         If CN.State = ConnectionState.Open Then
             CN.Close()
         End If
+    End Sub
+
+    'To add a product to the selected store
+    Public Sub addProduct(ByVal name As String, ByVal price As Double, ByVal code As Integer, ByVal type As String, ByVal units As Integer)
+        Dim index As Integer = StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Add_storeProduct @Code, @Price, @Name, @Type, @Store, @Units"
+        CMD.Parameters.Add("@Code", SqlDbType.Int)
+        CMD.Parameters.Add("@Price", SqlDbType.Decimal)
+        CMD.Parameters.Add("@Name", SqlDbType.VarChar, 40)
+        CMD.Parameters.Add("@Type", SqlDbType.VarChar, 20)
+        CMD.Parameters.Add("@Store", SqlDbType.Int)
+        CMD.Parameters.Add("@Units", SqlDbType.Int)
+        CMD.Parameters("@Code").Value = code
+        CMD.Parameters("@Price").Value = price
+        CMD.Parameters("@Name").Value = name
+        CMD.Parameters("@Type").Value = type
+        CMD.Parameters("@Store").Value = numStore
+        CMD.Parameters("@Units").Value = units
+        CN.Open()
+        CMD.ExecuteScalar()
+        CN.Close()
+        loadStoresProducts(numStore)
+    End Sub
+
+    'To remove a Store Product
+    Public Sub removeProduct(ByVal units As Integer)
+        Dim index As Integer = StoresDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+        Dim numStore As Integer = selectedRow.Cells(0).Value
+
+        Dim code As Integer = TextBoxCode.Text
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Remove_storeProduct @Store, @Code, @Units"
+        CMD.Parameters.Add("@Store", SqlDbType.Int)
+        CMD.Parameters.Add("@Code", SqlDbType.Int)
+        CMD.Parameters.Add("@Units", SqlDbType.Int)
+        CMD.Parameters("@Store").Value = numStore
+        CMD.Parameters("@Code").Value = code
+        CMD.Parameters("@Units").Value = units
+        CN.Open()
+        CMD.ExecuteScalar()
+        CN.Close()
+        loadStoresProducts(numStore)
+    End Sub
+
+    'To add a product to the selected warehouse
+    Public Sub addWarehouseProduct(ByVal name As String, ByVal price As Double, ByVal code As Integer, ByVal type As String, ByVal units As Integer)
+        Dim index As Integer = WarehousesDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = WarehousesDataGridView.Rows(index)
+        Dim warehouseID As Integer = selectedRow.Cells(0).Value
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Add_warehouseProduct @Code, @Price, @Name, @Type, @Warehouse, @Units"
+        CMD.Parameters.Add("@Code", SqlDbType.Int)
+        CMD.Parameters.Add("@Price", SqlDbType.Decimal)
+        CMD.Parameters.Add("@Name", SqlDbType.VarChar, 40)
+        CMD.Parameters.Add("@Type", SqlDbType.VarChar, 20)
+        CMD.Parameters.Add("@Warehouse", SqlDbType.Int)
+        CMD.Parameters.Add("@Units", SqlDbType.Int)
+        CMD.Parameters("@Code").Value = code
+        CMD.Parameters("@Price").Value = price
+        CMD.Parameters("@Name").Value = name
+        CMD.Parameters("@Type").Value = type
+        CMD.Parameters("@Warehouse").Value = warehouseID
+        CMD.Parameters("@Units").Value = units
+        CN.Open()
+        CMD.ExecuteScalar()
+        CN.Close()
+        loadWarehousesProducts(warehouseID)
+    End Sub
+
+    'To remove a Warehouse Product
+    Public Sub removeWarehouseProduct(ByVal units As Integer)
+        Dim index As Integer = WarehousesDataGridView.CurrentRow.Index
+        Dim selectedRow As DataGridViewRow = WarehousesDataGridView.Rows(index)
+        Dim warehouseID As Integer = selectedRow.Cells(0).Value
+
+        Dim code As Integer = TextBoxCode2.Text
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Remove_WarehouseProduct @Warehouse, @Code, @Units"
+        CMD.Parameters.Add("@Warehouse", SqlDbType.Int)
+        CMD.Parameters.Add("@Code", SqlDbType.Int)
+        CMD.Parameters.Add("@Units", SqlDbType.Int)
+        CMD.Parameters("@Warehouse").Value = warehouseID
+        CMD.Parameters("@Code").Value = code
+        CMD.Parameters("@Units").Value = units
+        CN.Open()
+        CMD.ExecuteScalar()
+        CN.Close()
+        loadWarehousesProducts(warehouseID)
     End Sub
 End Class

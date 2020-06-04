@@ -28,7 +28,6 @@ Partial Class ReturnProduct
         Me.Label9 = New System.Windows.Forms.Label()
         Me.WorkersNameTextBox = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.CodeTextBox = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ClientsNameTextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -39,6 +38,7 @@ Partial Class ReturnProduct
         Me.Label6 = New System.Windows.Forms.Label()
         Me.ProductsNameTextBox = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.CodeComboBox = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'Button2
@@ -91,13 +91,6 @@ Partial Class ReturnProduct
         Me.Label4.Size = New System.Drawing.Size(80, 13)
         Me.Label4.TabIndex = 74
         Me.Label4.Text = "Worker's Name"
-        '
-        'CodeTextBox
-        '
-        Me.CodeTextBox.Location = New System.Drawing.Point(11, 105)
-        Me.CodeTextBox.Name = "CodeTextBox"
-        Me.CodeTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.CodeTextBox.TabIndex = 73
         '
         'Label5
         '
@@ -185,11 +178,20 @@ Partial Class ReturnProduct
         Me.Label7.TabIndex = 82
         Me.Label7.Text = "Product's Name"
         '
+        'CodeComboBox
+        '
+        Me.CodeComboBox.FormattingEnabled = True
+        Me.CodeComboBox.Location = New System.Drawing.Point(11, 104)
+        Me.CodeComboBox.Name = "CodeComboBox"
+        Me.CodeComboBox.Size = New System.Drawing.Size(101, 21)
+        Me.CodeComboBox.TabIndex = 84
+        '
         'ReturnProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(267, 224)
+        Me.Controls.Add(Me.CodeComboBox)
         Me.Controls.Add(Me.ProductsNameTextBox)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.ProductTextBox)
@@ -200,7 +202,6 @@ Partial Class ReturnProduct
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.WorkersNameTextBox)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.CodeTextBox)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.ClientsNameTextBox)
         Me.Controls.Add(Me.Label3)
@@ -220,7 +221,6 @@ Partial Class ReturnProduct
     Friend WithEvents Label9 As Label
     Friend WithEvents WorkersNameTextBox As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents CodeTextBox As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents ClientsNameTextBox As TextBox
     Friend WithEvents Label3 As Label
@@ -231,4 +231,5 @@ Partial Class ReturnProduct
     Friend WithEvents Label6 As Label
     Friend WithEvents ProductsNameTextBox As TextBox
     Friend WithEvents Label7 As Label
+    Friend WithEvents CodeComboBox As ComboBox
 End Class

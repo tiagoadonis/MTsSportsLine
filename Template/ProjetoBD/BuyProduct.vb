@@ -9,7 +9,6 @@ Public Class BuyProduct
         NIFTextBox.Text = ""
         ClientsNameTextBox.Text = ""
         WorkersNameTextBox.Text = ""
-        'CodeTextBox.Text = ""
         UnitsTextBox.Text = ""
     End Sub
 
@@ -25,11 +24,6 @@ Public Class BuyProduct
         End If
     End Sub
 
-    'Worker's Code TextBox (KeyPressed)
-    'Private Sub TextBox4_KeyPress(sender As Object, e As EventArgs) Handles CodeTextBox.KeyPress
-    '    NumberOnly(e)
-    'End Sub
-
     'Nº Units TextBox (KeyPressed)
     Private Sub TextBox5_KeyPress(sender As Object, e As EventArgs) Handles UnitsTextBox.KeyPress
         NumberOnly(e)
@@ -39,13 +33,13 @@ Public Class BuyProduct
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If NIFTextBox.Text.Length <> 9 Then
             MsgBox("Client's NIF must have 9 numbers!", MsgBoxStyle.Information, "ERROR")
-            ' ElseIf CodeTextBox.Text.Length <> 6 Then
-            '    MsgBox("Worker's code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         ElseIf UnitsTextBox.Text = "" Then
             MsgBox("Nº units is needed!", MsgBoxStyle.Information, "ERROR")
         Else
             Dim nif As Integer = NIFTextBox.Text
-            Dim code As Integer = CodeComboBox.SelectedItem 'CHECK THIS
+            Dim drv As DataRowView = CodeComboBox.SelectedItem
+            Dim tmp As String = drv.Item("NumFunc").ToString()
+            Dim code As Int32 = Convert.ToInt32(tmp)
             Dim units As Integer = UnitsTextBox.Text
             Stores.BuyProduct(nif, code, units)
             Me.Close()
@@ -69,9 +63,7 @@ Public Class BuyProduct
         CMD.Parameters.Add("@NIF", SqlDbType.Int)
         CMD.Parameters("@NIF").Value = nif
         CN.Open()
-
         Dim clientName As Object = CMD.ExecuteScalar()
-
         If clientName Is Nothing Then
             MsgBox("The client's NIF inserted does not exist!", MsgBoxStyle.Information, "ERROR")
         Else
@@ -80,39 +72,7 @@ Public Class BuyProduct
         CN.Close()
     End Sub
 
-    'Worker's code TextBox (TextChanged)
-    ' Private Sub CodeTextBox_TextChanged(sender As Object, e As EventArgs)
-    '    If (CodeTextBox.Text.Length = 6) Then
-    '       getWorker()
-    '  Else
-    '     WorkersNameTextBox.Text = ""
-    ' End If
-    'End Sub
-
-    'Private Sub getWorker()
-    '    Dim index As Integer = Stores.StoresDataGridView.CurrentRow.Index
-    '    Dim selectedRow As DataGridViewRow = Stores.StoresDataGridView.Rows(index)
-    '    Dim numStore As Integer = selectedRow.Cells(0).Value
-    '    Dim code As Object = CodeComboBox.SelectedText
-
-    '    MsgBox("Code: " + code.ToString, MsgBoxStyle.Information, "INFO")
-
-    '    CMD = New SqlCommand()
-    '    CMD.Connection = CN
-    '    CMD.CommandText = "SELECT Funcionario.Nome FROM Projeto.Funcionario WHERE Funcionario.NumFunc = @Code
-    '                      AND Funcionario.NumLoja = @Store"
-    '    CMD.Parameters.Add("@Code", SqlDbType.Int)
-    '    CMD.Parameters.Add("@Store", SqlDbType.Int)
-    '    CMD.Parameters("@Code").Value = code
-    '    CMD.Parameters("@Store").Value = numStore
-    '    CN.Open()
-
-    '    Dim workersName As Object = CMD.ExecuteScalar()
-    '    WorkersNameTextBox.Text = workersName.ToString()
-
-    '    CN.Close()
-    'End Sub
-
+    'Form Loader
     Private Sub BuyProduct_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim index As Integer = Stores.StoresDataGridView.CurrentRow.Index
         Dim selectedRow As DataGridViewRow = Stores.StoresDataGridView.Rows(index)
@@ -136,29 +96,29 @@ Public Class BuyProduct
         CN.Close()
     End Sub
 
+    'Get Worker's name
     Private Sub CodeComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CodeComboBox.SelectedIndexChanged
 
         CN.Close()
         Dim index As Integer = Stores.StoresDataGridView.CurrentRow.Index
         Dim selectedRow As DataGridViewRow = Stores.StoresDataGridView.Rows(index)
         Dim numStore As Integer = selectedRow.Cells(0).Value
-        Dim code As Integer = CType(CodeComboBox.SelectedValue.ToString(), Integer)
 
-        MsgBox("Code: " + code.ToString, MsgBoxStyle.Information, "INFO")
+        Dim drv As DataRowView = CodeComboBox.SelectedItem
+        Dim tmp As String = drv.Item("NumFunc").ToString()
+        Dim code As Int32 = Convert.ToInt32(tmp)
 
-        'CMD = New SqlCommand()
-        'CMD.Connection = CN
-        'CMD.CommandText = "SELECT Funcionario.Nome FROM Projeto.Funcionario WHERE Funcionario.NumFunc = @Code
-        '                  AND Funcionario.NumLoja = @Store"
-        'CMD.Parameters.Add("@Code", SqlDbType.Int)
-        'CMD.Parameters.Add("@Store", SqlDbType.Int)
-        'CMD.Parameters("@Code").Value = code
-        'CMD.Parameters("@Store").Value = numStore
-        'CN.Open()
-
-        'Dim workersName As Object = CMD.ExecuteScalar()
-        'WorkersNameTextBox.Text = workersName.ToString()
-
-        'CN.Close()
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Funcionario.Nome FROM Projeto.Funcionario WHERE Funcionario.NumFunc = @Code
+                          AND Funcionario.NumLoja = @Store"
+        CMD.Parameters.Add("@Code", SqlDbType.Int)
+        CMD.Parameters.Add("@Store", SqlDbType.Int)
+        CMD.Parameters("@Code").Value = code
+        CMD.Parameters("@Store").Value = numStore
+        CN.Open()
+        Dim workersName As Object = CMD.ExecuteScalar()
+        WorkersNameTextBox.Text = workersName.ToString()
+        CN.Close()
     End Sub
 End Class

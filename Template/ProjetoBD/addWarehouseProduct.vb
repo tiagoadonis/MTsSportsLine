@@ -1,4 +1,4 @@
-﻿Public Class AddProduct
+﻿Public Class addWarehouseProduct
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         CodeTextBox.Text = ""
         NameTextBox.Text = ""
@@ -75,8 +75,12 @@
             Dim code As Integer = CodeTextBox.Text
             Dim type As String = TypeTextBox.Text.ToString
             Dim units As Integer = UnitsTextBox.Text.ToString
-            Stores.addProduct(name, price, code, type, units)
-            Me.Close()
+            If (units + Stores.TextBoxStorageOccupied.Text > Stores.TextBoxTotalStorage.Text) Then
+                MsgBox("There's not enough storage on the warehouse!", MsgBoxStyle.Information, "ERROR")
+            Else
+                Stores.addWarehouseProduct(name, price, code, type, units)
+                Me.Close()
+            End If
         End If
     End Sub
 End Class
