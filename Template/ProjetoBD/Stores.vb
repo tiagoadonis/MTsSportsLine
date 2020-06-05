@@ -78,9 +78,14 @@ Public Class Stores
 
     'Add to the Store Button
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Dim addToTheStore As New addToStore
-        addToTheStore.StartPosition = FormStartPosition.CenterScreen
-        addToTheStore.ShowDialog()
+        Dim code As String = TextBoxCode2.Text.ToString
+        If (code.Equals("")) Then
+            MsgBox("Please select a product to move to the store!", MsgBoxStyle.Information, "ERROR")
+        Else
+            Dim addToTheStore As New addToStore
+            addToTheStore.StartPosition = FormStartPosition.CenterScreen
+            addToTheStore.ShowDialog()
+        End If
     End Sub
 
     'Load Stores DataGridView
