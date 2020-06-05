@@ -70,10 +70,18 @@ Public Class Clients
 
         With ClientsDataGridView
             .DataSource = table
-            .Columns(0).Width = 65
-            .Columns(1).Width = 100
-            .Columns(2).Width = 119
-            .Columns(3).Width = 65
+            Dim scroll As VScrollBar = ClientsDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (ClientsDataGridView.Size.Width - 20) * 0.18
+                .Columns(1).Width = (ClientsDataGridView.Size.Width - 20) * 0.29
+                .Columns(2).Width = (ClientsDataGridView.Size.Width - 20) * 0.31
+                .Columns(3).Width = (ClientsDataGridView.Size.Width - 20) * 0.175
+            Else
+                .Columns(0).Width = (ClientsDataGridView.Size.Width - 3) * 0.18
+                .Columns(1).Width = (ClientsDataGridView.Size.Width - 3) * 0.29
+                .Columns(2).Width = (ClientsDataGridView.Size.Width - 3) * 0.31
+                .Columns(3).Width = (ClientsDataGridView.Size.Width - 3) * 0.175
+            End If
             .ClearSelection()
         End With
     End Sub
@@ -96,10 +104,18 @@ Public Class Clients
 
         With ClientsDataGridView
             .DataSource = table
-            .Columns(0).Width = 70
-            .Columns(1).Width = 90
-            .Columns(2).Width = 136
-            .Columns(3).Width = 70
+            Dim scroll As VScrollBar = ClientsDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (ClientsDataGridView.Size.Width - 20) * 0.2
+                .Columns(1).Width = (ClientsDataGridView.Size.Width - 20) * 0.29
+                .Columns(2).Width = (ClientsDataGridView.Size.Width - 20) * 0.31
+                .Columns(3).Width = (ClientsDataGridView.Size.Width - 20) * 0.2
+            Else
+                .Columns(0).Width = (ClientsDataGridView.Size.Width - 3) * 0.2
+                .Columns(1).Width = (ClientsDataGridView.Size.Width - 3) * 0.29
+                .Columns(2).Width = (ClientsDataGridView.Size.Width - 3) * 0.31
+                .Columns(3).Width = (ClientsDataGridView.Size.Width - 3) * 0.2
+            End If
         End With
         CN.Close()
     End Sub
@@ -130,11 +146,20 @@ Public Class Clients
 
             With PurchasedProductsGridView
                 .DataSource = ds.Tables(0)
-                .Columns(0).Width = 69
-                .Columns(1).Width = 193
-                .Columns(2).Width = 64
-                .Columns(3).Width = 83
-                .Columns(4).Width = 93
+                Dim scroll As VScrollBar = PurchasedProductsGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+                If (scroll.Visible) Then
+                    .Columns(0).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.15
+                    .Columns(1).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.35
+                    .Columns(2).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.1
+                    .Columns(3).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.2
+                    .Columns(4).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.2
+                Else
+                    .Columns(0).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.15
+                    .Columns(1).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.35
+                    .Columns(2).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.1
+                    .Columns(3).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.2
+                    .Columns(4).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.2
+                End If
                 .ClearSelection()
             End With
             CN.Close()
@@ -154,11 +179,20 @@ Public Class Clients
 
             With ReturnedProdcutsGridView
                 .DataSource = ds2.Tables(0)
-                .Columns(0).Width = 69
-                .Columns(1).Width = 193
-                .Columns(2).Width = 64
-                .Columns(3).Width = 83
-                .Columns(4).Width = 93
+                Dim scroll As VScrollBar = ReturnedProdcutsGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+                If (scroll.Visible) Then
+                    .Columns(0).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.15
+                    .Columns(1).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.35
+                    .Columns(2).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.1
+                    .Columns(3).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.2
+                    .Columns(4).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.2
+                Else
+                    .Columns(0).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.15
+                    .Columns(1).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.35
+                    .Columns(2).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.1
+                    .Columns(3).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.2
+                    .Columns(4).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.2
+                End If
                 .ClearSelection()
             End With
 

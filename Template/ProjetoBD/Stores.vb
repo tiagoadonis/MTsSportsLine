@@ -78,8 +78,14 @@ Public Class Stores
 
         With StoresDataGridView
             .DataSource = table
-            .Columns(0).Width = 80
-            .Columns(1).Width = 196
+            Dim scroll As VScrollBar = StoresDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (StoresDataGridView.Size.Width - 20) * 0.2
+                .Columns(1).Width = (StoresDataGridView.Size.Width - 20) * 0.8
+            Else
+                .Columns(0).Width = (StoresDataGridView.Size.Width - 3) * 0.2
+                .Columns(1).Width = (StoresDataGridView.Size.Width - 3) * 0.8
+            End If
             .ClearSelection()
         End With
     End Sub
@@ -92,7 +98,7 @@ Public Class Stores
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Name, Price, Units, NumLoja FROM FilterProducts
+        CMD.CommandText = "SELECT Name, Price, Units FROM FilterProducts
                            WHERE Name like '%' + @search + '%' AND NumLoja like '%' + @store + '%'"
         CMD.Parameters.Add("@search", SqlDbType.VarChar, 40)
         CMD.Parameters("@search").Value = search
@@ -105,10 +111,16 @@ Public Class Stores
 
         With ProductsDataGridView
             .DataSource = table
-            .Columns(0).Width = 160
-            .Columns(1).Width = 42
-            .Columns(2).Width = 37
-            .Columns(3).Width = 37
+            Dim scroll As VScrollBar = ProductsDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (ProductsDataGridView.Size.Width - 20) * 0.69
+                .Columns(1).Width = (ProductsDataGridView.Size.Width - 20) * 0.16
+                .Columns(2).Width = (ProductsDataGridView.Size.Width - 20) * 0.15
+            Else
+                .Columns(0).Width = (ProductsDataGridView.Size.Width - 3) * 0.69
+                .Columns(1).Width = (ProductsDataGridView.Size.Width - 3) * 0.16
+                .Columns(2).Width = (ProductsDataGridView.Size.Width - 3) * 0.15
+            End If
             .ClearSelection()
         End With
         CN.Close()
@@ -122,7 +134,7 @@ Public Class Stores
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "SELECT Name, Price, Units, Armazem FROM FilterWarehouseProducts
+        CMD.CommandText = "SELECT Name, Price, Units FROM FilterWarehouseProducts
                            WHERE Name like '%' + @search + '%' AND Armazem like '%' + @armazem + '%'"
         CMD.Parameters.Add("@search", SqlDbType.VarChar, 40)
         CMD.Parameters("@search").Value = search
@@ -135,10 +147,16 @@ Public Class Stores
 
         With WarehousesProductsDataGridView
             .DataSource = table
-            .Columns(0).Width = 160
-            .Columns(1).Width = 42
-            .Columns(2).Width = 37
-            .Columns(3).Width = 37
+            Dim scroll As VScrollBar = WarehousesProductsDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (WarehousesProductsDataGridView.Size.Width - 20) * 0.69
+                .Columns(1).Width = (WarehousesProductsDataGridView.Size.Width - 20) * 0.16
+                .Columns(2).Width = (WarehousesProductsDataGridView.Size.Width - 20) * 0.15
+            Else
+                .Columns(0).Width = (WarehousesProductsDataGridView.Size.Width - 3) * 0.69
+                .Columns(1).Width = (WarehousesProductsDataGridView.Size.Width - 3) * 0.16
+                .Columns(2).Width = (WarehousesProductsDataGridView.Size.Width - 3) * 0.15
+            End If
             .ClearSelection()
         End With
         CN.Close()

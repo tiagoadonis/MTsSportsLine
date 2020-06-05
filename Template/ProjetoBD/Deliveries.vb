@@ -16,9 +16,16 @@ Public Class Deliveries
 
         With DeliveriesDataGridView
             .DataSource = table
-            .Columns(0).Width = 90
-            .Columns(1).Width = 100
-            .Columns(2).Width = 220
+            Dim scroll As VScrollBar = DeliveriesDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.2
+                .Columns(1).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.2
+                .Columns(2).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.6
+            Else
+                .Columns(0).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.2
+                .Columns(1).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.2
+                .Columns(2).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.6
+            End If
         End With
     End Sub
 
@@ -67,9 +74,16 @@ Public Class Deliveries
 
         With DeliveriesDataGridView
             .DataSource = table2
-            .Columns(0).Width = 100
-            .Columns(1).Width = 110
-            .Columns(2).Width = 217
+            Dim scroll As VScrollBar = DeliveriesDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.2
+                .Columns(1).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.2
+                .Columns(2).Width = (DeliveriesDataGridView.Size.Width - 20) * 0.6
+            Else
+                .Columns(0).Width = (DeliveriesDataGridView.Size.Width - 3) * 0.2
+                .Columns(1).Width = (DeliveriesDataGridView.Size.Width - 3) * 0.2
+                .Columns(2).Width = (DeliveriesDataGridView.Size.Width - 3) * 0.6
+            End If
         End With
         CN.Close()
 
@@ -80,42 +94,44 @@ Public Class Deliveries
     'Deliveries DataGridView
     Private Sub DataGridview1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DeliveriesDataGridView.CellClick
         Dim index As Integer = e.RowIndex
-        Dim selectedRow As DataGridViewRow = DeliveriesDataGridView.Rows(index)
-        Dim ID As String = selectedRow.Cells(0).Value.ToString
+        If (index = -1) Then
+        Else
+            Dim selectedRow As DataGridViewRow = DeliveriesDataGridView.Rows(index)
+            Dim ID As String = selectedRow.Cells(0).Value.ToString
 
-        Button2.Enabled = True
-        Button3.Enabled = True
-        TextBoxID.Text = selectedRow.Cells(0).Value.ToString
-        Dim tmp As Date = selectedRow.Cells(1).Value
-        TextBoxDate.Text = tmp.ToString("dd/MM/yyyy")
-        TextBoxDest.Text = selectedRow.Cells(2).Value.ToString
-        Label3.Enabled = True
+            Button2.Enabled = True
+            Button3.Enabled = True
+            TextBoxID.Text = selectedRow.Cells(0).Value.ToString
+            Dim tmp As Date = selectedRow.Cells(1).Value
+            TextBoxDate.Text = tmp.ToString("dd/MM/yyyy")
+            TextBoxDest.Text = selectedRow.Cells(2).Value.ToString
+            Label3.Enabled = True
 
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo_Transporte.Codigo FROM Projeto.Artigo_Transporte Where Artigo_Transporte.IDTransporte = @id"
-        CMD.Parameters.Add("@id", SqlDbType.VarChar, 40)
-        CMD.Parameters("@id").Value = ID
-        CN.Open()
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT Artigo_Transporte.Codigo FROM Projeto.Artigo_Transporte Where Artigo_Transporte.IDTransporte = @id"
+            CMD.Parameters.Add("@id", SqlDbType.VarChar, 40)
+            CMD.Parameters("@id").Value = ID
+            CN.Open()
 
-        Dim code As String = CMD.ExecuteScalar().ToString
-        TextBoxCode.Text = code
-        CN.Close()
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT Artigo_Transporte.QuantArtigos FROM Projeto.Artigo_Transporte Where Artigo_Transporte.IDTransporte = @id"
-        CMD.Parameters.Add("@id", SqlDbType.VarChar, 40)
-        CMD.Parameters("@id").Value = ID
-        CN.Open()
-
-        Dim type As String = CMD.ExecuteScalar().ToString
-        TextBoxAmount.Text = type
-
-        If CN.State = ConnectionState.Open Then
+            Dim code As String = CMD.ExecuteScalar().ToString
+            TextBoxCode.Text = code
             CN.Close()
-        End If
 
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT Artigo_Transporte.QuantArtigos FROM Projeto.Artigo_Transporte Where Artigo_Transporte.IDTransporte = @id"
+            CMD.Parameters.Add("@id", SqlDbType.VarChar, 40)
+            CMD.Parameters("@id").Value = ID
+            CN.Open()
+
+            Dim type As String = CMD.ExecuteScalar().ToString
+            TextBoxAmount.Text = type
+
+            If CN.State = ConnectionState.Open Then
+                CN.Close()
+            End If
+        End If
     End Sub
 
     'Edit Button

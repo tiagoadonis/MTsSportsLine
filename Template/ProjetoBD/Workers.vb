@@ -13,8 +13,14 @@ Public Class Workers
 
         With StoresDataGridView
             .DataSource = table
-            .Columns(0).Width = 100
-            .Columns(1).Width = 273
+            Dim scroll As VScrollBar = StoresDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (StoresDataGridView.Size.Width - 20) * 0.2
+                .Columns(1).Width = (StoresDataGridView.Size.Width - 20) * 0.8
+            Else
+                .Columns(0).Width = (StoresDataGridView.Size.Width - 3) * 0.2
+                .Columns(1).Width = (StoresDataGridView.Size.Width - 3) * 0.8
+            End If
         End With
     End Sub
 
@@ -38,9 +44,16 @@ Public Class Workers
 
         With WorkersDataGridView
             .DataSource = table2
-            .Columns(0).Width = 80
-            .Columns(1).Width = 112
-            .Columns(2).Width = 164
+            Dim scroll As VScrollBar = WorkersDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (WorkersDataGridView.Size.Width - 20) * 0.2
+                .Columns(1).Width = (WorkersDataGridView.Size.Width - 20) * 0.3
+                .Columns(2).Width = (WorkersDataGridView.Size.Width - 20) * 0.5
+            Else
+                .Columns(0).Width = (WorkersDataGridView.Size.Width - 3) * 0.2
+                .Columns(1).Width = (WorkersDataGridView.Size.Width - 3) * 0.3
+                .Columns(2).Width = (WorkersDataGridView.Size.Width - 3) * 0.5
+            End If
             .ClearSelection()
         End With
         CN.Close()
@@ -55,80 +68,102 @@ Public Class Workers
 
     'Stores DataGridView
     Private Sub DataGridview1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StoresDataGridView.CellClick
-        Dim lastIndex As Integer = -1
         Dim index As Integer = e.RowIndex
-        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
-        Dim numStore As String = selectedRow.Cells(0).Value.ToString
+        If (index = -1) Then
+        Else
+            Dim lastIndex As Integer = -1
+            Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+            Dim numStore As String = selectedRow.Cells(0).Value.ToString
 
-        If (lastIndex <> index) Then
-            WorkersDataGridView.DataSource = Nothing
-            SalesDataGridView.DataSource = Nothing
-            ReturnsDataGridView.DataSource = Nothing
-            lastIndex = index
+            If (lastIndex <> index) Then
+                WorkersDataGridView.DataSource = Nothing
+                SalesDataGridView.DataSource = Nothing
+                ReturnsDataGridView.DataSource = Nothing
+                lastIndex = index
+            End If
+
+            Button3.Enabled = True
+            TextBoxSearch.Enabled = True
+            Label5.Enabled = True
+
+            loadWorkers(numStore)
         End If
-
-        Button3.Enabled = True
-        TextBoxSearch.Enabled = True
-        Label5.Enabled = True
-
-        loadWorkers(numStore)
     End Sub
 
     'Workers DataGridView
     Private Sub DataGridView2_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles WorkersDataGridView.CellClick
         Dim index As Integer = e.RowIndex
-        Dim selectedRow As DataGridViewRow = WorkersDataGridView.Rows(index)
-        Dim numFunc As String = selectedRow.Cells(0).Value.ToString
+        If (index = -1) Then
+        Else
+            Dim selectedRow As DataGridViewRow = WorkersDataGridView.Rows(index)
+            Dim numFunc As String = selectedRow.Cells(0).Value.ToString
 
-        Button4.Enabled = True
+            Button4.Enabled = True
 
-        'Sales
-        Dim ds As New DataSet()
+            'Sales
+            Dim ds As New DataSet()
 
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT * FROM Projeto.SoldProductsPerEmployee(@num);"
-        CMD.Parameters.Add("@num", SqlDbType.Int)
-        CMD.Parameters("@num").Value = numFunc
-        CN.Open()
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT * FROM Projeto.SoldProductsPerEmployee(@num);"
+            CMD.Parameters.Add("@num", SqlDbType.Int)
+            CMD.Parameters("@num").Value = numFunc
+            CN.Open()
 
-        Dim adapter As New SqlDataAdapter(CMD)
-        adapter.Fill(ds)
+            Dim adapter As New SqlDataAdapter(CMD)
+            adapter.Fill(ds)
 
-        With SalesDataGridView
-            .DataSource = ds.Tables(0)
-            .Columns(0).Width = 94
-            .Columns(1).Width = 92
-            .Columns(2).Width = 87
-            .Columns(3).Width = 100
-            .ClearSelection()
-        End With
-        CN.Close()
-
-        'Returns
-        Dim ds2 As New DataSet()
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT * FROM Projeto.ReturnedProductsPerEmployee(@num);"
-        CMD.Parameters.Add("@num", SqlDbType.Int)
-        CMD.Parameters("@num").Value = numFunc
-        CN.Open()
-
-        Dim adapter2 As New SqlDataAdapter(CMD)
-        adapter2.Fill(ds2)
-
-        With ReturnsDataGridView
-            .DataSource = ds2.Tables(0)
-            .Columns(0).Width = 94
-            .Columns(1).Width = 92
-            .Columns(2).Width = 87
-            .Columns(3).Width = 100
-            .ClearSelection()
-        End With
-
-        If CN.State = ConnectionState.Open Then
+            With SalesDataGridView
+                .DataSource = ds.Tables(0)
+                Dim scroll As VScrollBar = SalesDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+                If (scroll.Visible) Then
+                    .Columns(0).Width = (SalesDataGridView.Size.Width - 20) * 0.298
+                    .Columns(1).Width = (SalesDataGridView.Size.Width - 20) * 0.3
+                    .Columns(2).Width = (SalesDataGridView.Size.Width - 20) * 0.2
+                    .Columns(3).Width = (SalesDataGridView.Size.Width - 20) * 0.2
+                Else
+                    .Columns(0).Width = (SalesDataGridView.Size.Width - 3) * 0.298
+                    .Columns(1).Width = (SalesDataGridView.Size.Width - 3) * 0.3
+                    .Columns(2).Width = (SalesDataGridView.Size.Width - 3) * 0.2
+                    .Columns(3).Width = (SalesDataGridView.Size.Width - 3) * 0.2
+                End If
+                .ClearSelection()
+            End With
             CN.Close()
+
+            'Returns
+            Dim ds2 As New DataSet()
+
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "SELECT * FROM Projeto.ReturnedProductsPerEmployee(@num);"
+            CMD.Parameters.Add("@num", SqlDbType.Int)
+            CMD.Parameters("@num").Value = numFunc
+            CN.Open()
+
+            Dim adapter2 As New SqlDataAdapter(CMD)
+            adapter2.Fill(ds2)
+
+            With ReturnsDataGridView
+                .DataSource = ds2.Tables(0)
+                Dim scroll As VScrollBar = ReturnsDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+                If (scroll.Visible) Then
+                    .Columns(0).Width = (ReturnsDataGridView.Size.Width - 20) * 0.298
+                    .Columns(1).Width = (ReturnsDataGridView.Size.Width - 20) * 0.3
+                    .Columns(2).Width = (ReturnsDataGridView.Size.Width - 20) * 0.2
+                    .Columns(3).Width = (ReturnsDataGridView.Size.Width - 20) * 0.2
+                Else
+                    .Columns(0).Width = (ReturnsDataGridView.Size.Width - 3) * 0.298
+                    .Columns(1).Width = (ReturnsDataGridView.Size.Width - 3) * 0.3
+                    .Columns(2).Width = (ReturnsDataGridView.Size.Width - 3) * 0.2
+                    .Columns(3).Width = (ReturnsDataGridView.Size.Width - 3) * 0.2
+                End If
+                .ClearSelection()
+            End With
+
+            If CN.State = ConnectionState.Open Then
+                CN.Close()
+            End If
         End If
     End Sub
 
@@ -195,9 +230,16 @@ Public Class Workers
 
         With WorkersDataGridView
             .DataSource = ds.Tables(0)
-            .Columns(0).Width = 80
-            .Columns(1).Width = 112
-            .Columns(2).Width = 164
+            Dim scroll As VScrollBar = WorkersDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+            If (scroll.Visible) Then
+                .Columns(0).Width = (WorkersDataGridView.Size.Width - 20) * 0.2
+                .Columns(1).Width = (WorkersDataGridView.Size.Width - 20) * 0.3
+                .Columns(2).Width = (WorkersDataGridView.Size.Width - 20) * 0.5
+            Else
+                .Columns(0).Width = (WorkersDataGridView.Size.Width - 3) * 0.2
+                .Columns(1).Width = (WorkersDataGridView.Size.Width - 3) * 0.3
+                .Columns(2).Width = (WorkersDataGridView.Size.Width - 3) * 0.5
+            End If
             .ClearSelection()
         End With
         CN.Close()

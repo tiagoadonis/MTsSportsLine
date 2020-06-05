@@ -76,8 +76,8 @@ CREATE TABLE Projeto.Artigo_Transporte(
 
 CREATE TABLE Projeto.Transporte(
 	IDTransporte	INT				CHECK(IDTransporte > 0),
-	Data			DATE,
-	Destino			VARCHAR(40),
+	Data			DATE			NOT NULL,
+	Destino			VARCHAR(40)		NOT NULL,
 	PRIMARY KEY(IDTransporte)
 );
 
@@ -91,8 +91,8 @@ CREATE TABLE Projeto.Artigo_Loja(
 
 CREATE TABLE Projeto.Loja(
 	NumLoja			INT				CHECK(NumLoja > 0),
-	Nome			VARCHAR(30),
-	Localizacao		VARCHAR(20),
+	Nome			VARCHAR(30)		NOT NULL,
+	Localizacao		VARCHAR(20)		NOT NULL,
 	PRIMARY KEY(NumLoja)
 );
 
@@ -106,7 +106,7 @@ CREATE TABLE Projeto.Artigo_Devolvido(
 
 CREATE TABLE Projeto.Devolucao(
 	IDDevolucao		INT				CHECK(IDDevolucao > 0),
-	Data			DATE,	
+	Data			DATE			NOT NULL,	
 	Montante		DECIMAL(5,2)	CHECK(Montante > 0),	-- 5 Números no total com 2 digitos de precisão decimal 
 	NIF				BIGINT			CHECK(NIF > 0),
 	NumFunc			INT				CHECK(NumFunc > 0),
@@ -123,7 +123,7 @@ CREATE TABLE Projeto.Artigo_Comprado(
 
 CREATE TABLE Projeto.Compra(
 	NumCompra		INT				CHECK(NumCompra > 0),
-	Data			DATE,	
+	Data			DATE			NOT NULL,	
 	Montante		DECIMAL(5,2)	CHECK(Montante > 0),	-- 5 Números no total com 2 digitos de precisão decimal 
 	NIF				BIGINT			CHECK(NIF > 0),
 	NumFunc			INT				CHECK(NumFunc > 0),
