@@ -201,6 +201,7 @@ Public Class Stores
             Button9.Enabled = False
             Button8.Enabled = False
             Button5.Enabled = False
+            Button13.Enabled = False
 
             'Store Prducts
             loadStoresProducts(numStore)
@@ -446,6 +447,7 @@ Public Class Stores
         CMD.ExecuteScalar()
         CN.Close()
         loadWarehouses(numStore)
+
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
