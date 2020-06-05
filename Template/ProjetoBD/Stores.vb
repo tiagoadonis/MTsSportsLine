@@ -105,9 +105,10 @@ Public Class Stores
 
         With ProductsDataGridView
             .DataSource = table
-            .Columns(0).Width = 180
+            .Columns(0).Width = 160
             .Columns(1).Width = 42
             .Columns(2).Width = 37
+            .Columns(3).Width = 37
             .ClearSelection()
         End With
         CN.Close()
@@ -134,9 +135,10 @@ Public Class Stores
 
         With WarehousesProductsDataGridView
             .DataSource = table
-            .Columns(0).Width = 180
+            .Columns(0).Width = 160
             .Columns(1).Width = 42
             .Columns(2).Width = 37
+            .Columns(3).Width = 37
             .ClearSelection()
         End With
         CN.Close()
