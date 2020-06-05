@@ -57,6 +57,36 @@ Public Class Deliveries
         Return idcheck
     End Function
 
+    Public Function CheckProduct(code As Integer, store As Integer)
+        Dim productcheck As Object
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@store AND Artigo_Loja.Codigo=@code;"
+        CMD.Parameters.Add("@code", SqlDbType.Int)
+        CMD.Parameters.Add("@store", SqlDbType.Int)
+        CMD.Parameters("@code").Value = code
+        CMD.Parameters("@store").Value = store
+        CN.Open()
+        productcheck = CMD.ExecuteScalar()
+        CN.Close()
+        Return productcheck
+    End Function
+
+    Public Function CheckStore(store As Integer)
+        Dim storecheck As Object
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT * FROM Projeto.Loja WHERE Loja.NumLoja=@store;"
+        CMD.Parameters.Add("@store", SqlDbType.Int)
+        CMD.Parameters("@store").Value = store
+        CN.Open()
+        storecheck = CMD.ExecuteScalar()
+        CN.Close()
+        Return storecheck
+    End Function
+
     Public Sub FilterData(valueToSearch As String)
         Dim search As String = TextBoxSearch.Text
         Dim table2 As New DataTable()
@@ -189,39 +219,40 @@ Public Class Deliveries
 
     'Save Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim codecheck As Object
-        Dim aux As Integer = Convert.ToInt32(TextBoxCode.Text)
-        codecheck = CheckCode(aux)
-        If TextBoxCode.Text.Length <> 6 Then
-            MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If TextBoxCode.Text = "" Or TextBoxDate.Text = "" Or TextBoxDest.Text = "" Or TextBoxAmount.Text = "" Then
+        If TextBoxCode.Text = "" Or TextBoxDate.Text = "" Or TextBoxDest.Text = "" Or TextBoxAmount.Text = "" Or TextBoxStore.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If TextBoxDate.Text(2) <> "/" Or TextBoxDate.Text(5) <> "/" Or TextBoxDate.Text(8) <> "2" Then
-            MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
-        End If
-        Check = Convert.ToDateTime(TextBoxDate.Text)
-        If Check <= Date.Now Then
-            MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If codecheck Is Nothing Then
-            MsgBox("The product with that code does not exist!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If Check > Date.Now And Not codecheck Is Nothing And TextBoxDate.Text(2) = "/" And TextBoxDate.Text(8) = "2" And TextBoxDate.Text(5) = "/" And TextBoxCode.Text.Length = 6 And TextBoxCode.Text <> "" And TextBoxStore.Text <> "" And TextBoxDate.Text <> "" And TextBoxDest.Text <> "" And TextBoxAmount.Text <> "" Then
-            TextBoxDate.Enabled = False
-            TextBoxAmount.Enabled = False
-            TextBoxStore.Enabled = False
-            TextBoxDest.Enabled = False
-            Button1.Enabled = False
-            Button3.Enabled = True
-            Button5.Enabled = False
-            Dim data As Date = TextBoxDate.Text
-            Dim dest As String = TextBoxDest.Text
-            Dim code As Integer = TextBoxCode.Text
-            Dim quant As Integer = TextBoxAmount.Text
-            Dim store As Integer = TextBoxStore.Text
-            updateDelivery(data, dest, code, quant, store)
+        Else
+            Dim productcheck As Object
+            Dim storecheck As Object
+            Dim aux As Integer = Convert.ToInt32(TextBoxCode.Text)
+            Dim aux2 As Integer = Convert.ToInt32(TextBoxStore.Text)
+            storecheck = CheckStore(aux2)
+            productcheck = CheckProduct(aux, aux2)
+            Dim aux3 As Integer = Convert.ToInt32(TextBoxAmount.Text)
+            Check = Convert.ToDateTime(TextBoxDate.Text)
+            If TextBoxDate.Text(2) <> "/" Or TextBoxDate.Text(5) <> "/" Or TextBoxDate.Text(8) <> "2" Then
+                MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
+            ElseIf Check <= Date.Now Then
+                MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
+            ElseIf storecheck Is Nothing Then
+                MsgBox("The store with that number does not exist!", MsgBoxStyle.Information, "ERROR")
+            ElseIf productcheck > aux3 Then
+                MsgBox("The are not enough units to complete the order!", MsgBoxStyle.Information, "ERROR")
+            Else
+                    TextBoxDate.Enabled = False
+                TextBoxAmount.Enabled = False
+                TextBoxStore.Enabled = False
+                TextBoxDest.Enabled = False
+                Button1.Enabled = False
+                Button3.Enabled = True
+                Button5.Enabled = False
+                Dim data As Date = TextBoxDate.Text
+                Dim dest As String = TextBoxDest.Text
+                Dim code As Integer = TextBoxCode.Text
+                Dim quant As Integer = TextBoxAmount.Text
+                Dim store As Integer = TextBoxStore.Text
+                updateDelivery(data, dest, code, quant, store)
+            End If
         End If
     End Sub
 
@@ -268,48 +299,53 @@ Public Class Deliveries
 
     'Add Button
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim codecheck As Object
-        Dim aux As Integer = Convert.ToInt32(TextBoxCode2.Text)
-        codecheck = CheckCode(aux)
-        Dim idcheck As Object
-        Dim aux2 As Integer = Convert.ToInt32(TextBoxID2.Text)
-        idcheck = CheckID(aux2)
-        If TextBoxCode2.Text.Length <> 6 Then
-            MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If TextBoxID2.Text.Length <> 6 Then
-            MsgBox("Transport ID must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If TextBoxCode2.Text = "" Or TextBoxDate2.Text = "" Or TextBoxDest2.Text = "" Or TextBoxAmount2.Text = "" Or TextBoxID2.Text = "" Then
+        If TextBoxCode2.Text = "" Or TextBoxDate2.Text = "" Or TextBoxDest2.Text = "" Or TextBoxAmount2.Text = "" Or TextBoxID2.Text = "" Or TextBoxStore2.Text = "" Then
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Or TextBoxDate2.Text(8) <> "2" Then
-            MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
-        End If
-        Check2 = Convert.ToDateTime(TextBoxDate2.Text)
-        If Check2 <= Date.Now Then
-            MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If codecheck Is Nothing Then
-            MsgBox("The product with that code does not exist!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If Not idcheck Is Nothing Then
-            MsgBox("The delivery with that code already exist!", MsgBoxStyle.Information, "ERROR")
-        End If
-        If Check2 > Date.Now And Not codecheck Is Nothing And idcheck Is Nothing And TextBoxDate2.Text(2) = "/" And TextBoxDate2.Text(5) = "/" And TextBoxDate2.Text(8) = "2" And TextBoxCode2.Text.Length = 6 And TextBoxID2.Text.Length = 6 And TextBoxCode2.Text <> "" And TextBoxStore2.Text <> "" And TextBoxDate2.Text <> "" And TextBoxDest2.Text <> "" And TextBoxAmount2.Text <> "" And TextBoxID2.Text <> "" Then
-            Dim id As Integer = TextBoxID2.Text
-            Dim data As Date = TextBoxDate2.Text
-            Dim dest As String = TextBoxDest2.Text
-            Dim code As Integer = TextBoxCode2.Text
-            Dim quant As Integer = TextBoxAmount2.Text
-            Dim store As Integer = TextBoxStore2.Text
-            addDelivery(id, data, dest, code, quant, store)
-            TextBoxID2.Text = ""
-            TextBoxDate2.Text = ""
-            TextBoxDest2.Text = ""
-            TextBoxCode2.Text = ""
-            TextBoxAmount2.Text = ""
-            TextBoxStore2.Text = ""
+        Else
+            Dim codecheck As Object
+            Dim aux As Integer = Convert.ToInt32(TextBoxCode2.Text)
+            codecheck = CheckCode(aux)
+            Dim idcheck As Object
+            Dim aux2 As Integer = Convert.ToInt32(TextBoxID2.Text)
+            idcheck = CheckID(aux2)
+            Dim productcheck As Integer
+            Dim aux3 As Integer = Convert.ToInt32(TextBoxStore2.Text)
+            Dim aux4 As Integer = Convert.ToInt32(TextBoxAmount2.Text)
+            productcheck = CheckProduct(aux, aux3)
+            Dim storecheck As Object
+            storecheck = CheckStore(aux3)
+            Check2 = Convert.ToDateTime(TextBoxDate2.Text)
+            If TextBoxCode2.Text.Length <> 6 Then
+                MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
+            ElseIf TextBoxID2.Text.Length <> 6 Then
+                MsgBox("Transport ID must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
+            ElseIf TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Or TextBoxDate2.Text(8) <> "2" Then
+                MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
+            ElseIf Not idcheck Is Nothing Then
+                MsgBox("The delivery with that code already exist!", MsgBoxStyle.Information, "ERROR")
+            ElseIf Check2 <= Date.Now Then
+                MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
+            ElseIf storecheck Is Nothing Then
+                MsgBox("The store with that number does not exist!", MsgBoxStyle.Information, "ERROR")
+            ElseIf codecheck Is Nothing Then
+                MsgBox("The product with that code does not exist!", MsgBoxStyle.Information, "ERROR")
+            ElseIf Not productcheck > aux4 Then
+                MsgBox("The are not enough units to complete the order!", MsgBoxStyle.Information, "ERROR")
+            Else
+                Dim id As Integer = TextBoxID2.Text
+                Dim data As Date = TextBoxDate2.Text
+                Dim dest As String = TextBoxDest2.Text
+                Dim code As Integer = TextBoxCode2.Text
+                Dim quant As Integer = TextBoxAmount2.Text
+                Dim store As Integer = TextBoxStore2.Text
+                addDelivery(id, data, dest, code, quant, store)
+                TextBoxID2.Text = ""
+                TextBoxDate2.Text = ""
+                TextBoxDest2.Text = ""
+                TextBoxCode2.Text = ""
+                TextBoxAmount2.Text = ""
+                TextBoxStore2.Text = ""
+            End If
         End If
     End Sub
 
