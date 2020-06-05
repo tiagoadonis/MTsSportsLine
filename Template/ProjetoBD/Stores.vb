@@ -198,6 +198,10 @@ Public Class Stores
             Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
             Dim numStore As String = selectedRow.Cells(0).Value.ToString
 
+            Button9.Enabled = False
+            Button8.Enabled = False
+            Button5.Enabled = False
+
             'Store Prducts
             loadStoresProducts(numStore)
 
@@ -340,6 +344,17 @@ Public Class Stores
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         Dim result As DialogResult = MessageBox.Show("Do you really want to delete the store selected?",
                                                      "Information", MessageBoxButtons.YesNo)
+
+        Button11.Enabled = False
+        Button7.Enabled = False
+        Button6.Enabled = False
+        Button20.Enabled = False
+        Button22.Enabled = False
+        Button14.Enabled = False
+        Button13.Enabled = False
+        Button9.Enabled = False
+        Button8.Enabled = False
+        Button5.Enabled = False
 
         If (result = DialogResult.Yes) Then
             Dim index As Integer = StoresDataGridView.CurrentRow.Index
