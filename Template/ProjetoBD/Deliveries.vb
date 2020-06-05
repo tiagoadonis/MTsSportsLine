@@ -58,7 +58,7 @@ Public Class Deliveries
     End Function
 
     Public Function CheckProduct(code As Integer, store As Integer)
-        Dim productcheck As Object
+        Dim productcheck As Integer
 
         CMD = New SqlCommand()
         CMD.Connection = CN
@@ -230,16 +230,16 @@ Public Class Deliveries
             productcheck = CheckProduct(aux, aux2)
             Dim aux3 As Integer = Convert.ToInt32(TextBoxAmount.Text)
             Check = Convert.ToDateTime(TextBoxDate.Text)
-            If TextBoxDate.Text(2) <> "/" Or TextBoxDate.Text(5) <> "/" Or TextBoxDate.Text(8) <> "2" Then
-                MsgBox("Date must be in format DD/MM/YYY!", MsgBoxStyle.Information, "ERROR")
-            ElseIf Check <= Date.Now Then
+            If Check <= Date.Now Then
                 MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
+            ElseIf TextBoxDate.Text(2) <> "/" Or TextBoxDate.Text(5) <> "/" Or TextBoxDate.Text(8) <> "2" Then
+                MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
             ElseIf storecheck Is Nothing Then
                 MsgBox("The store with that number does not exist!", MsgBoxStyle.Information, "ERROR")
-            ElseIf productcheck > aux3 Then
+            ElseIf productcheck < aux3 Then
                 MsgBox("The are not enough units to complete the order!", MsgBoxStyle.Information, "ERROR")
             Else
-                    TextBoxDate.Enabled = False
+                TextBoxDate.Enabled = False
                 TextBoxAmount.Enabled = False
                 TextBoxStore.Enabled = False
                 TextBoxDest.Enabled = False
@@ -319,17 +319,17 @@ Public Class Deliveries
                 MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
             ElseIf TextBoxID2.Text.Length <> 6 Then
                 MsgBox("Transport ID must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
+            ElseIf Check2 <= Date.Now Then
+                MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
             ElseIf TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Or TextBoxDate2.Text(8) <> "2" Then
                 MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
             ElseIf Not idcheck Is Nothing Then
                 MsgBox("The delivery with that code already exist!", MsgBoxStyle.Information, "ERROR")
-            ElseIf Check2 <= Date.Now Then
-                MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
             ElseIf storecheck Is Nothing Then
                 MsgBox("The store with that number does not exist!", MsgBoxStyle.Information, "ERROR")
             ElseIf codecheck Is Nothing Then
                 MsgBox("The product with that code does not exist!", MsgBoxStyle.Information, "ERROR")
-            ElseIf Not productcheck > aux4 Then
+            ElseIf productcheck < aux4 Then
                 MsgBox("The are not enough units to complete the order!", MsgBoxStyle.Information, "ERROR")
             Else
                 Dim id As Integer = TextBoxID2.Text
@@ -387,7 +387,18 @@ Public Class Deliveries
 
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "EXEC Projeto.Update_Delivery @id, @data, @dest, @code, @quant,@store"
+        CMD.CommandText = "EXEC Projeto.Remove_Delivery @id, @store"
+        CMD.Parameters.Add("@id", SqlDbType.Int)
+        CMD.Parameters.Add("@store", SqlDbType.Int)
+        CMD.Parameters("@id").Value = id
+        CMD.Parameters("@store").Value = store
+        CN.Open()
+        CMD.ExecuteScalar()
+        CN.Close()
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "EXEC Projeto.Add_Delivery @id, @data, @dest, @code, @quant, @store"
         CMD.Parameters.Add("@id", SqlDbType.Int)
         CMD.Parameters.Add("@data", SqlDbType.Date)
         CMD.Parameters.Add("@dest", SqlDbType.VarChar, 40)

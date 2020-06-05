@@ -259,6 +259,7 @@ Partial Class Deliveries
         'DeliveriesDataGridView
         '
         Me.DeliveriesDataGridView.AllowUserToAddRows = False
+        Me.DeliveriesDataGridView.AllowUserToDeleteRows = False
         Me.DeliveriesDataGridView.AllowUserToResizeColumns = False
         Me.DeliveriesDataGridView.AllowUserToResizeRows = False
         Me.DeliveriesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize

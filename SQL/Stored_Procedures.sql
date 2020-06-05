@@ -16,7 +16,6 @@ DROP PROCEDURE Projeto.UpdateAddress;
 DROP PROCEDURE Projeto.UpdatePhone;
 DROP PROCEDURE Projeto.Add_Worker
 DROP PROCEDURE Projeto.Add_Delivery
-DROP PROCEDURE Projeto.Update_Delivery
 DROP PROCEDURE Projeto.Remove_Worker
 DROP PROCEDURE Projeto.Remove_Delivery
 
@@ -373,40 +372,6 @@ AS
 GO
 --Test Procedure
 EXEC Projeto.Add_Delivery 272727, '2020-06-03', 'Rua da Frente, Maia', 2, 101561, 2;
-----------------------------------------------------------------
-GO
-CREATE PROCEDURE Projeto.Update_Delivery (@Id INT, @Data DATE, @Dest VARCHAR(40), @Code INT, @Quant INT, @Store INT)
-AS
-	IF EXISTS (SELECT * FROM Projeto.Transporte WHERE Transporte.IDTransporte=@Id)
-	BEGIN
-		IF EXISTS (SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store)
-		BEGIN
-			DECLARE @TransUnits INT
-			SELECT @TransUnits=Artigo_Transporte.QuantArtigos FROM Projeto.Artigo_Transporte WHERE Artigo_Transporte.IDTransporte=@Id
-			DECLARE @Units INT
-			SELECT @Units=Artigo_Loja.QuantArtigos FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store
-			IF (@TransUnits+@Units<@Quant)
-			BEGIN	
-				RAISERROR ('There are not enough units to complete the delivery! Number of available units: %d', 14, 1, @Units);
-			END
-			ELSE
-				IF(@TransUnits+@Units=@Quant)
-				BEGIN
-					UPDATE Projeto.Transporte SET Transporte.Data=@Data, Transporte.Destino=@Dest WHERE Transporte.IDTransporte=@Id;
-					UPDATE Projeto.Artigo_Transporte SET Artigo_Transporte.Codigo=@Code, Artigo_Transporte.QuantArtigos=@Quant WHERE Artigo_Transporte.IDTransporte=@Id;
-					DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
-				END
-				ELSE
-					UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@TransUnits+@Units-@Quant WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@Store;
-					UPDATE Projeto.Transporte SET Transporte.Data=@Data, Transporte.Destino=@Dest WHERE Transporte.IDTransporte=@Id;
-					UPDATE Projeto.Artigo_Transporte SET Artigo_Transporte.Codigo=@Code, Artigo_Transporte.QuantArtigos=@Quant WHERE Artigo_Transporte.IDTransporte=@Id;
-		END
-		ELSE
-			RAISERROR ('The product with code %d does not exist!', 14, 1, @Code);
-	END
-	ELSE
-		RAISERROR ('The delivery with number %d does not exist', 14, 1, @Id);
-GO
 -- Removing Stored Procedures
 GO
 CREATE PROCEDURE Projeto.Remove_Store (@StoreNum INT) 

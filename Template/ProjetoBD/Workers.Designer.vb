@@ -105,6 +105,7 @@ Partial Class Workers
         'StoresDataGridView
         '
         Me.StoresDataGridView.AllowUserToAddRows = False
+        Me.StoresDataGridView.AllowUserToDeleteRows = False
         Me.StoresDataGridView.AllowUserToResizeColumns = False
         Me.StoresDataGridView.AllowUserToResizeRows = False
         Me.StoresDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -122,6 +123,7 @@ Partial Class Workers
         'WorkersDataGridView
         '
         Me.WorkersDataGridView.AllowUserToAddRows = False
+        Me.WorkersDataGridView.AllowUserToDeleteRows = False
         Me.WorkersDataGridView.AllowUserToResizeColumns = False
         Me.WorkersDataGridView.AllowUserToResizeRows = False
         Me.WorkersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -139,6 +141,7 @@ Partial Class Workers
         'SalesDataGridView
         '
         Me.SalesDataGridView.AllowUserToAddRows = False
+        Me.SalesDataGridView.AllowUserToDeleteRows = False
         Me.SalesDataGridView.AllowUserToResizeColumns = False
         Me.SalesDataGridView.AllowUserToResizeRows = False
         Me.SalesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -156,6 +159,7 @@ Partial Class Workers
         'ReturnsDataGridView
         '
         Me.ReturnsDataGridView.AllowUserToAddRows = False
+        Me.ReturnsDataGridView.AllowUserToDeleteRows = False
         Me.ReturnsDataGridView.AllowUserToResizeColumns = False
         Me.ReturnsDataGridView.AllowUserToResizeRows = False
         Me.ReturnsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
