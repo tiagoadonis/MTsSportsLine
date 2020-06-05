@@ -21,9 +21,14 @@ Public Class Stores
 
     'Buy Product Button 
     Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click
-        Dim buyProduct As New BuyProduct
-        buyProduct.StartPosition = FormStartPosition.CenterScreen
-        buyProduct.ShowDialog()
+        Dim code As String = TextBoxCode.Text.ToString
+        If (code.Equals("")) Then
+            MsgBox("Please select a product to buy!", MsgBoxStyle.Information, "ERROR")
+        Else
+            Dim buyProduct As New BuyProduct
+            buyProduct.StartPosition = FormStartPosition.CenterScreen
+            buyProduct.ShowDialog()
+        End If
     End Sub
 
     'Return Product Button
