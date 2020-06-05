@@ -133,7 +133,8 @@ AS
 		VALUES (@NIF, @Address, @Name, @Phone);
 GO
 --Test Procedure
-EXEC Projeto.Add_newClient 100000000, 'Rua da Frente, Maia', 'Carlos Alberto', 911111111;
+EXEC Projeto.Add_newClient 100000000, NULL, 'Zé', 911111111;
+SELECT * FROM Projeto.Cliente;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.BuyProduct (@PurchaseID INT, @Date Date, @Value DECIMAL(5,2), @NIF BIGINT, @WorkersCode INT, @Store INT, 
@@ -253,26 +254,39 @@ AS
 																					   AND Artigo_Loja.Codigo=@Code;
 				UPDATE Projeto.Artigo_Armazem SET Artigo_Armazem.QuantArtigos=@WarehouseUnits-@Units WHERE Artigo_Armazem.IDArmazem=@WarehouseID
 																								       AND Artigo_Armazem.Codigo=@Code;
-				IF EXISTS(SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code)
+				IF EXISTS(SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.Codigo=@Code AND Artigo_Loja.NumLoja=@StoreNum)
 				BEGIN
 					UPDATE Projeto.Artigo_Loja SET Artigo_Loja.QuantArtigos=@StoreUnits+@Units WHERE Artigo_Loja.NumLoja=@StoreNum
 																								 AND Artigo_Loja.Codigo=@Code;
 				END
 				ELSE
+				BEGIN
 					INSERT Projeto.Artigo_Loja(Codigo, NumLoja, QuantArtigos)
 					VALUES (@Code, @StoreNum, @Units);
+				END
 			END
 			ELSE
+			BEGIN
 				RAISERROR ('The product with the code %d does not exists', 14, 1, @Code);
+			END
 		END
 		ELSE
+		BEGIN
 			RAISERROR ('The warehouse number %d does not exists', 14, 1, @WarehouseID);
+		END
 	END
 	ELSE
+	BEGIN
 		RAISERROR ('The store number %d does not exists', 14, 1, @StoreNum);
+	END
 GO
 --Test Procedure
-EXEC Projeto.ProductsFromWarehouseToStore 110, 128626, 1, 1;
+EXEC Projeto.ProductsFromWarehouseToStore 160, 156428, 4, 5;
+SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
+                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
+                           WHERE Loja.NumLoja = 4;
+SELECT Name, Price, Units FROM WarehousesProducts WHERE WarehouseID = 160;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.UpdateAddress (@NIF BIGINT, @Address VARCHAR(40))
@@ -430,20 +444,26 @@ AS
 		END
 
 		--Removing store and dependencies
-		DECLARE @Warehouse INT;
-		SELECT @Warehouse = Armazem.IDArmazem FROM Projeto.Armazem WHERE Armazem.NumLoja=@StoreNum; 
-		
-		IF EXISTS(SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@Warehouse)
+		DECLARE @numWarehouses INT;
+		SELECT @numWarehouses = COUNT(*) FROM Projeto.Armazem WHERE Armazem.NumLoja=@StoreNum;
+		WHILE (@numWarehouses) > 0
 		BEGIN
-			DELETE FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@Warehouse;
-		END
-		IF EXISTS(SELECT * FROM Projeto.Armazem WHERE Armazem.NumLoja=@StoreNum)
-		BEGIN
-			DELETE FROM Projeto.Armazem WHERE Armazem.NumLoja=@StoreNum;
-		END
-		IF EXISTS(SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum)
-		BEGIN
-			DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum;
+			DECLARE @Warehouse INT;
+			SELECT @Warehouse = Armazem.IDArmazem FROM Projeto.Armazem WHERE Armazem.NumLoja=@StoreNum; 
+
+			IF EXISTS(SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@Warehouse)
+			BEGIN
+				DELETE FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=@Warehouse;
+			END
+			IF EXISTS(SELECT * FROM Projeto.Armazem WHERE Armazem.IDArmazem=@Warehouse)
+			BEGIN
+				DELETE FROM Projeto.Armazem WHERE Armazem.IDArmazem=@Warehouse;
+			END
+			IF EXISTS(SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum)
+			BEGIN
+				DELETE FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=@StoreNum;
+			END
+			SET @numWarehouses -= 1;
 		END
 		DELETE FROM Projeto.Loja WHERE Loja.NumLoja=@StoreNum;
 	END
@@ -451,7 +471,11 @@ AS
 		RAISERROR ('The store number %d does not exists', 14, 1, @StoreNum);
 GO
 --Test Procedure
-EXEC Projeto.Remove_Store 4;
+EXEC Projeto.Remove_Store 5;
+SELECT * FROM Projeto.Armazem WHERE Armazem.NumLoja=5
+SELECT * FROM Projeto.Loja
+SELECT Name, Price, Units FROM WarehousesProducts WHERE WarehouseID = 180	
+SELECT COUNT(*) FROM Projeto.Armazem WHERE Armazem.NumLoja=5
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_storeProduct (@StoreNum INT, @Code INT, @Units INT) 

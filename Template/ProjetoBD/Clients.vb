@@ -63,19 +63,24 @@ Public Class Clients
 
     'To load Clients DataGridView
     Public Sub loadClients()
-        Dim adapter As New SqlDataAdapter("SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone  
-                                           FROM Projeto.Cliente", CN)
-        Dim table As New DataTable()
-        adapter.Fill(table)
+        CN.Close()
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT NIF, Nome AS Name, Morada AS Address, NumTelem AS Phone FROM Projeto.Cliente"
+        CN.Open()
+        Dim ds As New DataSet()
+        Dim adapter As New SqlDataAdapter(CMD)
+        adapter.Fill(ds)
 
         With ClientsDataGridView
-            .DataSource = table
+            .DataSource = ds.Tables(0)
             .Columns(0).Width = 65
             .Columns(1).Width = 100
             .Columns(2).Width = 119
             .Columns(3).Width = 65
             .ClearSelection()
         End With
+        CN.Close()
     End Sub
 
     'Clients Search Bar
@@ -221,13 +226,6 @@ Public Class Clients
         Else
             MsgBox("The NIF and Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
         End If
-    End Sub
-
-    Private Sub stayText()
-        NIFTextBox.Text = NIFTextBox.Text
-        NameTextBox.Text = NameTextBox.Text
-        AddressTextBox.Text = AddressTextBox.Text
-        PhoneTextBox.Text = PhoneTextBox.Text
     End Sub
 
     'To check if NIF already exists or not

@@ -49,16 +49,26 @@ Public Class Stores
 
     'Remove Product Button
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        Dim removeProduct As New RemoveProduct
-        removeProduct.StartPosition = FormStartPosition.CenterScreen
-        removeProduct.ShowDialog()
+        Dim code As String = TextBoxCode.Text.ToString
+        If (code.Equals("")) Then
+            MsgBox("Please select a product to remove!", MsgBoxStyle.Information, "ERROR")
+        Else
+            Dim removeProduct As New RemoveProduct
+            removeProduct.StartPosition = FormStartPosition.CenterScreen
+            removeProduct.ShowDialog()
+        End If
     End Sub
 
     'Remove Product Button (Warehouse)
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Dim removeWarehouseProduct As New RemoveWarehouseProduct
-        removeWarehouseProduct.StartPosition = FormStartPosition.CenterScreen
-        removeWarehouseProduct.ShowDialog()
+        Dim code As String = TextBoxCode2.Text.ToString
+        If (code.Equals("")) Then
+            MsgBox("Please select a product to remove!", MsgBoxStyle.Information, "ERROR")
+        Else
+            Dim removeWarehouseProduct As New RemoveWarehouseProduct
+            removeWarehouseProduct.StartPosition = FormStartPosition.CenterScreen
+            removeWarehouseProduct.ShowDialog()
+        End If
     End Sub
 
     'Add to the Store Button
@@ -713,7 +723,6 @@ Public Class Stores
         Dim index As Integer = StoresDataGridView.CurrentRow.Index
         Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
         Dim numStore As Integer = selectedRow.Cells(0).Value
-
         Dim code As Integer = TextBoxCode.Text
 
         CMD = New SqlCommand()
