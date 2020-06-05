@@ -125,7 +125,7 @@ Public Class MainForm
         With Clients
             .ClientsDataGridView.ClearSelection()
             .PurchasedProductsGridView.DataSource = Nothing
-            .ReturnedProdcutsGridView.DataSource = Nothing
+            .ReturnedProductsGridView.DataSource = Nothing
             .TextBoxSearch.Text = ""
             .Button5.Enabled = False
             .Button6.Enabled = False

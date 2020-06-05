@@ -70,18 +70,10 @@ Public Class Clients
 
         With ClientsDataGridView
             .DataSource = table
-            Dim scroll As VScrollBar = ClientsDataGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
-            If (scroll.Visible) Then
-                .Columns(0).Width = (ClientsDataGridView.Size.Width - 20) * 0.18
-                .Columns(1).Width = (ClientsDataGridView.Size.Width - 20) * 0.29
-                .Columns(2).Width = (ClientsDataGridView.Size.Width - 20) * 0.31
-                .Columns(3).Width = (ClientsDataGridView.Size.Width - 20) * 0.175
-            Else
-                .Columns(0).Width = (ClientsDataGridView.Size.Width - 3) * 0.18
-                .Columns(1).Width = (ClientsDataGridView.Size.Width - 3) * 0.29
-                .Columns(2).Width = (ClientsDataGridView.Size.Width - 3) * 0.31
-                .Columns(3).Width = (ClientsDataGridView.Size.Width - 3) * 0.175
-            End If
+            .Columns(0).Width = 65
+            .Columns(1).Width = 100
+            .Columns(2).Width = 119
+            .Columns(3).Width = 65
             .ClearSelection()
         End With
     End Sub
@@ -148,17 +140,17 @@ Public Class Clients
                 .DataSource = ds.Tables(0)
                 Dim scroll As VScrollBar = PurchasedProductsGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
                 If (scroll.Visible) Then
-                    .Columns(0).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.15
-                    .Columns(1).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.35
-                    .Columns(2).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.1
-                    .Columns(3).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.2
-                    .Columns(4).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.2
+                    .Columns(0).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.14
+                    .Columns(1).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.39
+                    .Columns(2).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.13
+                    .Columns(3).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.16
+                    .Columns(4).Width = (PurchasedProductsGridView.Size.Width - 20) * 0.18
                 Else
-                    .Columns(0).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.15
-                    .Columns(1).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.35
-                    .Columns(2).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.1
-                    .Columns(3).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.2
-                    .Columns(4).Width = (PurchasedProductsGridView.Size.Width - 3) * 0.2
+                    .Columns(0).Width = 69
+                    .Columns(1).Width = 193
+                    .Columns(2).Width = 64
+                    .Columns(3).Width = 83
+                    .Columns(4).Width = 93
                 End If
                 .ClearSelection()
             End With
@@ -177,21 +169,21 @@ Public Class Clients
             Dim adapter2 As New SqlDataAdapter(CMD)
             adapter2.Fill(ds2)
 
-            With ReturnedProdcutsGridView
+            With ReturnedProductsGridView
                 .DataSource = ds2.Tables(0)
-                Dim scroll As VScrollBar = ReturnedProdcutsGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
+                Dim scroll As VScrollBar = ReturnedProductsGridView.Controls.OfType(Of VScrollBar).SingleOrDefault
                 If (scroll.Visible) Then
-                    .Columns(0).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.15
-                    .Columns(1).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.35
-                    .Columns(2).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.1
-                    .Columns(3).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.2
-                    .Columns(4).Width = (ReturnedProdcutsGridView.Size.Width - 20) * 0.2
+                    .Columns(0).Width = (ReturnedProductsGridView.Size.Width - 20) * 0.14
+                    .Columns(1).Width = (ReturnedProductsGridView.Size.Width - 20) * 0.39
+                    .Columns(2).Width = (ReturnedProductsGridView.Size.Width - 20) * 0.13
+                    .Columns(3).Width = (ReturnedProductsGridView.Size.Width - 20) * 0.16
+                    .Columns(4).Width = (ReturnedProductsGridView.Size.Width - 20) * 0.18
                 Else
-                    .Columns(0).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.15
-                    .Columns(1).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.35
-                    .Columns(2).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.1
-                    .Columns(3).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.2
-                    .Columns(4).Width = (ReturnedProdcutsGridView.Size.Width - 3) * 0.2
+                    .Columns(0).Width = 69
+                    .Columns(1).Width = 193
+                    .Columns(2).Width = 64
+                    .Columns(3).Width = 83
+                    .Columns(4).Width = 93
                 End If
                 .ClearSelection()
             End With
@@ -215,11 +207,73 @@ Public Class Clients
         CMD.Parameters("@Address").Value = address
         CMD.Parameters("@Name").Value = name
         CMD.Parameters("@Phone").Value = phone
-        CN.Open()
-        CMD.ExecuteScalar()
-        loadClients()
-        CN.Close()
+        Dim NIFbool As Boolean = checkNIF(NIF)
+        Dim PhoneBool As Boolean = checkPhone(phone)
+        If (NIFbool = True And PhoneBool = True) Then
+            CN.Open()
+            CMD.ExecuteScalar()
+            loadClients()
+            CN.Close()
+        ElseIf (NIFbool = False And PhoneBool = True) Then
+            MsgBox("The NIF inserted already exists!", MsgBoxStyle.Information, "ERROR")
+        ElseIf (NIFbool = True And PhoneBool = False) Then
+            MsgBox("The Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
+        Else
+            MsgBox("The NIF and Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
+        End If
     End Sub
+
+    Private Sub stayText()
+        NIFTextBox.Text = NIFTextBox.Text
+        NameTextBox.Text = NameTextBox.Text
+        AddressTextBox.Text = AddressTextBox.Text
+        PhoneTextBox.Text = PhoneTextBox.Text
+    End Sub
+
+    'To check if NIF already exists or not
+    Private Function checkNIF(ByVal nif As Integer) As Boolean
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT COUNT(*) FROM Projeto.Cliente WHERE Cliente.NIF=@NIF"
+        CMD.Parameters.Add("@NIF", SqlDbType.Int)
+        CMD.Parameters("@NIF").Value = nif
+        CN.Open()
+        Dim count As Integer = CMD.ExecuteScalar()
+        CN.Close()
+        If (count > 0) Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
+    'To check if phone number already exists or not
+    Private Function checkPhone(ByVal phone As Integer) As Boolean
+        Dim count As Integer
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT COUNT(*) FROM Projeto.Cliente WHERE Cliente.NumTelem=@Phone"
+        CMD.Parameters.Add("@Phone", SqlDbType.BigInt)
+        CMD.Parameters("@Phone").Value = phone
+        CN.Open()
+        count = CMD.ExecuteScalar()
+        CN.Close()
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT COUNT(*) FROM Projeto.Funcionario WHERE Funcionario.NumTelem=@Phone"
+        CMD.Parameters.Add("@Phone", SqlDbType.BigInt)
+        CMD.Parameters("@Phone").Value = phone
+        CN.Open()
+        count = count + CMD.ExecuteScalar()
+        CN.Close()
+
+        If (count > 0) Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 
     'Remove Client Button
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click

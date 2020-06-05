@@ -1,8 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class Stores
-    Dim toStore As Boolean
-    Dim toWarehouse As Boolean
     Dim CMD As SqlCommand
     Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
                                                 "Initial Catalog = LojaDesporto; Integrated Security = true;")

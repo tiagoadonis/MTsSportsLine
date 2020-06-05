@@ -39,13 +39,13 @@ Partial Class Clients
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ClientsDataGridView = New System.Windows.Forms.DataGridView()
         Me.PurchasedProductsGridView = New System.Windows.Forms.DataGridView()
-        Me.ReturnedProdcutsGridView = New System.Windows.Forms.DataGridView()
+        Me.ReturnedProductsGridView = New System.Windows.Forms.DataGridView()
         Me.TextBoxSearch = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.ClientsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PurchasedProductsGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ReturnedProdcutsGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReturnedProductsGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -192,6 +192,7 @@ Partial Class Clients
         'ClientsDataGridView
         '
         Me.ClientsDataGridView.AllowUserToAddRows = False
+        Me.ClientsDataGridView.AllowUserToDeleteRows = False
         Me.ClientsDataGridView.AllowUserToResizeColumns = False
         Me.ClientsDataGridView.AllowUserToResizeRows = False
         Me.ClientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -208,12 +209,11 @@ Partial Class Clients
         'PurchasedProductsGridView
         '
         Me.PurchasedProductsGridView.AllowUserToAddRows = False
+        Me.PurchasedProductsGridView.AllowUserToDeleteRows = False
         Me.PurchasedProductsGridView.AllowUserToResizeColumns = False
         Me.PurchasedProductsGridView.AllowUserToResizeRows = False
         Me.PurchasedProductsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.PurchasedProductsGridView.Enabled = False
         Me.PurchasedProductsGridView.Location = New System.Drawing.Point(432, 51)
-        Me.PurchasedProductsGridView.MultiSelect = False
         Me.PurchasedProductsGridView.Name = "PurchasedProductsGridView"
         Me.PurchasedProductsGridView.ReadOnly = True
         Me.PurchasedProductsGridView.RowHeadersVisible = False
@@ -222,22 +222,21 @@ Partial Class Clients
         Me.PurchasedProductsGridView.Size = New System.Drawing.Size(505, 197)
         Me.PurchasedProductsGridView.TabIndex = 122
         '
-        'ReturnedProdcutsGridView
+        'ReturnedProductsGridView
         '
-        Me.ReturnedProdcutsGridView.AllowUserToAddRows = False
-        Me.ReturnedProdcutsGridView.AllowUserToResizeColumns = False
-        Me.ReturnedProdcutsGridView.AllowUserToResizeRows = False
-        Me.ReturnedProdcutsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ReturnedProdcutsGridView.Enabled = False
-        Me.ReturnedProdcutsGridView.Location = New System.Drawing.Point(432, 294)
-        Me.ReturnedProdcutsGridView.MultiSelect = False
-        Me.ReturnedProdcutsGridView.Name = "ReturnedProdcutsGridView"
-        Me.ReturnedProdcutsGridView.ReadOnly = True
-        Me.ReturnedProdcutsGridView.RowHeadersVisible = False
-        Me.ReturnedProdcutsGridView.RowHeadersWidth = 51
-        Me.ReturnedProdcutsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.ReturnedProdcutsGridView.Size = New System.Drawing.Size(505, 197)
-        Me.ReturnedProdcutsGridView.TabIndex = 123
+        Me.ReturnedProductsGridView.AllowUserToAddRows = False
+        Me.ReturnedProductsGridView.AllowUserToDeleteRows = False
+        Me.ReturnedProductsGridView.AllowUserToResizeColumns = False
+        Me.ReturnedProductsGridView.AllowUserToResizeRows = False
+        Me.ReturnedProductsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ReturnedProductsGridView.Location = New System.Drawing.Point(432, 294)
+        Me.ReturnedProductsGridView.Name = "ReturnedProductsGridView"
+        Me.ReturnedProductsGridView.ReadOnly = True
+        Me.ReturnedProductsGridView.RowHeadersVisible = False
+        Me.ReturnedProductsGridView.RowHeadersWidth = 51
+        Me.ReturnedProductsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.ReturnedProductsGridView.Size = New System.Drawing.Size(505, 197)
+        Me.ReturnedProductsGridView.TabIndex = 123
         '
         'TextBoxSearch
         '
@@ -264,7 +263,7 @@ Partial Class Clients
         Me.ClientSize = New System.Drawing.Size(955, 508)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBoxSearch)
-        Me.Controls.Add(Me.ReturnedProdcutsGridView)
+        Me.Controls.Add(Me.ReturnedProductsGridView)
         Me.Controls.Add(Me.PurchasedProductsGridView)
         Me.Controls.Add(Me.ClientsDataGridView)
         Me.Controls.Add(Me.Label8)
@@ -280,7 +279,7 @@ Partial Class Clients
         Me.GroupBox1.PerformLayout()
         CType(Me.ClientsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PurchasedProductsGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ReturnedProdcutsGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReturnedProductsGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -302,7 +301,7 @@ Partial Class Clients
     Friend WithEvents Label8 As Label
     Friend WithEvents ClientsDataGridView As DataGridView
     Friend WithEvents PurchasedProductsGridView As DataGridView
-    Friend WithEvents ReturnedProdcutsGridView As DataGridView
+    Friend WithEvents ReturnedProductsGridView As DataGridView
     Friend WithEvents TextBoxSearch As TextBox
     Friend WithEvents Label2 As Label
 End Class

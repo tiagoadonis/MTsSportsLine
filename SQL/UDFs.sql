@@ -3,6 +3,7 @@ DROP FUNCTION Projeto.PurchasedProductsPerClient;
 DROP FUNCTION Projeto.ReturnedProductsPerClient;
 DROP FUNCTION Projeto.SoldProductsPerEmployee;
 DROP FUNCTION Projeto.ReturnedProductsPerEmployee;
+DROP FUNCTION Projeto.CheckNewProdut;
 
 --UDF'S
 GO
@@ -66,3 +67,19 @@ END
 GO
 --Test Function
 SELECT * FROM Projeto.ReturnedProductsPerEmployee(112034);
+---------------------------------------------------------------------------------------------
+GO
+CREATE FUNCTION Projeto.CheckNewProdut(@Code INT, @Price DECIMAL(5,2), @Name VARCHAR(40), @Type VARCHAR(20)) Returns INT
+AS
+BEGIN
+	DECLARE @Flag INT;
+	SELECT @Flag=COUNT(*) FROM Projeto.Artigo WHERE Artigo.Codigo=@Code AND Artigo.Preco=@Price AND Artigo.Nome=@Name AND Artigo.Categoria=@Type;
+	IF (@Flag = 1)
+	BEGIN
+		RETURN 1;
+	END
+	RETURN 0;
+END
+GO
+--Test Function
+SELECT Projeto.CheckNewProdut(156428, 69.99, 'Camisola Equipamento SLB', 'Vestuário');

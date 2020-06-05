@@ -487,6 +487,7 @@ Partial Class Stores
         'ProductsDataGridView
         '
         Me.ProductsDataGridView.AllowUserToAddRows = False
+        Me.ProductsDataGridView.AllowUserToDeleteRows = False
         Me.ProductsDataGridView.AllowUserToResizeColumns = False
         Me.ProductsDataGridView.AllowUserToResizeRows = False
         Me.ProductsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -502,6 +503,7 @@ Partial Class Stores
         'WarehousesDataGridView
         '
         Me.WarehousesDataGridView.AllowUserToAddRows = False
+        Me.WarehousesDataGridView.AllowUserToDeleteRows = False
         Me.WarehousesDataGridView.AllowUserToOrderColumns = True
         Me.WarehousesDataGridView.AllowUserToResizeColumns = False
         Me.WarehousesDataGridView.AllowUserToResizeRows = False
@@ -519,6 +521,7 @@ Partial Class Stores
         'WarehousesProductsDataGridView
         '
         Me.WarehousesProductsDataGridView.AllowUserToAddRows = False
+        Me.WarehousesProductsDataGridView.AllowUserToDeleteRows = False
         Me.WarehousesProductsDataGridView.AllowUserToResizeColumns = False
         Me.WarehousesProductsDataGridView.AllowUserToResizeRows = False
         Me.WarehousesProductsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -562,6 +565,7 @@ Partial Class Stores
         'StoresDataGridView
         '
         Me.StoresDataGridView.AllowUserToAddRows = False
+        Me.StoresDataGridView.AllowUserToDeleteRows = False
         Me.StoresDataGridView.AllowUserToOrderColumns = True
         Me.StoresDataGridView.AllowUserToResizeColumns = False
         Me.StoresDataGridView.AllowUserToResizeRows = False

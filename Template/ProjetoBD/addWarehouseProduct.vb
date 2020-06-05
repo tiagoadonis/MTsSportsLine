@@ -1,4 +1,10 @@
-﻿Public Class addWarehouseProduct
+﻿Imports System.Data.SqlClient
+
+Public Class addWarehouseProduct
+    Dim CMD As SqlCommand
+    Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
+                                                "Initial Catalog = LojaDesporto; Integrated Security = true;")
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         CodeTextBox.Text = ""
         NameTextBox.Text = ""
@@ -75,12 +81,36 @@
             Dim code As Integer = CodeTextBox.Text
             Dim type As String = TypeTextBox.Text.ToString
             Dim units As Integer = UnitsTextBox.Text.ToString
+            Dim flag As Integer = checkNewProduct(code, price, name, type)
             If (units + Stores.TextBoxStorageOccupied.Text > Stores.TextBoxTotalStorage.Text) Then
                 MsgBox("There's not enough storage on the warehouse!", MsgBoxStyle.Information, "ERROR")
             Else
-                Stores.addWarehouseProduct(name, price, code, type, units)
-                Me.Close()
+                If (flag = 1) Then
+                    Stores.addWarehouseProduct(name, price, code, type, units)
+                    Me.Close()
+                Else
+                    MsgBox("Some information about the product inserted is wrong!", MsgBoxStyle.Information, "ERROR")
+                End If
             End If
         End If
     End Sub
+
+    'To check if product exists
+    Private Function checkNewProduct(ByVal code As Integer, ByVal price As Decimal, ByVal name As String, ByVal type As String) As Integer
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Projeto.CheckNewProdut(@Code, @Price, @Name, @Type)"
+        CMD.Parameters.Add("@Code", SqlDbType.Int)
+        CMD.Parameters.Add("@Price", SqlDbType.Decimal)
+        CMD.Parameters.Add("@Name", SqlDbType.VarChar, 40)
+        CMD.Parameters.Add("@Type", SqlDbType.VarChar, 20)
+        CMD.Parameters("@Code").Value = code
+        CMD.Parameters("@Price").Value = price
+        CMD.Parameters("@Name").Value = name
+        CMD.Parameters("@Type").Value = type
+        CN.Open()
+        Dim flag As Integer = CMD.ExecuteScalar()
+        CN.Close()
+        Return flag
+    End Function
 End Class

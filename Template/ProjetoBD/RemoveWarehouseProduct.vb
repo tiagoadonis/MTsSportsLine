@@ -22,8 +22,8 @@
             MsgBox("Nº units is needed!", MsgBoxStyle.Information, "ERROR")
         Else
             Dim units As Integer = UnitsTextBox.Text
-            Dim index As Integer = Stores.ProductsDataGridView.CurrentRow.Index
-            Dim selectedRow As DataGridViewRow = Stores.ProductsDataGridView.Rows(index)
+            Dim index As Integer = Stores.WarehousesProductsDataGridView.CurrentRow.Index
+            Dim selectedRow As DataGridViewRow = Stores.WarehousesProductsDataGridView.Rows(index)
             Dim quant As Integer = selectedRow.Cells(2).Value
             If (units > quant) Then
                 MsgBox("There's not " + units.ToString + " units of the selected product in the warehouse!",

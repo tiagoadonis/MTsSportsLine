@@ -63,18 +63,18 @@ SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=110;
 INSERT INTO Projeto.Artigo_Armazem(Codigo, IDArmazem, QuantArtigos) VALUES(198932, 110, 600);
 ---------------------------------------------------------------------
 GO
-CREATE TRIGGER PhoneNumber_Availability ON Projeto.Cliente
+CREATE TRIGGER Projeto.PhoneNumber_Availability ON Projeto.Cliente
 AFTER INSERT
 AS
 	BEGIN
 		DECLARE @Phone BIGINT;
+		DECLARE @Exists INT = 0;
 		SELECT @Phone = NumTelem FROM INSERTED;
-		IF EXISTS(SELECT * FROM Projeto.Cliente WHERE Cliente.NumTelem=@Phone)
-		BEGIN
-			RAISERROR('The phone number inserted already exists!', 16, 1);
-			ROLLBACK TRAN;
-		END
-		IF EXISTS(SELECT * FROM Projeto.Funcionario WHERE Funcionario.NumTelem=@Phone)
+		SELECT @Exists=COUNT(NIF) FROM Projeto.Cliente WHERE Cliente.NumTelem=@Phone;
+		PRINT'COUNT1: ' +STR(@Exists);
+		SELECT @Exists=@Exists+COUNT(NumFunc) FROM Projeto.Funcionario WHERE Funcionario.NumTelem=@Phone;
+		PRINT'COUNT2: ' +STR(@Exists);
+		IF(@Exists > 0)
 		BEGIN
 			RAISERROR('The phone number inserted already exists!', 16, 1);
 			ROLLBACK TRAN;
@@ -82,21 +82,24 @@ AS
 	END	
 GO
 --Test Trigger
+SELECT * FROM Projeto.Cliente WHERE Cliente.NumTelem=925642354;
+SELECT * FROM Projeto.Funcionario;
 INSERT INTO Projeto.Cliente(NIF, Morada, Nome, NumTelem) VALUES(234167271, 'Rua da Frente, Aveiro', 'Maria Tonico', 925642354);
+INSERT INTO Projeto.Funcionario(NumFunc, Morada, Nome, NumTelem) VALUES(142057, 'Rua da Frente, Aveiro', 'Maria Tonico', 925642354);
 ---------------------------------------------------------------------
 GO
-CREATE TRIGGER WorkerPhoneNumber_Availability ON Projeto.Funcionario
+CREATE TRIGGER Projeto.WorkerPhoneNumber_Availability ON Projeto.Funcionario
 AFTER INSERT
 AS
 	BEGIN
 		DECLARE @Phone BIGINT;
+		DECLARE @Exists INT = 0;
 		SELECT @Phone = NumTelem FROM INSERTED;
-		IF EXISTS(SELECT * FROM Projeto.Funcionario WHERE Funcionario.NumTelem=@Phone)
-		BEGIN
-			RAISERROR('The phone number inserted already exists!', 16, 1);
-			ROLLBACK TRAN;
-		END
-		IF EXISTS(SELECT * FROM Projeto.Cliente WHERE Cliente.NumTelem=@Phone)
+		SELECT @Exists=COUNT(NIF) FROM Projeto.Cliente WHERE Cliente.NumTelem=@Phone;
+		PRINT'COUNT1: ' +STR(@Exists);
+		SELECT @Exists=@Exists+COUNT(NumFunc) FROM Projeto.Funcionario WHERE Funcionario.NumTelem=@Phone;
+		PRINT'COUNT2: ' +STR(@Exists);
+		IF(@Exists > 0)
 		BEGIN
 			RAISERROR('The phone number inserted already exists!', 16, 1);
 			ROLLBACK TRAN;
