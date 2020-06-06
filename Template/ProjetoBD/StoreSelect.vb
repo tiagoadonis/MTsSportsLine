@@ -62,5 +62,6 @@ Public Class StoreSelect
         Deliveries.TextBoxStore.Text = ""
         Deliveries.DeliveriesDataGridView.ClearSelection()
         Me.Close()
+        MessageBox.Show("Delivery canceled successfully")
     End Sub
 End Class

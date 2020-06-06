@@ -18,7 +18,7 @@ Public Class Clients
             Dim name As String = NameTextBox.Text.ToString
             Dim address As String = AddressTextBox.Text.ToString()
             Dim phone As Integer = PhoneTextBox.Text
-            addClient(NIF, name, address, phone)
+            addClient(NIF, address, name, phone)
             NIFTextBox.Text = ""
             NameTextBox.Text = ""
             AddressTextBox.Text = ""
@@ -200,14 +200,14 @@ Public Class Clients
     End Sub
 
     'To add a new Client
-    Private Sub addClient(ByVal NIF As Integer, ByVal name As String, ByVal address As String, ByVal phone As Integer)
+    Private Sub addClient(ByVal NIF As Integer, ByVal address As String, ByVal name As String, ByVal phone As Integer)
         CMD = New SqlCommand()
         CMD.Connection = CN
         CMD.CommandText = "EXEC Projeto.Add_newClient @NIF, @Address, @Name, @Phone"
-        CMD.Parameters.Add("@NIF", SqlDbType.Int)
+        CMD.Parameters.Add("@NIF", SqlDbType.BigInt)
         CMD.Parameters.Add("@Address", SqlDbType.VarChar, 40)
         CMD.Parameters.Add("@Name", SqlDbType.VarChar, 20)
-        CMD.Parameters.Add("@Phone", SqlDbType.Int)
+        CMD.Parameters.Add("@Phone", SqlDbType.BigInt)
         CMD.Parameters("@NIF").Value = NIF
         CMD.Parameters("@Address").Value = address
         CMD.Parameters("@Name").Value = name

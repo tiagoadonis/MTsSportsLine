@@ -121,19 +121,21 @@ GO
 --EXEC Projeto.Add_warehouseProduct 100001, 1.0, 'Meias curtas Reebok', 'Vestuário', 160, 15;
 ----------------------------------------------------------
 GO
-CREATE PROCEDURE Projeto.Add_newClient (@NIF INT, @Address VARCHAR(40), @Name VARCHAR(20), @Phone BIGINT) 
+CREATE PROCEDURE Projeto.Add_newClient (@NIF BIGINT, @Address VARCHAR(40), @Name VARCHAR(20), @Phone BIGINT) 
 AS
 	IF EXISTS (SELECT * FROM Projeto.Cliente WHERE Cliente.NIF=@NIF)
 	BEGIN
 		RAISERROR ('The client with NIF %I64i already exists', 14, 1, @NIF);
 	END
 	ELSE
+	BEGIN
 		INSERT Projeto.Cliente (NIF, Morada, Nome, NumTelem)
 		VALUES (@NIF, @Address, @Name, @Phone);
+	END
 GO
 --Test Procedure
---EXEC Projeto.Add_newClient 100000000, NULL, 'Zé', 911111111;
---SELECT * FROM Projeto.Cliente;
+EXEC Projeto.Add_newClient 100000000, NULL, 'Zé', 911111111;
+SELECT * FROM Projeto.Cliente;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.BuyProduct (@PurchaseID INT, @Date Date, @Value DECIMAL(5,2), @NIF BIGINT, @WorkersCode INT, @Store INT, 

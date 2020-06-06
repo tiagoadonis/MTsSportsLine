@@ -49,8 +49,7 @@ Public Class AddWorker
         LettersOnly(e)
     End Sub
     Private Sub LettersOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        If (Asc(e.KeyChar) >= 65 And Asc(e.KeyChar) <= 90) Or (Asc(e.KeyChar) >= 97 And Asc(e.KeyChar) <= 122) Or Asc(e.KeyChar) = 8 Or Asc(e.KeyChar) = 32 Or Asc(e.KeyChar) = 44 Then
-        Else
+        If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Then
             e.Handled = True
             MsgBox("Only alphabetic characteres are allowed!", MsgBoxStyle.Information, "ERROR")
         End If

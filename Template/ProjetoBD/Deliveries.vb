@@ -129,6 +129,7 @@ Public Class Deliveries
             Dim selectedRow As DataGridViewRow = DeliveriesDataGridView.Rows(index)
             Dim ID As String = selectedRow.Cells(0).Value.ToString
 
+            TextBoxStore.Text = ""
             Button2.Enabled = True
             Button3.Enabled = True
             Button1.Enabled = False
@@ -216,8 +217,7 @@ Public Class Deliveries
         LettersOnly(e)
     End Sub
     Private Sub LettersOnly(ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        If (Asc(e.KeyChar) >= 65 And Asc(e.KeyChar) <= 90) Or (Asc(e.KeyChar) >= 97 And Asc(e.KeyChar) <= 122) Or Asc(e.KeyChar) = 8 Or Asc(e.KeyChar) = 32 Or Asc(e.KeyChar) = 44 Then
-        Else
+        If (Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57) Then
             e.Handled = True
             MsgBox("Only alphabetic characteres are allowed!", MsgBoxStyle.Information, "ERROR")
         End If
@@ -235,13 +235,18 @@ Public Class Deliveries
             storecheck = CheckStore(aux2)
             productcheck = CheckProduct(aux, aux2)
             Dim aux3 As Integer = Convert.ToInt32(TextBoxAmount.Text)
-            Check = Convert.ToDateTime(TextBoxDate.Text)
+            If (TextBoxDate.Text.Length <> 10) Then
+                MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
+            Else
+                Check = Convert.ToDateTime(TextBoxDate.Text)
+            End If
             If Check <= Date.Now Then
                 MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
             ElseIf TextBoxDate.Text(2) <> "/" Or TextBoxDate.Text(5) <> "/" Or TextBoxDate.Text(8) <> "2" Then
                 MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
             ElseIf storecheck Is Nothing Then
                 MsgBox("The store with that number does not exist!", MsgBoxStyle.Information, "ERROR")
+                TextBoxStore.Text = ""
             ElseIf productcheck < aux3 Then
                 MsgBox("The are not enough units to complete the order!", MsgBoxStyle.Information, "ERROR")
             Else
@@ -321,14 +326,18 @@ Public Class Deliveries
             productcheck = CheckProduct(aux, aux3)
             Dim storecheck As Object
             storecheck = CheckStore(aux3)
-            Check2 = Convert.ToDateTime(TextBoxDate2.Text)
+            If (TextBoxDate2.Text.Length <> 10) Then
+                MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
+            Else
+                Check2 = Convert.ToDateTime(TextBoxDate2.Text)
+            End If
             If TextBoxCode2.Text.Length <> 6 Then
                 MsgBox("Product Code must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
             ElseIf TextBoxID2.Text.Length <> 6 Then
                 MsgBox("Transport ID must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
             ElseIf Check2 <= Date.Now Then
                 MsgBox("Date must be after today!", MsgBoxStyle.Information, "ERROR")
-            ElseIf TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Or TextBoxDate2.Text(8) <> "2" Then
+            ElseIf TextBoxDate2.Text(2) <> "/" Or TextBoxDate2.Text(5) <> "/" Or TextBoxDate2.Text(6) <> "2" Then
                 MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
             ElseIf Not idcheck Is Nothing Then
                 MsgBox("The delivery with that code already exist!", MsgBoxStyle.Information, "ERROR")
@@ -443,6 +452,5 @@ Public Class Deliveries
         TextBoxCode.Text = ""
         TextBoxStore.Text = ""
         DeliveriesDataGridView.ClearSelection()
-        MessageBox.Show("Delivery canceled successfully")
     End Sub
 End Class
