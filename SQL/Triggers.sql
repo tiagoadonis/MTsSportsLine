@@ -69,7 +69,9 @@ AS
 	BEGIN
 		DECLARE @Phone BIGINT;
 		DECLARE @Exists INT = 0;
+		PRINT'DECLARE: ' +STR(@Exists);
 		SELECT @Phone = NumTelem FROM INSERTED;
+		PRINT'Phone: ' +STR(@Phone);
 		SELECT @Exists=COUNT(NIF) FROM Projeto.Cliente WHERE Cliente.NumTelem=@Phone;
 		PRINT'COUNT1: ' +STR(@Exists);
 		SELECT @Exists=@Exists+COUNT(NumFunc) FROM Projeto.Funcionario WHERE Funcionario.NumTelem=@Phone;

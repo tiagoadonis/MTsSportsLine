@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class Clients
+    Dim flag As Boolean
     Dim CMD As SqlCommand
     Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
                                                 "Initial Catalog = LojaDesporto; Integrated Security = true;")
@@ -19,10 +20,17 @@ Public Class Clients
             Dim address As String = AddressTextBox.Text.ToString()
             Dim phone As Integer = PhoneTextBox.Text
             addClient(NIF, address, name, phone)
-            NIFTextBox.Text = ""
-            NameTextBox.Text = ""
-            AddressTextBox.Text = ""
-            PhoneTextBox.Text = ""
+            If (Me.flag = True) Then
+                NIFTextBox.Text = ""
+                NameTextBox.Text = ""
+                AddressTextBox.Text = ""
+                PhoneTextBox.Text = ""
+            Else
+                NIFTextBox.Text = NIFTextBox.Text
+                NameTextBox.Text = NameTextBox.Text
+                AddressTextBox.Text = AddressTextBox.Text
+                PhoneTextBox.Text = PhoneTextBox.Text
+            End If
         End If
     End Sub
 
@@ -219,12 +227,16 @@ Public Class Clients
             CMD.ExecuteScalar()
             loadClients()
             CN.Close()
+            Me.flag = True
         ElseIf (NIFbool = False And PhoneBool = True) Then
             MsgBox("The NIF inserted already exists!", MsgBoxStyle.Information, "ERROR")
+            Me.flag = False
         ElseIf (NIFbool = True And PhoneBool = False) Then
             MsgBox("The Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
+            Me.flag = False
         Else
             MsgBox("The NIF and Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
+            Me.flag = False
         End If
     End Sub
 

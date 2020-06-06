@@ -6,6 +6,7 @@ Public Class MainForm
     Dim CMD As SqlCommand
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.CenterToScreen()
         'Local Server
         CN = New SqlConnection("Data Source = localhost;" &
                                "Initial Catalog = LojaDesporto; Integrated Security = true;")

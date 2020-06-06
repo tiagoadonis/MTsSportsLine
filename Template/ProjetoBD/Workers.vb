@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Security.Cryptography
 
 Public Class Workers
     Dim CMD As SqlCommand
