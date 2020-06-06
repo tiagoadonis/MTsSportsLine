@@ -27,7 +27,7 @@ AS
 	VALUES (@StoreNum, @Name, @Location);
 GO
 --Test Procedure
-EXEC Projeto.Add_newStore 4, 'M&T Sports Line - Guarda', 'Guarda';
+--EXEC Projeto.Add_newStore 4, 'M&T Sports Line - Guarda', 'Guarda';
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Add_storeProduct (@Code INT, @Price DECIMAL(5,2), @Name VARCHAR(40), @Category VARCHAR(20), @StoreNum INT, @NumUnits INT) 
@@ -62,9 +62,9 @@ AS
 	END
 GO
 --Test Procedure
-SELECT * FROM Projeto.Artigo;
-SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=1;
-EXEC Projeto.Add_storeProduct 100004, 10.0, 'Calções Timberland', 'Vestuário', 1, 1;
+--SELECT * FROM Projeto.Artigo;
+--SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=1;
+--EXEC Projeto.Add_storeProduct 100004, 10.0, 'Calções Timberland', 'Vestuário', 1, 1;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Add_Warehouse (@WarehouseID INT, @Storage INT, @StoreNum INT) 
@@ -78,7 +78,7 @@ AS
 		RAISERROR ('The store number %d does not exists', 14, 1, @StoreNum);
 GO
 --Test Procedure
-EXEC Projeto.Add_Warehouse 160, 100, 1; 
+--EXEC Projeto.Add_Warehouse 160, 100, 1; 
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Add_warehouseProduct (@Code INT, @Price DECIMAL(5,2), @Name VARCHAR(40), @Category VARCHAR(20), @WarehouseID INT, @NumUnits INT) 
@@ -116,24 +116,24 @@ AS
 	END
 GO
 --Test Procedure
-SELECT * FROM Projeto.Artigo;
-SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=160;
-EXEC Projeto.Add_warehouseProduct 100001, 1.0, 'Meias curtas Reebok', 'Vestuário', 160, 15;
+--SELECT * FROM Projeto.Artigo;
+--SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=160;
+--EXEC Projeto.Add_warehouseProduct 100001, 1.0, 'Meias curtas Reebok', 'Vestuário', 160, 15;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Add_newClient (@NIF INT, @Address VARCHAR(40), @Name VARCHAR(20), @Phone BIGINT) 
 AS
 	IF EXISTS (SELECT * FROM Projeto.Cliente WHERE Cliente.NIF=@NIF)
 	BEGIN
-		RAISERROR ('The client with NIF %d already exists', 14, 1, @NIF);
+		RAISERROR ('The client with NIF %I64i already exists', 14, 1, @NIF);
 	END
 	ELSE
 		INSERT Projeto.Cliente (NIF, Morada, Nome, NumTelem)
 		VALUES (@NIF, @Address, @Name, @Phone);
 GO
 --Test Procedure
-EXEC Projeto.Add_newClient 100000000, NULL, 'Zé', 911111111;
-SELECT * FROM Projeto.Cliente;
+--EXEC Projeto.Add_newClient 100000000, NULL, 'Zé', 911111111;
+--SELECT * FROM Projeto.Cliente;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.BuyProduct (@PurchaseID INT, @Date Date, @Value DECIMAL(5,2), @NIF BIGINT, @WorkersCode INT, @Store INT, 
@@ -169,17 +169,17 @@ AS
 	END
 	ELSE
 	BEGIN
-		RAISERROR ('The client with NIF %d does not exists', 14, 1, @NIF);
+		RAISERROR ('The client with NIF %I64i does not exists', 14, 1, @NIF);
 	END
 GO
 --Test Procedure
-EXEC Projeto.BuyProduct 39230, '2020-06-04', 39.99, 123456789, 132996, 1, 101561, 1;
-SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
-                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
-                           WHERE Loja.NumLoja = 1
-SELECT * FROM Projeto.Artigo_Comprado;
-SELECT * FROM Projeto.Compra;
+--EXEC Projeto.BuyProduct 39230, '2020-06-04', 39.99, 123456789, 132996, 1, 101561, 1;
+--SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+--                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
+--                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
+--                           WHERE Loja.NumLoja = 1
+--SELECT * FROM Projeto.Artigo_Comprado;
+--SELECT * FROM Projeto.Compra;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.ReturnProduct (@ReturnID INT, @Date Date, @Value DECIMAL(5,2), @NIF BIGINT, @WorkersCode INT, @StoreNum INT, 
@@ -225,16 +225,16 @@ AS
 	END
 	ELSE
 	BEGIN
-		RAISERROR ('The client with NIF %d does not exists', 14, 1, @NIF);
+		RAISERROR ('The client with NIF %I64i does not exists', 14, 1, @NIF);
 	END
 GO
 --Test Procedure
-EXEC Projeto.ReturnProduct 30067, '2020-01-01', 10.00, 123456789, 123091, 1, 100004, 1;
-SELECT * FROM Projeto.Devolucao;
-SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
-                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
-                           WHERE Loja.NumLoja = 1
+--EXEC Projeto.ReturnProduct 30067, '2020-01-01', 10.00, 123456789, 123091, 1, 100004, 1;
+--SELECT * FROM Projeto.Devolucao;
+--SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+--                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
+--                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
+--                           WHERE Loja.NumLoja = 1
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.ProductsFromWarehouseToStore (@WarehouseID INT, @Code INT, @StoreNum INT, @Units INT)
@@ -280,12 +280,12 @@ AS
 	END
 GO
 --Test Procedure
-EXEC Projeto.ProductsFromWarehouseToStore 160, 156428, 4, 5;
-SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
-                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
-                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
-                           WHERE Loja.NumLoja = 4;
-SELECT Name, Price, Units FROM WarehousesProducts WHERE WarehouseID = 160;
+--EXEC Projeto.ProductsFromWarehouseToStore 160, 156428, 4, 5;
+--SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
+--                           FROM ((Projeto.Loja JOIN Projeto.Artigo_Loja ON Loja.NumLoja=Artigo_Loja.NumLoja)
+--                           JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
+--                           WHERE Loja.NumLoja = 4;
+--SELECT Name, Price, Units FROM WarehousesProducts WHERE WarehouseID = 160;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.UpdateAddress (@NIF BIGINT, @Address VARCHAR(40))
@@ -295,11 +295,11 @@ AS
 		UPDATE Projeto.Cliente SET Cliente.Morada=@Address WHERE Cliente.NIF=@NIF;
 	END
 	ELSE
-		RAISERROR ('The client with NIF %d does not exists', 14, 1, @NIF);
+		RAISERROR ('The client with NIF %I64i does not exists', 14, 1, @NIF);
 GO
 --Test Procedure
-EXEC Projeto.UpdateAddress 214139274, 'R. de Egas Moniz, Viseu';
-SELECT * FROM Projeto.Cliente;
+--EXEC Projeto.UpdateAddress 214139274, 'R. de Egas Moniz, Viseu';
+--SELECT * FROM Projeto.Cliente;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.UpdatePhone (@NIF BIGINT, @Phone BIGINT)
@@ -309,11 +309,11 @@ AS
 		UPDATE Projeto.Cliente SET Cliente.NumTelem=@Phone WHERE Cliente.NIF=@NIF;
 	END
 	ELSE
-		RAISERROR ('The client with NIF %d does not exists', 14, 1, @NIF);
+		RAISERROR ('The client with NIF %I64i does not exists', 14, 1, @NIF);
 GO
 --Test Procedure
-EXEC Projeto.UpdatePhone 214139274, 966666660;
-SELECT * FROM Projeto.Cliente;
+--EXEC Projeto.UpdatePhone 100000000, 966666660;
+--SELECT * FROM Projeto.Cliente;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Add_Worker (@Num INT, @Address VARCHAR(40), @Name VARCHAR(20), @Phone BIGINT, @StoreNum INT) 
@@ -332,7 +332,7 @@ AS
 		RAISERROR ('The store number %d does not exists', 14, 1, @StoreNum);
 GO
 --Test Procedure
-EXEC Projeto.Add_Worker 100000000, 'Rua da Frente, Maia', 'Carlos Manuel', 911111111, 2;
+--EXEC Projeto.Add_Worker 100000000, 'Rua da Frente, Maia', 'Carlos Manuel', 911111111, 2;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Add_Delivery (@Id INT, @Data DATE, @Dest VARCHAR(40), @Code INT, @Quant INT, @Store INT)
@@ -371,7 +371,8 @@ AS
 			RAISERROR ('The product with code %d does not exist!', 14, 1, @Code);
 GO
 --Test Procedure
-EXEC Projeto.Add_Delivery 272727, '2020-06-03', 'Rua da Frente, Maia', 2, 101561, 2;
+--EXEC Projeto.Add_Delivery 272727, '2020-06-03', 'Rua da Frente, Maia', 2, 101561, 2;
+
 -- Removing Stored Procedures
 GO
 CREATE PROCEDURE Projeto.Remove_Store (@StoreNum INT) 
@@ -436,11 +437,11 @@ AS
 		RAISERROR ('The store number %d does not exists', 14, 1, @StoreNum);
 GO
 --Test Procedure
-EXEC Projeto.Remove_Store 5;
-SELECT * FROM Projeto.Armazem WHERE Armazem.NumLoja=5
-SELECT * FROM Projeto.Loja
-SELECT Name, Price, Units FROM WarehousesProducts WHERE WarehouseID = 180	
-SELECT COUNT(*) FROM Projeto.Armazem WHERE Armazem.NumLoja=5
+--EXEC Projeto.Remove_Store 5;
+--SELECT * FROM Projeto.Armazem WHERE Armazem.NumLoja=5
+--SELECT * FROM Projeto.Loja
+--SELECT Name, Price, Units FROM WarehousesProducts WHERE WarehouseID = 180	
+--SELECT COUNT(*) FROM Projeto.Armazem WHERE Armazem.NumLoja=5
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_storeProduct (@StoreNum INT, @Code INT, @Units INT) 
@@ -475,9 +476,9 @@ AS
 	END
 GO
 --Test Procedure
-EXEC Projeto.Remove_storeProduct 1, 100003, 2;	
-SELECT * FROM Projeto.Artigo;
-SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=1;
+--EXEC Projeto.Remove_storeProduct 1, 100003, 2;	
+--SELECT * FROM Projeto.Artigo;
+--SELECT * FROM Projeto.Artigo_Loja WHERE Artigo_Loja.NumLoja=1;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_Warehouse (@WarehouseID INT) 
@@ -493,7 +494,7 @@ AS
 		RAISERROR ('The warehouse number %d does not exists', 14, 1, @WarehouseID);
 GO
 --Test Procedure
-EXEC Projeto.Remove_Warehouse 160; 
+--EXEC Projeto.Remove_Warehouse 160; 
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_WarehouseProduct (@WarehouseID INT, @Code INT, @Units INT) 
@@ -530,8 +531,8 @@ AS
 	END
 GO
 --Test Procedure
-SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=160;
-EXEC Projeto.Remove_WarehouseProduct 160, 100001, 14;
+--SELECT * FROM Projeto.Artigo_Armazem WHERE Artigo_Armazem.IDArmazem=160;
+--EXEC Projeto.Remove_WarehouseProduct 160, 100001, 14;
 ----------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_Client (@NIF BIGINT) 
@@ -541,36 +542,39 @@ AS
 		IF EXISTS (SELECT * FROM Projeto.Compra WHERE Compra.NIF=@NIF)
 		BEGIN
 			DECLARE @numPurchases INT;
-			SELECT @numPurchases=COUNT(*) FROM Projeto.Cliente WHERE Cliente.NIF=@NIF;
+			SELECT @numPurchases=COUNT(*) FROM Projeto.Compra WHERE Compra.NIF=@NIF;
 			WHILE (@numPurchases)>0
 			BEGIN
 				DECLARE @PurchaseID INT;
 				SELECT @PurchaseID = Compra.NumCompra FROM Projeto.Compra WHERE Compra.NIF=@NIF;
 				DELETE FROM Projeto.Artigo_Comprado WHERE Artigo_Comprado.NumCompra=@PurchaseID;
-				DELETE FROM Projeto.Compra WHERE Compra.NIF=@NIF AND Compra.NIF=@NIF;
+				DELETE FROM Projeto.Compra WHERE Compra.NIF=@NIF AND Compra.NumCompra=@PurchaseID;
 				SET @numPurchases-=1;
 			END
 		END
 		IF EXISTS (SELECT * FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF)
 		BEGIN
 			DECLARE @numReturns INT;
-			SELECT @numReturns=COUNT(*) FROM Projeto.Cliente WHERE Cliente.NIF=@NIF;
+			SELECT @numReturns=COUNT(*) FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF;
 			WHILE (@numReturns)>0
 			BEGIN
 				DECLARE @ReturnID INT;
 				SELECT @ReturnID = Devolucao.IDDevolucao FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF;
 				DELETE FROM Projeto.Artigo_Devolvido WHERE Artigo_Devolvido.IDDevolucao=@ReturnID;
-				DELETE FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF AND Devolucao.NIF=@NIF;
+				DELETE FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF AND Devolucao.IDDevolucao=@ReturnID;
 				SET @numReturns-=1;
 			END
 		END
 		DELETE FROM Projeto.Cliente WHERE Cliente.NIF=@NIF;
 	END
 	ELSE
-		RAISERROR ('The client with the NIF %d does not exists', 14, 1, @NIF);
+	BEGIN
+		RAISERROR ('The client with the NIF %I64i does not exists', 14, 1, @NIF);
+	END
 GO
 --Test Procedure
-EXEC Projeto.Remove_Client 100000000;
+--EXEC Projeto.Remove_Client 100000000;
+--SELECT * FROM Projeto.Cliente;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_Worker (@Num INT) 
@@ -609,7 +613,7 @@ AS
 		RAISERROR ('The employee with the number %d does not exists', 14, 1, @Num);
 GO
 --Test Procedure
-EXEC Projeto.Remove_Worker 112034;
+--EXEC Projeto.Remove_Worker 112034;
 --------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_Delivery (@Id INT, @Store INT) 
@@ -633,4 +637,4 @@ AS
 		RAISERROR ('The delivery with ID %d does not exists', 14, 1, @Id);
 GO
 --Test Procedure
-EXEC Projeto.Remove_Delivery 100259,2;
+--EXEC Projeto.Remove_Delivery 100259,2;

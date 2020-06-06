@@ -275,21 +275,26 @@ Public Class Clients
 
     'Remove Client Button
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Dim index As Integer = ClientsDataGridView.CurrentRow.Index
-        Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
-        Dim nif As Integer = selectedRow.Cells(0).Value
+        Dim result As DialogResult = MessageBox.Show("Do you really want to delete the client selected?",
+                                                     "Information", MessageBoxButtons.YesNo)
 
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "EXEC Projeto.Remove_Client @NIF"
-        CMD.Parameters.Add("@NIF", SqlDbType.Int)
-        CMD.Parameters("@NIF").Value = nif
-        CN.Open()
-        CMD.ExecuteScalar()
-        loadClients()
-        CN.Close()
-        PurchasedProductsGridView.DataSource = Nothing
-        ReturnedProductsGridView.DataSource = Nothing
+        If (result = DialogResult.Yes) Then
+            Dim index As Integer = ClientsDataGridView.CurrentRow.Index
+            Dim selectedRow As DataGridViewRow = ClientsDataGridView.Rows(index)
+            Dim nif As Integer = selectedRow.Cells(0).Value
+
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "EXEC Projeto.Remove_Client @NIF"
+            CMD.Parameters.Add("@NIF", SqlDbType.Int)
+            CMD.Parameters("@NIF").Value = nif
+            CN.Open()
+            CMD.ExecuteScalar()
+            loadClients()
+            CN.Close()
+            PurchasedProductsGridView.DataSource = Nothing
+            ReturnedProductsGridView.DataSource = Nothing
+        End If
     End Sub
 
     'Update Address
