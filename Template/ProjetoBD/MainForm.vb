@@ -168,8 +168,13 @@ Public Class MainForm
             .Button1.Enabled = False
             .Button2.Enabled = False
             .Button3.Enabled = False
+            .Button5.Enabled = False
             .Label3.Visible = True
             .Label3.Enabled = True
+            .TextBoxDate.Enabled = False
+            .TextBoxAmount.Enabled = False
+            .TextBoxDest.Enabled = False
+            .TextBoxStore.Enabled = False
         End With
     End Sub
 

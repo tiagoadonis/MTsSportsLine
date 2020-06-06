@@ -131,6 +131,12 @@ Public Class Deliveries
 
             Button2.Enabled = True
             Button3.Enabled = True
+            Button1.Enabled = False
+            Button5.Enabled = False
+            TextBoxDate.Enabled = False
+            TextBoxAmount.Enabled = False
+            TextBoxDest.Enabled = False
+            TextBoxStore.Enabled = False
             TextBoxID.Text = selectedRow.Cells(0).Value.ToString
             Dim tmp As Date = selectedRow.Cells(1).Value
             TextBoxDate.Text = tmp.ToString("dd/MM/yyyy")
@@ -252,6 +258,7 @@ Public Class Deliveries
                 Dim quant As Integer = TextBoxAmount.Text
                 Dim store As Integer = TextBoxStore.Text
                 updateDelivery(data, dest, code, quant, store)
+                MessageBox.Show("Delivery edited successfully")
             End If
         End If
     End Sub
@@ -345,6 +352,7 @@ Public Class Deliveries
                 TextBoxCode2.Text = ""
                 TextBoxAmount2.Text = ""
                 TextBoxStore2.Text = ""
+                MessageBox.Show("Delivery added successfully")
             End If
         End If
     End Sub
@@ -435,5 +443,6 @@ Public Class Deliveries
         TextBoxCode.Text = ""
         TextBoxStore.Text = ""
         DeliveriesDataGridView.ClearSelection()
+        MessageBox.Show("Delivery canceled successfully")
     End Sub
 End Class

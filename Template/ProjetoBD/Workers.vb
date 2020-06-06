@@ -82,6 +82,7 @@ Public Class Workers
                 lastIndex = index
             End If
 
+            Button4.Enabled = False
             Button3.Enabled = True
             TextBoxSearch.Enabled = True
             Label5.Enabled = True
@@ -172,6 +173,7 @@ Public Class Workers
         Dim addWorker As New AddWorker
         addWorker.StartPosition = FormStartPosition.CenterScreen
         addWorker.ShowDialog()
+        MessageBox.Show("Worker added successfully")
     End Sub
 
     Private Sub Workers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -245,22 +247,29 @@ Public Class Workers
         CN.Close()
     End Sub
 
+    'Remove Worker Button
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim index As Integer = StoresDataGridView.CurrentRow.Index
-        Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
-        Dim numStore As Integer = selectedRow.Cells(0).Value
-        Dim index2 As Integer = WorkersDataGridView.CurrentRow.Index
-        Dim selectedRow2 As DataGridViewRow = WorkersDataGridView.Rows(index2)
-        Dim worker As Integer = selectedRow2.Cells(0).Value
+        Dim result As DialogResult = MessageBox.Show("Do you really want to remove the worker selected?",
+                                                     "Information", MessageBoxButtons.YesNo)
+        If (result = DialogResult.Yes) Then
+            Dim index As Integer = StoresDataGridView.CurrentRow.Index
+            Dim selectedRow As DataGridViewRow = StoresDataGridView.Rows(index)
+            Dim numStore As Integer = selectedRow.Cells(0).Value
+            Dim index2 As Integer = WorkersDataGridView.CurrentRow.Index
+            Dim selectedRow2 As DataGridViewRow = WorkersDataGridView.Rows(index2)
+            Dim worker As Integer = selectedRow2.Cells(0).Value
 
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "EXEC Projeto.Remove_Worker @worker"
-        CMD.Parameters.Add("@worker", SqlDbType.Int)
-        CMD.Parameters("@worker").Value = worker
-        CN.Open()
-        CMD.ExecuteScalar()
-        CN.Close()
-        loadWorkers(numStore)
+            CMD = New SqlCommand()
+            CMD.Connection = CN
+            CMD.CommandText = "EXEC Projeto.Remove_Worker @worker"
+            CMD.Parameters.Add("@worker", SqlDbType.Int)
+            CMD.Parameters("@worker").Value = worker
+            CN.Open()
+            CMD.ExecuteScalar()
+            CN.Close()
+            loadWorkers(numStore)
+            SalesDataGridView.DataSource = Nothing
+            ReturnsDataGridView.DataSource = Nothing
+        End If
     End Sub
 End Class

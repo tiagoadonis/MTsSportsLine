@@ -288,6 +288,8 @@ Public Class Clients
         CMD.ExecuteScalar()
         loadClients()
         CN.Close()
+        PurchasedProductsGridView.DataSource = Nothing
+        ReturnedProductsGridView.DataSource = Nothing
     End Sub
 
     'Update Address
