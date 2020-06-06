@@ -540,17 +540,29 @@ AS
 	BEGIN
 		IF EXISTS (SELECT * FROM Projeto.Compra WHERE Compra.NIF=@NIF)
 		BEGIN
-			DECLARE @PurchaseID INT;
-			SELECT @PurchaseID = Compra.NumCompra FROM Projeto.Compra WHERE Compra.NIF=@NIF;
-			DELETE FROM Projeto.Artigo_Comprado WHERE Artigo_Comprado.NumCompra=@PurchaseID;
-			DELETE FROM Projeto.Compra WHERE Compra.NIF=@NIF;
+			DECLARE @numPurchases INT;
+			SELECT @numPurchases=COUNT(*) FROM Projeto.Cliente WHERE Cliente.NIF=@NIF;
+			WHILE (@numPurchases)>0
+			BEGIN
+				DECLARE @PurchaseID INT;
+				SELECT @PurchaseID = Compra.NumCompra FROM Projeto.Compra WHERE Compra.NIF=@NIF;
+				DELETE FROM Projeto.Artigo_Comprado WHERE Artigo_Comprado.NumCompra=@PurchaseID;
+				DELETE FROM Projeto.Compra WHERE Compra.NIF=@NIF AND Compra.NIF=@NIF;
+				SET @numPurchases-=1;
+			END
 		END
 		IF EXISTS (SELECT * FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF)
 		BEGIN
-			DECLARE @ReturnID INT;
-			SELECT @ReturnID = Devolucao.IDDevolucao FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF;
-			DELETE FROM Projeto.Artigo_Devolvido WHERE Artigo_Devolvido.IDDevolucao=@ReturnID;
-			DELETE FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF;
+			DECLARE @numReturns INT;
+			SELECT @numReturns=COUNT(*) FROM Projeto.Cliente WHERE Cliente.NIF=@NIF;
+			WHILE (@numReturns)>0
+			BEGIN
+				DECLARE @ReturnID INT;
+				SELECT @ReturnID = Devolucao.IDDevolucao FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF;
+				DELETE FROM Projeto.Artigo_Devolvido WHERE Artigo_Devolvido.IDDevolucao=@ReturnID;
+				DELETE FROM Projeto.Devolucao WHERE Devolucao.NIF=@NIF AND Devolucao.NIF=@NIF;
+				SET @numReturns-=1;
+			END
 		END
 		DELETE FROM Projeto.Cliente WHERE Cliente.NIF=@NIF;
 	END
@@ -567,25 +579,37 @@ AS
 	BEGIN
 		IF EXISTS (SELECT * FROM Projeto.Compra WHERE Compra.NumFunc=@Num)
 		BEGIN
-			DECLARE @PurchaseID INT;
-			SELECT  @PurchaseID = Compra.NumCompra FROM Projeto.Compra WHERE Compra.NumFunc=@Num;
-			DELETE FROM Projeto.Artigo_Comprado WHERE Artigo_Comprado.NumCompra=@PurchaseID;
-			DELETE FROM Projeto.Compra WHERE Compra.NumFunc=@Num;
+			DECLARE @numSales INT;
+			SELECT @numSales=COUNT(*) FROM Projeto.Compra WHERE Compra.NumFunc=@Num;
+			WHILE (@numSales)>0
+			BEGIN
+				DECLARE @PurchaseID INT;
+				SELECT  @PurchaseID = Compra.NumCompra FROM Projeto.Compra WHERE Compra.NumFunc=@Num;
+				DELETE FROM Projeto.Artigo_Comprado WHERE Artigo_Comprado.NumCompra=@PurchaseID;
+				DELETE FROM Projeto.Compra WHERE Compra.NumFunc=@Num AND Compra.NumCompra=@PurchaseID;
+				SET @numSales-=1;
+			END
 		END
 		IF EXISTS (SELECT * FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num)
 		BEGIN
-			DECLARE @ReturnID INT;
-			SELECT @ReturnID = Devolucao.IDDevolucao FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num;
-			DELETE FROM Projeto.Artigo_Devolvido WHERE Artigo_Devolvido.IDDevolucao=@ReturnID;
-			DELETE FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num;
+			DECLARE @numReturns INT;
+			SELECT @numReturns=COUNT(*) FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num;
+			WHILE (@numReturns)>0
+			BEGIN
+				DECLARE @ReturnID INT;
+				SELECT @ReturnID = Devolucao.IDDevolucao FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num;
+				DELETE FROM Projeto.Artigo_Devolvido WHERE Artigo_Devolvido.IDDevolucao=@ReturnID;
+				DELETE FROM Projeto.Devolucao WHERE Devolucao.NumFunc=@Num AND Devolucao.IDDevolucao=@ReturnID;
+				SET @numReturns-=1;
+			END
 		END
 		DELETE FROM Projeto.Funcionario WHERE Funcionario.NumFunc=@Num;
 	END
 	ELSE
-		RAISERROR ('The employee with the numer %d does not exists', 14, 1, @Num);
+		RAISERROR ('The employee with the number %d does not exists', 14, 1, @Num);
 GO
 --Test Procedure
-EXEC Projeto.Remove_Worker 110969;
+EXEC Projeto.Remove_Worker 112034;
 --------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.Remove_Delivery (@Id INT, @Store INT) 
