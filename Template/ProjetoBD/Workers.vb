@@ -173,7 +173,6 @@ Public Class Workers
         Dim addWorker As New AddWorker
         addWorker.StartPosition = FormStartPosition.CenterScreen
         addWorker.ShowDialog()
-        MessageBox.Show("Worker added successfully")
     End Sub
 
     Private Sub Workers_Load(sender As Object, e As EventArgs) Handles MyBase.Load

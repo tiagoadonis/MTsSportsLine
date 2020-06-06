@@ -85,6 +85,7 @@ Public Class AddWorker
             Dim phone As Integer = TextBox5.Text
             Workers.addWorker(num, morada, nome, phone)
             Me.Close()
+            MessageBox.Show("Worker added successfully")
         End If
     End Sub
 
