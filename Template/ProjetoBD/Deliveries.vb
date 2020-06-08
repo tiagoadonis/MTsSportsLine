@@ -86,6 +86,22 @@ Public Class Deliveries
         Return storecheck
     End Function
 
+    Public Function CheckTransQuant(id As Integer, code As Integer)
+        Dim quantTrans As Object
+
+        CMD = New SqlCommand()
+        CMD.Connection = CN
+        CMD.CommandText = "SELECT Artigo_Transporte.QuantArtigos FROM Projeto.Artigo_Transporte WHERE Artigo_Transporte.IDTransporte=@id AND Artigo_Transporte.Codigo=@code;"
+        CMD.Parameters.Add("@id", SqlDbType.Int)
+        CMD.Parameters.Add("@code", SqlDbType.Int)
+        CMD.Parameters("@id").Value = id
+        CMD.Parameters("@code").Value = code
+        CN.Open()
+        quantTrans = CMD.ExecuteScalar()
+        CN.Close()
+        Return quantTrans
+    End Function
+
     Public Sub FilterData(valueToSearch As String)
         Dim search As String = TextBoxSearch.Text
         Dim table2 As New DataTable()
@@ -234,6 +250,8 @@ Public Class Deliveries
             storecheck = CheckStore(aux2)
             productcheck = CheckProduct(aux, aux2)
             Dim aux3 As Integer = Convert.ToInt32(TextBoxAmount.Text)
+            Dim aux4 As Integer = Convert.ToInt32(TextBoxID.Text)
+            Dim quantTrans As Integer = CheckTransQuant(aux4, aux)
             If (TextBoxDate.Text.Length <> 10) Then
                 MsgBox("Date must be in format DD/MM/YYYY!", MsgBoxStyle.Information, "ERROR")
             Else
@@ -246,7 +264,7 @@ Public Class Deliveries
             ElseIf storecheck Is Nothing Then
                 MsgBox("The store with that number does not exist!", MsgBoxStyle.Information, "ERROR")
                 TextBoxStore.Text = ""
-            ElseIf productcheck < aux3 Then
+            ElseIf (productcheck + quantTrans) - aux3 < 0 Then
                 MsgBox("The are not enough units to complete the order!", MsgBoxStyle.Information, "ERROR")
             Else
                 TextBoxDate.Enabled = False

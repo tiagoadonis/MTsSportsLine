@@ -35,7 +35,6 @@
 --DROP TABLE IF EXISTS Projeto.Armazem; 
 --DROP TABLE IF EXISTS Projeto.Artigo_Armazem;
 --DROP TABLE IF EXISTS Projeto.Artigo;
-
 --DROP SCHEMA IF EXISTS Projeto;
 --DROP DATABASE IF EXISTS LojaDesporto;
 
