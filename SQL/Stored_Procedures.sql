@@ -134,8 +134,8 @@ AS
 	END
 GO
 --Test Procedure
-EXEC Projeto.Add_newClient 100000000, NULL, 'Zé', 911111111;
-SELECT * FROM Projeto.Cliente;
+--EXEC Projeto.Add_newClient 100000000, NULL, 'Zé', 911111111;
+--SELECT * FROM Projeto.Cliente;
 ------------------------------------------------------------
 GO
 CREATE PROCEDURE Projeto.BuyProduct (@PurchaseID INT, @Date Date, @Value DECIMAL(5,2), @NIF BIGINT, @WorkersCode INT, @Store INT, 

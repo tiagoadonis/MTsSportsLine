@@ -19,7 +19,20 @@ Public Class Clients
             Dim name As String = NameTextBox.Text.ToString
             Dim address As String = AddressTextBox.Text.ToString()
             Dim phone As Integer = PhoneTextBox.Text
-            addClient(NIF, address, name, phone)
+            Dim NIFbool As Boolean = checkNIF(NIF)
+            Dim PhoneBool As Boolean = checkPhone(phone)
+            If (NIFbool = True And PhoneBool = True) Then
+                addClient(NIF, address, name, phone)
+            ElseIf (NIFbool = False And PhoneBool = True) Then
+                MsgBox("The NIF inserted already exists!", MsgBoxStyle.Information, "ERROR")
+                Me.flag = False
+            ElseIf (NIFbool = True And PhoneBool = False) Then
+                MsgBox("The Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
+                Me.flag = False
+            Else
+                MsgBox("The NIF and Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
+                Me.flag = False
+            End If
             If (Me.flag = True) Then
                 NIFTextBox.Text = ""
                 NameTextBox.Text = ""
@@ -211,7 +224,8 @@ Public Class Clients
     Private Sub addClient(ByVal NIF As Integer, ByVal address As String, ByVal name As String, ByVal phone As Integer)
         CMD = New SqlCommand()
         CMD.Connection = CN
-        CMD.CommandText = "EXEC Projeto.Add_newClient @NIF, @Address, @Name, @Phone"
+        CMD.CommandText = "Projeto.Add_newClient"
+        CMD.CommandType = CommandType.StoredProcedure
         CMD.Parameters.Add("@NIF", SqlDbType.BigInt)
         CMD.Parameters.Add("@Address", SqlDbType.VarChar, 40)
         CMD.Parameters.Add("@Name", SqlDbType.VarChar, 20)
@@ -220,24 +234,11 @@ Public Class Clients
         CMD.Parameters("@Address").Value = address
         CMD.Parameters("@Name").Value = name
         CMD.Parameters("@Phone").Value = phone
-        Dim NIFbool As Boolean = checkNIF(NIF)
-        Dim PhoneBool As Boolean = checkPhone(phone)
-        If (NIFbool = True And PhoneBool = True) Then
-            CN.Open()
-            CMD.ExecuteScalar()
-            loadClients()
-            CN.Close()
-            Me.flag = True
-        ElseIf (NIFbool = False And PhoneBool = True) Then
-            MsgBox("The NIF inserted already exists!", MsgBoxStyle.Information, "ERROR")
-            Me.flag = False
-        ElseIf (NIFbool = True And PhoneBool = False) Then
-            MsgBox("The Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
-            Me.flag = False
-        Else
-            MsgBox("The NIF and Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
-            Me.flag = False
-        End If
+        CN.Open()
+        CMD.ExecuteScalar()
+        loadClients()
+        CN.Close()
+        Me.flag = True
     End Sub
 
     'To check if NIF already exists or not
