@@ -35,8 +35,8 @@ SELECT Artigo.Nome AS Name, Preco AS Price, QuantArtigos AS Units
                            JOIN Projeto.Artigo ON Artigo_Loja.Codigo=Artigo.Codigo)
                            WHERE Loja.NumLoja = 1
 SELECT * FROM Projeto.Compra;
-INSERT INTO Projeto.Compra(NumCompra, Data, Montante, NIF, NumFunc) VALUES (39235, '2020-06-04', 239.94, 123456789, 129078);
-INSERT INTO Projeto.Artigo_Comprado(Codigo, NumCompra, QuantArtigos) VALUES (101561, 39235, 6);
+INSERT INTO Projeto.Compra(NumCompra, Data, Montante, NIF, NumFunc) VALUES (40000, '2020-06-04', 239.94, 123456789, 129078);
+INSERT INTO Projeto.Artigo_Comprado(Codigo, NumCompra, QuantArtigos) VALUES (101561, 40000, 100);
 ---------------------------------------------------------------------
 GO
 CREATE TRIGGER Check_UnitsWarehouse ON Projeto.Artigo_Armazem

@@ -499,10 +499,14 @@ Public Class Stores
         CMD.Parameters("@StoreNum").Value = numStore
         CMD.Parameters("@Code").Value = productCode
         CMD.Parameters("@Quant").Value = units
+        'Try
         CN.Open()
         CMD.ExecuteScalar()
         CN.Close()
         loadStoresProducts(numStore)
+        'Catch SqlEx As System.Data.SqlClient.SqlException
+        '    MsgBox("There's not enough units in the store!", MsgBoxStyle.Information, "ERROR")
+        'End Try
     End Sub
 
     'Return Product

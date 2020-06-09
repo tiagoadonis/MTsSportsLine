@@ -46,12 +46,12 @@ Public Class BuyProduct
             Dim code As Int32 = Convert.ToInt32(tmp)
             Dim units As Integer = Convert.ToInt32(UnitsTextBox.Text)
 
-            If (units > storeQuant) Then
-                MsgBox("There's not enough units in the store!", MsgBoxStyle.Information, "ERROR")
-            Else
-                Stores.BuyProduct(nif, code, units)
-                Me.Close()
-            End If
+            'If (units > storeQuant) Then
+            'MsgBox("There's not enough units in the store!", MsgBoxStyle.Information, "ERROR")
+            'Else
+            Stores.BuyProduct(nif, code, units)
+            Me.Close()
+            'End If
         End If
     End Sub
 

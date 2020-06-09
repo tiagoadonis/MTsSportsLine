@@ -44,6 +44,11 @@ Public Class Clients
                 AddressTextBox.Text = AddressTextBox.Text
                 PhoneTextBox.Text = PhoneTextBox.Text
             End If
+            MsgBox("Client inserted sucessfully!", MsgBoxStyle.Information, "Information")
+            PurchasedProductsGridView.DataSource = Nothing
+            ReturnedProductsGridView.DataSource = Nothing
+            Button5.Enabled = False
+            Button6.Enabled = False
         End If
     End Sub
 
