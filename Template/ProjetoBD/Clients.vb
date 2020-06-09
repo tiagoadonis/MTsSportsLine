@@ -139,7 +139,7 @@ Public Class Clients
     End Sub
 
     'Purchased Products DataGridView
-    Private Sub ClientsDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ClientsDataGridView.CellContentClick
+    Private Sub ClientsDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles ClientsDataGridView.CellClick
         Dim index As Integer = e.RowIndex
         'To not crash when user clicks in the header
         If (index = -1) Then
