@@ -43,9 +43,14 @@
             Dim bolPhone As Boolean = phoneChanged(PhoneTextBox.Text.Trim)
             If (bolAddress.Equals(True)) Then
                 Clients.updateAddress(AddressTextBox.Text)
-            ElseIf (bolPhone.Equals(True)) Then
+            End If
+            If (bolPhone.Equals(True)) Then
                 Clients.updatePhone(PhoneTextBox.Text)
             End If
+            Clients.Button5.Enabled = False
+            Clients.Button6.Enabled = False
+            Clients.PurchasedProductsGridView.DataSource = Nothing
+            Clients.ReturnedProductsGridView.DataSource = Nothing
             Me.Close()
         End If
     End Sub

@@ -29,7 +29,7 @@ Public Class Clients
             ElseIf (NIFbool = True And PhoneBool = False) Then
                 MsgBox("The Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
                 Me.flag = False
-            Else
+            ElseIf (NIFbool = False And PhoneBool = False) Then
                 MsgBox("The NIF and Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
                 Me.flag = False
             End If
@@ -38,13 +38,13 @@ Public Class Clients
                 NameTextBox.Text = ""
                 AddressTextBox.Text = ""
                 PhoneTextBox.Text = ""
+                MsgBox("Client inserted sucessfully!", MsgBoxStyle.Information, "Information")
             Else
                 NIFTextBox.Text = NIFTextBox.Text
                 NameTextBox.Text = NameTextBox.Text
                 AddressTextBox.Text = AddressTextBox.Text
                 PhoneTextBox.Text = PhoneTextBox.Text
             End If
-            MsgBox("Client inserted sucessfully!", MsgBoxStyle.Information, "Information")
             PurchasedProductsGridView.DataSource = Nothing
             ReturnedProductsGridView.DataSource = Nothing
             Button5.Enabled = False

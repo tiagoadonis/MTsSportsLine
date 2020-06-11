@@ -633,7 +633,10 @@ AS
 			DELETE FROM Projeto.Transporte WHERE Transporte.IDTransporte=@Id;
 		END
 		ELSE
-			RAISERROR ('The product with the code %d does not exist', 14, 1, @Code);
+			INSERT Projeto.Artigo_Loja(Codigo, NumLoja, QuantArtigos) 
+			VALUES (@Code, @Store, @Units); 
+			DELETE FROM Projeto.Artigo_Transporte WHERE Artigo_Transporte.IDTransporte=@Id;
+			DELETE FROM Projeto.Transporte WHERE Transporte.IDTransporte=@Id;
 	END
 	ELSE 
 		RAISERROR ('The delivery with ID %d does not exists', 14, 1, @Id);
