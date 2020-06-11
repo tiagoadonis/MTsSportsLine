@@ -43,15 +43,24 @@
             Dim bolPhone As Boolean = phoneChanged(PhoneTextBox.Text.Trim)
             If (bolAddress.Equals(True)) Then
                 Clients.updateAddress(AddressTextBox.Text)
+                Clients.Button5.Enabled = False
+                Clients.Button6.Enabled = False
+                Clients.PurchasedProductsGridView.DataSource = Nothing
+                Clients.ReturnedProductsGridView.DataSource = Nothing
+                Me.Close()
             End If
             If (bolPhone.Equals(True)) Then
-                Clients.updatePhone(PhoneTextBox.Text)
+                If (Clients.checkPhone(PhoneTextBox.Text) = False) Then
+                    MsgBox("The Phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
+                Else
+                    Clients.updatePhone(PhoneTextBox.Text)
+                    Clients.Button5.Enabled = False
+                    Clients.Button6.Enabled = False
+                    Clients.PurchasedProductsGridView.DataSource = Nothing
+                    Clients.ReturnedProductsGridView.DataSource = Nothing
+                    Me.Close()
+                End If
             End If
-            Clients.Button5.Enabled = False
-            Clients.Button6.Enabled = False
-            Clients.PurchasedProductsGridView.DataSource = Nothing
-            Clients.ReturnedProductsGridView.DataSource = Nothing
-            Me.Close()
         End If
     End Sub
 

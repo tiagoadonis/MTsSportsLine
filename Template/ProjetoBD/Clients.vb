@@ -264,7 +264,7 @@ Public Class Clients
     End Function
 
     'To check if phone number already exists or not
-    Private Function checkPhone(ByVal phone As Integer) As Boolean
+    Public Function checkPhone(ByVal phone As Integer) As Boolean
         Dim count As Integer
         CMD = New SqlCommand()
         CMD.Connection = CN

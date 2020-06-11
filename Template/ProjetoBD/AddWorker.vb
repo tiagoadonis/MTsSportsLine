@@ -5,7 +5,7 @@ Public Class AddWorker
     Dim CN As SqlConnection = New SqlConnection("Data Source = localhost;" &
                                                 "Initial Catalog = LojaDesporto; Integrated Security = true;")
 
-    Public Function CheckNum(num As Integer)
+    Private Function CheckNum(num As Integer)
         Dim numcheck As Object
         CMD = New SqlCommand()
         CMD.Connection = CN
@@ -16,34 +16,6 @@ Public Class AddWorker
         numcheck = CMD.ExecuteScalar()
         CN.Close()
         Return numcheck
-    End Function
-
-    'To check if phone number already exists or not
-    Private Function checkPhone(ByVal phone As Integer) As Boolean
-        Dim count As Integer
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT COUNT(*) FROM Projeto.Cliente WHERE Cliente.NumTelem=@Phone"
-        CMD.Parameters.Add("@Phone", SqlDbType.BigInt)
-        CMD.Parameters("@Phone").Value = phone
-        CN.Open()
-        count = CMD.ExecuteScalar()
-        CN.Close()
-
-        CMD = New SqlCommand()
-        CMD.Connection = CN
-        CMD.CommandText = "SELECT COUNT(*) FROM Projeto.Funcionario WHERE Funcionario.NumTelem=@Phone"
-        CMD.Parameters.Add("@Phone", SqlDbType.BigInt)
-        CMD.Parameters("@Phone").Value = phone
-        CN.Open()
-        count = count + CMD.ExecuteScalar()
-        CN.Close()
-
-        If (count > 0) Then
-            Return False
-        Else
-            Return True
-        End If
     End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -89,7 +61,6 @@ Public Class AddWorker
     'Confirm Button
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim idcheck As Object = CheckNum(Convert.ToInt32(TextBox1.Text))
-        Dim phoneCheck As Boolean = checkPhone(Convert.ToInt32(TextBox5.Text))
         If TextBox1.Text.Length <> 6 Then
             MsgBox("FuncNum must have 6 numbers!", MsgBoxStyle.Information, "ERROR")
         ElseIf TextBox5.Text.Length <> 9 Then
@@ -98,16 +69,18 @@ Public Class AddWorker
             MsgBox("Some textboxes are empty!", MsgBoxStyle.Information, "ERROR")
         ElseIf Not idcheck Is Nothing Then
             MsgBox("The worker with that number already exist!", MsgBoxStyle.Information, "ERROR")
-        ElseIf phoneCheck = False Then
-            MsgBox("The phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
         Else
             Dim num As Integer = TextBox1.Text
             Dim morada As String = TextBox2.Text
             Dim nome As String = TextBox4.Text
             Dim phone As Integer = TextBox5.Text
-            Workers.addWorker(num, morada, nome, phone)
-            Me.Close()
-            MessageBox.Show("Worker added successfully")
+            If (Clients.checkPhone(phone) = False) Then
+                MsgBox("The phone number inserted already exists!", MsgBoxStyle.Information, "ERROR")
+            Else
+                Workers.addWorker(num, morada, nome, phone)
+                Me.Close()
+                MessageBox.Show("Worker added successfully")
+            End If
         End If
     End Sub
 
