@@ -1,4 +1,4 @@
-# MTsSportsLine
+# M&T's Sports Line
 
 *__M&T's Sports Line__* is a fictitious brand created just for the final work of databases subject.
 
