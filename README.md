@@ -16,8 +16,6 @@ the store's workers and check all the sells done by worker.
 
 Here is some screenshots of the interface:
 
-![Screenshot_1](Images\Screenshot_1.png)
-
-<img src="Images\Screenshot_1.png" width="100" heigth="20">
+<img src="Images\Screenshot_1.png" width="749" heigth="387">
 
 To see all the information from our final work, open the *__"Report.pdf"__* file.
