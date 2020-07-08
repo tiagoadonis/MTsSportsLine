@@ -19,4 +19,4 @@ Here is some screenshots of the interface:
 <img src="Images\Screenshot_1.png" width="749" heigth="387">
 <img src="Images\Screenshot_2.png" width="739" heigth="387">
 
-To see all the information from our final work, open the *__"Report.pdf"__* file.
+To see all the information from our final work, open the [Report.pdf](https://github.com/tiagoadonis/MTsSportsLine/blob/master/Report.pdf).
