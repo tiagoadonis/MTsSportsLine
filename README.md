@@ -10,7 +10,12 @@ This final work had the followings objectives:
 - Create an database based on the previous relational schema;
 - Implement an graphic interface in VB.NET, capable of interact with the database created. 
 
-Our graphic interface can do simple transactions of an normal store like purchase a product or return a product but is capable of harder operations, for example, list all
+The graphic interface has four main categories, stores, clients, workers and deliveries. Each one of this is a tab in our graphic interface where the user 
+can check details and procede some operations. Operations like a simple purchase or a return but is also capable of more complex ones, for example, list all
 the store's workers and check all the sells done by worker.
 
-To check more details from our final work, open the *__"Report.pdf"__* file.
+Here is some screenshots of the interface:
+
+
+
+To see all the information from our final work, open the *__"Report.pdf"__* file.
